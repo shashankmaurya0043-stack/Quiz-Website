@@ -5,14 +5,14 @@ import { getActiveQuestions } from "./questionsRepo";
 interface QuestionsState {
   loading: boolean;
   bySubject: Record<string, QuestionRaw[]>;
-  source: "firestore" | "static" | null;
+  source: "api" | "static" | null;
   total: number;
   error: string | null;
 }
 
 let cachedPromise: Promise<{
   bySubject: Record<string, QuestionRaw[]>;
-  source: "firestore" | "static";
+  source: "api" | "static";
   total: number;
 }> | null = null;
 

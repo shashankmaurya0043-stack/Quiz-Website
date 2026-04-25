@@ -15,10 +15,9 @@ import {
   ArrowLeft,
   Sparkles,
 } from "lucide-react";
-import { useAdminAuth, adminSignOut } from "@/lib/adminAuth";
-import { isFirebaseConfigured } from "@/lib/firebase";
+import { useAuth } from "@workspace/replit-auth-web";
 import {
-  fetchAllQuestionsFromFirestore,
+  fetchAllQuestions,
   createQuestion,
   updateQuestion,
   deleteQuestion,
@@ -48,7 +47,7 @@ const EMPTY_FORM: FormState = {
 
 export default function AdminQuestions() {
   const [, navigate] = useLocation();
-  const { ready, user } = useAdminAuth();
+  const { isLoading: authLoading, isAuthenticated, isAdmin, user, logout } = useAuth();
   const [list, setList] = useState<QuestionDoc[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -68,17 +67,17 @@ export default function AdminQuestions() {
   const [toast, setToast] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!ready) return;
-    if (!user) {
+    if (authLoading) return;
+    if (!isAuthenticated || !isAdmin) {
       navigate("/admin/login");
     }
-  }, [ready, user, navigate]);
+  }, [authLoading, isAuthenticated, isAdmin, navigate]);
 
   async function refresh() {
     setLoading(true);
     setError(null);
     try {
-      const docs = await fetchAllQuestionsFromFirestore();
+      const docs = await fetchAllQuestions();
       setList(docs);
       invalidateQuestionsCache();
     } catch (e: unknown) {
@@ -90,10 +89,10 @@ export default function AdminQuestions() {
   }
 
   useEffect(() => {
-    if (ready && user) {
+    if (!authLoading && isAuthenticated && isAdmin) {
       void refresh();
     }
-  }, [ready, user]);
+  }, [authLoading, isAuthenticated, isAdmin]);
 
   const filtered = useMemo(() => {
     const term = search.trim().toLowerCase();
@@ -196,7 +195,7 @@ export default function AdminQuestions() {
       const total = await seedStaticQuestions((done, total) =>
         setSeedProgress({ done, total }),
       );
-      showToast(`Seeded ${total} questions to Firestore.`);
+      showToast(`Seeded ${total} questions.`);
       await refresh();
     } catch (e: unknown) {
       const msg = e instanceof Error ? e.message : "Seed failed.";
@@ -212,7 +211,7 @@ export default function AdminQuestions() {
     setLoading(true);
     try {
       const n = await deleteAllQuestions();
-      showToast(`Deleted ${n} questions from Firestore.`);
+      showToast(`Deleted ${n} questions.`);
       await refresh();
     } catch (e: unknown) {
       const msg = e instanceof Error ? e.message : "Delete all failed.";
@@ -220,16 +219,7 @@ export default function AdminQuestions() {
     }
   }
 
-  async function handleSignOut() {
-    await adminSignOut();
-    navigate("/admin/login");
-  }
-
-  if (!isFirebaseConfigured) {
-    navigate("/admin/login");
-    return null;
-  }
-  if (!ready || !user) {
+  if (authLoading || !isAuthenticated || !isAdmin) {
     return (
       <div className="min-h-screen bg-[#FDFBF7] flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin" strokeWidth={2.5} />
@@ -261,11 +251,11 @@ export default function AdminQuestions() {
 
           <div className="flex items-center gap-2 shrink-0">
             <span className="hidden sm:inline-block text-xs text-zinc-600 max-w-[160px] truncate">
-              {user.email}
+              {user?.email ?? user?.firstName ?? "admin"}
             </span>
             <button
               data-testid="admin-signout-btn"
-              onClick={handleSignOut}
+              onClick={logout}
               className="h-10 px-3 bg-white rounded-lg nb-border nb-shadow-sm nb-hover flex items-center gap-1.5 font-heading font-bold text-sm"
             >
               <LogOut className="w-4 h-4" strokeWidth={2.5} />
@@ -287,7 +277,7 @@ export default function AdminQuestions() {
           {SUBJECT_CODES.map((c) => (
             <div
               key={c}
-              className={`bg-${c === "M1" ? "[#A7F3D0]" : c === "M2" ? "[#FDE047]" : c === "M3" ? "[#C4B5FD]" : "[#FDA4AF]"} nb-border rounded-xl px-4 py-3 nb-shadow-sm`}
+              className="nb-border rounded-xl px-4 py-3 nb-shadow-sm"
               style={{
                 background:
                   c === "M1"
@@ -599,7 +589,7 @@ export default function AdminQuestions() {
                           setForm({ ...form, options_en: next });
                         }}
                         placeholder={`Option ${String.fromCharCode(65 + idx)} (English)`}
-                        className="bg-white nb-border rounded-lg px-3 py-2 text-sm font-body focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        className="bg-white nb-border rounded-lg px-3 py-2 font-body text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
                       />
                       <input
                         data-testid={`admin-form-option-hi-${idx}`}
@@ -609,8 +599,8 @@ export default function AdminQuestions() {
                           next[idx] = e.target.value;
                           setForm({ ...form, options_hi: next });
                         }}
-                        placeholder={`विकल्प ${String.fromCharCode(65 + idx)}`}
-                        className="bg-white nb-border rounded-lg px-3 py-2 text-sm font-body focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        placeholder={`विकल्प ${String.fromCharCode(65 + idx)} (Hindi)`}
+                        className="bg-white nb-border rounded-lg px-3 py-2 font-body text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
                       />
                     </div>
                   ))}
@@ -645,29 +635,28 @@ export default function AdminQuestions() {
               </div>
 
               {formError && (
-                <div className="bg-red-100 nb-border rounded-xl px-3 py-2 text-sm text-red-800 font-medium flex items-start gap-2">
-                  <AlertTriangle className="w-4 h-4 mt-0.5 shrink-0" strokeWidth={2.5} />
-                  <span>{formError}</span>
+                <div className="bg-red-100 nb-border rounded-xl px-3 py-2 text-sm text-red-800 font-medium">
+                  {formError}
                 </div>
               )}
+            </div>
 
-              <div className="flex justify-end gap-2 pt-2">
-                <button
-                  onClick={() => setShowForm(false)}
-                  className="bg-white font-heading font-bold px-4 py-2 rounded-xl nb-border nb-shadow-sm nb-hover"
-                >
-                  Cancel
-                </button>
-                <button
-                  data-testid="admin-form-save"
-                  onClick={handleSave}
-                  disabled={saving}
-                  className="bg-black text-white font-heading font-bold px-5 py-2 rounded-xl nb-border nb-shadow nb-hover inline-flex items-center gap-2 disabled:opacity-60"
-                >
-                  {saving && <Loader2 className="w-4 h-4 animate-spin" strokeWidth={2.5} />}
-                  {editing ? "Save changes" : "Create"}
-                </button>
-              </div>
+            <div className="mt-5 flex items-center gap-2 justify-end">
+              <button
+                onClick={() => setShowForm(false)}
+                className="px-4 py-2 bg-white rounded-xl nb-border nb-shadow-sm nb-hover font-heading font-bold text-sm"
+              >
+                Cancel
+              </button>
+              <button
+                data-testid="admin-form-save"
+                onClick={handleSave}
+                disabled={saving}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-black text-white rounded-xl nb-border nb-shadow nb-hover font-heading font-bold text-sm disabled:opacity-60"
+              >
+                {saving && <Loader2 className="w-4 h-4 animate-spin" strokeWidth={2.5} />}
+                {editing ? "Save changes" : "Add question"}
+              </button>
             </div>
           </div>
         </div>
@@ -675,26 +664,28 @@ export default function AdminQuestions() {
 
       {/* Delete one confirm */}
       {confirmDelete && (
-        <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
-          <div className="bg-white nb-border rounded-2xl p-6 max-w-md w-full nb-shadow-lg">
-            <h3 className="font-heading font-black text-xl">Delete question?</h3>
-            <p className="mt-2 text-sm text-zinc-700">
-              This action cannot be undone.
-            </p>
-            <p className="mt-3 text-sm bg-zinc-50 nb-border rounded-lg p-3 font-medium">
-              {confirmDelete.q_en}
-            </p>
+        <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-3">
+          <div className="bg-white nb-border rounded-2xl p-6 max-w-sm w-full nb-shadow-lg">
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5" strokeWidth={2.5} />
+              <div>
+                <div className="font-heading font-black text-lg">Delete question?</div>
+                <div className="text-sm text-zinc-700 mt-1">
+                  This cannot be undone.
+                </div>
+              </div>
+            </div>
             <div className="mt-5 flex justify-end gap-2">
               <button
                 onClick={() => setConfirmDelete(null)}
-                className="bg-white font-heading font-bold px-4 py-2 rounded-xl nb-border nb-shadow-sm nb-hover"
+                className="px-4 py-2 bg-white rounded-xl nb-border nb-shadow-sm nb-hover font-heading font-bold text-sm"
               >
                 Cancel
               </button>
               <button
                 data-testid="admin-confirm-delete"
                 onClick={() => handleDelete(confirmDelete)}
-                className="bg-red-600 text-white font-heading font-bold px-4 py-2 rounded-xl nb-border nb-shadow nb-hover"
+                className="px-4 py-2 bg-red-600 text-white rounded-xl nb-border nb-shadow nb-hover font-heading font-bold text-sm"
               >
                 Delete
               </button>
@@ -705,35 +696,39 @@ export default function AdminQuestions() {
 
       {/* Delete all confirm */}
       {confirmDeleteAll && (
-        <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
-          <div className="bg-white nb-border rounded-2xl p-6 max-w-md w-full nb-shadow-lg">
-            <h3 className="font-heading font-black text-xl">Delete ALL questions?</h3>
-            <p className="mt-2 text-sm text-zinc-700">
-              This will remove every question from Firestore. The static bank will
-              be used as a fallback. This cannot be undone.
-            </p>
+        <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-3">
+          <div className="bg-white nb-border rounded-2xl p-6 max-w-sm w-full nb-shadow-lg">
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="w-5 h-5 text-red-600 mt-0.5" strokeWidth={2.5} />
+              <div>
+                <div className="font-heading font-black text-lg">Delete every question?</div>
+                <div className="text-sm text-zinc-700 mt-1">
+                  All {list.length} questions will be permanently removed. The
+                  quiz will fall back to the static bank shipped in the app.
+                </div>
+              </div>
+            </div>
             <div className="mt-5 flex justify-end gap-2">
               <button
                 onClick={() => setConfirmDeleteAll(false)}
-                className="bg-white font-heading font-bold px-4 py-2 rounded-xl nb-border nb-shadow-sm nb-hover"
+                className="px-4 py-2 bg-white rounded-xl nb-border nb-shadow-sm nb-hover font-heading font-bold text-sm"
               >
                 Cancel
               </button>
               <button
+                data-testid="admin-confirm-delete-all"
                 onClick={handleDeleteAll}
-                className="bg-red-600 text-white font-heading font-bold px-4 py-2 rounded-xl nb-border nb-shadow nb-hover"
+                className="px-4 py-2 bg-red-600 text-white rounded-xl nb-border nb-shadow nb-hover font-heading font-bold text-sm"
               >
-                Yes, delete all
+                Delete all
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* Toast */}
       {toast && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-black text-white nb-border rounded-xl px-4 py-2 nb-shadow font-heading font-bold text-sm flex items-center gap-2">
-          <CheckCircle2 className="w-4 h-4 text-green-300" strokeWidth={2.5} />
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-black text-white font-heading font-bold px-4 py-2 rounded-xl nb-shadow-lg">
           {toast}
         </div>
       )}

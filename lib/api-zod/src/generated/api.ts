@@ -14,3 +14,307 @@ import * as zod from "zod";
 export const HealthCheckResponse = zod.object({
   status: zod.string(),
 });
+
+/**
+ * @summary Get the currently authenticated user
+ */
+export const GetCurrentAuthUserHeader = zod.object({
+  Authorization: zod
+    .string()
+    .optional()
+    .describe("Opaque session token — `Bearer <sid>`."),
+});
+
+export const GetCurrentAuthUserResponse = zod.object({
+  user: zod.union([
+    zod.object({
+      id: zod.string(),
+      email: zod.string().email().nullable(),
+      firstName: zod.string().nullable(),
+      lastName: zod.string().nullable(),
+      profileImageUrl: zod.string().nullable(),
+    }),
+    zod.null(),
+  ]),
+  isAdmin: zod.boolean(),
+});
+
+/**
+ * @summary Start the browser OIDC login flow
+ */
+export const BeginBrowserLoginQueryParams = zod.object({
+  returnTo: zod.coerce
+    .string()
+    .optional()
+    .describe(
+      "Relative path to redirect to after login (must start with `\/`). Defaults to `\/`.",
+    ),
+});
+
+/**
+ * @summary Complete the browser OIDC login flow
+ */
+export const HandleBrowserLoginCallbackQueryParams = zod.object({
+  code: zod.coerce.string().optional(),
+  state: zod.coerce.string().optional(),
+  iss: zod.coerce.string().url().optional(),
+});
+
+/**
+ * @summary Clear the session and begin OIDC logout
+ */
+export const LogoutBrowserSessionHeader = zod.object({
+  Authorization: zod
+    .string()
+    .optional()
+    .describe("Opaque session token — `Bearer <sid>`."),
+});
+
+/**
+ * @summary Exchange a mobile OIDC code for a session token
+ */
+
+export const ExchangeMobileAuthorizationCodeBody = zod.object({
+  code: zod.string().min(1),
+  code_verifier: zod.string().min(1),
+  redirect_uri: zod.string().url().min(1),
+  state: zod.string().min(1),
+  nonce: zod.string().min(1).optional(),
+});
+
+export const ExchangeMobileAuthorizationCodeResponse = zod.object({
+  token: zod.string(),
+});
+
+/**
+ * @summary Delete a mobile session token
+ */
+export const LogoutMobileSessionHeader = zod.object({
+  Authorization: zod
+    .string()
+    .optional()
+    .describe("Opaque session token — `Bearer <sid>`."),
+});
+
+export const LogoutMobileSessionResponse = zod.object({
+  success: zod.boolean(),
+});
+
+/**
+ * @summary List all quiz questions (public)
+ */
+export const listQuestionsResponseQuestionsItemOptionsEnMin = 4;
+export const listQuestionsResponseQuestionsItemOptionsEnMax = 4;
+
+export const listQuestionsResponseQuestionsItemOptionsHiMin = 4;
+export const listQuestionsResponseQuestionsItemOptionsHiMax = 4;
+
+export const listQuestionsResponseQuestionsItemAMin = 0;
+export const listQuestionsResponseQuestionsItemAMax = 3;
+
+export const ListQuestionsResponse = zod.object({
+  questions: zod.array(
+    zod.object({
+      id: zod.string(),
+      subject_code: zod.enum(["M1", "M2", "M3", "M4"]),
+      q_en: zod.string(),
+      q_hi: zod.string(),
+      options_en: zod
+        .array(zod.string())
+        .min(listQuestionsResponseQuestionsItemOptionsEnMin)
+        .max(listQuestionsResponseQuestionsItemOptionsEnMax),
+      options_hi: zod
+        .array(zod.string())
+        .min(listQuestionsResponseQuestionsItemOptionsHiMin)
+        .max(listQuestionsResponseQuestionsItemOptionsHiMax),
+      a: zod
+        .number()
+        .min(listQuestionsResponseQuestionsItemAMin)
+        .max(listQuestionsResponseQuestionsItemAMax),
+      exp_en: zod.string(),
+      exp_hi: zod.string(),
+    }),
+  ),
+});
+
+/**
+ * @summary Create a quiz question (admin only)
+ */
+
+export const createQuestionBodyOptionsEnMin = 4;
+export const createQuestionBodyOptionsEnMax = 4;
+
+export const createQuestionBodyOptionsHiMin = 4;
+export const createQuestionBodyOptionsHiMax = 4;
+
+export const createQuestionBodyAMin = 0;
+export const createQuestionBodyAMax = 3;
+
+export const CreateQuestionBody = zod.object({
+  subject_code: zod.enum(["M1", "M2", "M3", "M4"]),
+  q_en: zod.string().min(1),
+  q_hi: zod.string().min(1),
+  options_en: zod
+    .array(zod.string().min(1))
+    .min(createQuestionBodyOptionsEnMin)
+    .max(createQuestionBodyOptionsEnMax),
+  options_hi: zod
+    .array(zod.string().min(1))
+    .min(createQuestionBodyOptionsHiMin)
+    .max(createQuestionBodyOptionsHiMax),
+  a: zod.number().min(createQuestionBodyAMin).max(createQuestionBodyAMax),
+  exp_en: zod.string(),
+  exp_hi: zod.string(),
+});
+
+export const createQuestionResponseOptionsEnMin = 4;
+export const createQuestionResponseOptionsEnMax = 4;
+
+export const createQuestionResponseOptionsHiMin = 4;
+export const createQuestionResponseOptionsHiMax = 4;
+
+export const createQuestionResponseAMin = 0;
+export const createQuestionResponseAMax = 3;
+
+export const CreateQuestionResponse = zod.object({
+  id: zod.string(),
+  subject_code: zod.enum(["M1", "M2", "M3", "M4"]),
+  q_en: zod.string(),
+  q_hi: zod.string(),
+  options_en: zod
+    .array(zod.string())
+    .min(createQuestionResponseOptionsEnMin)
+    .max(createQuestionResponseOptionsEnMax),
+  options_hi: zod
+    .array(zod.string())
+    .min(createQuestionResponseOptionsHiMin)
+    .max(createQuestionResponseOptionsHiMax),
+  a: zod
+    .number()
+    .min(createQuestionResponseAMin)
+    .max(createQuestionResponseAMax),
+  exp_en: zod.string(),
+  exp_hi: zod.string(),
+});
+
+/**
+ * @summary Delete every question (admin only)
+ */
+export const DeleteAllQuestionsResponse = zod.object({
+  deleted: zod.number(),
+});
+
+/**
+ * @summary Bulk-insert questions (admin only)
+ */
+
+export const seedQuestionsBodyQuestionsItemOptionsEnMin = 4;
+export const seedQuestionsBodyQuestionsItemOptionsEnMax = 4;
+
+export const seedQuestionsBodyQuestionsItemOptionsHiMin = 4;
+export const seedQuestionsBodyQuestionsItemOptionsHiMax = 4;
+
+export const seedQuestionsBodyQuestionsItemAMin = 0;
+export const seedQuestionsBodyQuestionsItemAMax = 3;
+
+export const SeedQuestionsBody = zod.object({
+  questions: zod.array(
+    zod.object({
+      subject_code: zod.enum(["M1", "M2", "M3", "M4"]),
+      q_en: zod.string().min(1),
+      q_hi: zod.string().min(1),
+      options_en: zod
+        .array(zod.string().min(1))
+        .min(seedQuestionsBodyQuestionsItemOptionsEnMin)
+        .max(seedQuestionsBodyQuestionsItemOptionsEnMax),
+      options_hi: zod
+        .array(zod.string().min(1))
+        .min(seedQuestionsBodyQuestionsItemOptionsHiMin)
+        .max(seedQuestionsBodyQuestionsItemOptionsHiMax),
+      a: zod
+        .number()
+        .min(seedQuestionsBodyQuestionsItemAMin)
+        .max(seedQuestionsBodyQuestionsItemAMax),
+      exp_en: zod.string(),
+      exp_hi: zod.string(),
+    }),
+  ),
+});
+
+export const SeedQuestionsResponse = zod.object({
+  inserted: zod.number(),
+});
+
+/**
+ * @summary Update a quiz question (admin only)
+ */
+export const UpdateQuestionParams = zod.object({
+  id: zod.coerce.string(),
+});
+
+export const updateQuestionBodyOptionsEnMin = 4;
+export const updateQuestionBodyOptionsEnMax = 4;
+
+export const updateQuestionBodyOptionsHiMin = 4;
+export const updateQuestionBodyOptionsHiMax = 4;
+
+export const updateQuestionBodyAMin = 0;
+export const updateQuestionBodyAMax = 3;
+
+export const UpdateQuestionBody = zod.object({
+  subject_code: zod.enum(["M1", "M2", "M3", "M4"]),
+  q_en: zod.string().min(1),
+  q_hi: zod.string().min(1),
+  options_en: zod
+    .array(zod.string().min(1))
+    .min(updateQuestionBodyOptionsEnMin)
+    .max(updateQuestionBodyOptionsEnMax),
+  options_hi: zod
+    .array(zod.string().min(1))
+    .min(updateQuestionBodyOptionsHiMin)
+    .max(updateQuestionBodyOptionsHiMax),
+  a: zod.number().min(updateQuestionBodyAMin).max(updateQuestionBodyAMax),
+  exp_en: zod.string(),
+  exp_hi: zod.string(),
+});
+
+export const updateQuestionResponseOptionsEnMin = 4;
+export const updateQuestionResponseOptionsEnMax = 4;
+
+export const updateQuestionResponseOptionsHiMin = 4;
+export const updateQuestionResponseOptionsHiMax = 4;
+
+export const updateQuestionResponseAMin = 0;
+export const updateQuestionResponseAMax = 3;
+
+export const UpdateQuestionResponse = zod.object({
+  id: zod.string(),
+  subject_code: zod.enum(["M1", "M2", "M3", "M4"]),
+  q_en: zod.string(),
+  q_hi: zod.string(),
+  options_en: zod
+    .array(zod.string())
+    .min(updateQuestionResponseOptionsEnMin)
+    .max(updateQuestionResponseOptionsEnMax),
+  options_hi: zod
+    .array(zod.string())
+    .min(updateQuestionResponseOptionsHiMin)
+    .max(updateQuestionResponseOptionsHiMax),
+  a: zod
+    .number()
+    .min(updateQuestionResponseAMin)
+    .max(updateQuestionResponseAMax),
+  exp_en: zod.string(),
+  exp_hi: zod.string(),
+});
+
+/**
+ * @summary Delete a quiz question (admin only)
+ */
+export const DeleteQuestionParams = zod.object({
+  id: zod.coerce.string(),
+});
+
+export const DeleteQuestionResponse = zod.object({
+  success: zod.boolean(),
+});

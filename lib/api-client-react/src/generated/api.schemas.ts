@@ -8,3 +8,143 @@
 export interface HealthStatus {
   status: string;
 }
+
+export interface AuthUser {
+  id: string;
+  /** @nullable */
+  email: string | null;
+  /** @nullable */
+  firstName: string | null;
+  /** @nullable */
+  lastName: string | null;
+  /** @nullable */
+  profileImageUrl: string | null;
+}
+
+export interface AuthUserEnvelope {
+  user: AuthUser | null;
+  isAdmin: boolean;
+}
+
+export interface MobileTokenExchangeRequest {
+  /** @minLength 1 */
+  code: string;
+  /** @minLength 1 */
+  code_verifier: string;
+  /** @minLength 1 */
+  redirect_uri: string;
+  /** @minLength 1 */
+  state: string;
+  /** @minLength 1 */
+  nonce?: string;
+}
+
+export interface MobileTokenExchangeSuccess {
+  token: string;
+}
+
+export const LogoutSuccessValue = {
+  success: true,
+} as const;
+export type LogoutSuccess = typeof LogoutSuccessValue;
+
+export interface ErrorEnvelope {
+  error: string;
+}
+
+export type SubjectCode = (typeof SubjectCode)[keyof typeof SubjectCode];
+
+export const SubjectCode = {
+  M1: "M1",
+  M2: "M2",
+  M3: "M3",
+  M4: "M4",
+} as const;
+
+export interface Question {
+  id: string;
+  subject_code: SubjectCode;
+  q_en: string;
+  q_hi: string;
+  /**
+   * @minItems 4
+   * @maxItems 4
+   */
+  options_en: string[];
+  /**
+   * @minItems 4
+   * @maxItems 4
+   */
+  options_hi: string[];
+  /**
+   * @minimum 0
+   * @maximum 3
+   */
+  a: number;
+  exp_en: string;
+  exp_hi: string;
+}
+
+export interface QuestionInput {
+  subject_code: SubjectCode;
+  /** @minLength 1 */
+  q_en: string;
+  /** @minLength 1 */
+  q_hi: string;
+  /**
+   * @minItems 4
+   * @maxItems 4
+   */
+  options_en: string[];
+  /**
+   * @minItems 4
+   * @maxItems 4
+   */
+  options_hi: string[];
+  /**
+   * @minimum 0
+   * @maximum 3
+   */
+  a: number;
+  exp_en: string;
+  exp_hi: string;
+}
+
+export interface QuestionList {
+  questions: Question[];
+}
+
+export interface QuestionSeedBody {
+  questions: QuestionInput[];
+}
+
+export interface InsertedCount {
+  inserted: number;
+}
+
+export interface DeletedCount {
+  deleted: number;
+}
+
+export const DeletedOneValue = {
+  success: true,
+} as const;
+export type DeletedOne = typeof DeletedOneValue;
+
+/**
+ * Opaque session token — `Bearer <sid>`.
+ */
+export type AuthorizationSessionHeaderParameter = string;
+
+export type BeginBrowserLoginParams = {
+  /**
+   * Relative path to redirect to after login (must start with `/`). Defaults to `/`.
+   */
+  returnTo?: string;
+};
+
+export type HandleBrowserLoginCallbackParams = {
+  code?: string;
+  state?: string;
+  iss?: string;
+};
