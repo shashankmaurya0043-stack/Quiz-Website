@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&display=swap');
+
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #FDFBF7;
+  color: #0A0A0A;
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.font-heading {
+  font-family: 'Outfit', sans-serif;
+}
+
+.font-body {
+  font-family: 'DM Sans', sans-serif;
+}
+
+.font-mono-timer {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* Neo-brutalist utility classes */
+.nb-border {
+  border: 2px solid #0A0A0A;
+}
+
+.nb-shadow {
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.nb-shadow-lg {
+  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.nb-shadow-sm {
+  box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.nb-hover {
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+.nb-hover:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1) !important;
+}
+.nb-hover:active {
+  transform: translate(4px, 4px);
+  box-shadow: none !important;
+}
+
+.nb-hover-lg {
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+.nb-hover-lg:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1) !important;
+}
+
+/* Subject pastel backgrounds */
+.bg-m1 { background-color: #A7F3D0; }
+.bg-m2 { background-color: #FDE047; }
+.bg-m3 { background-color: #C4B5FD; }
+.bg-m4 { background-color: #FDA4AF; }
+
+/* Progress bar */
+.nb-progress-track {
+  background: #FFFFFF;
+  border: 2px solid #0A0A0A;
+  border-radius: 9999px;
+  overflow: hidden;
+  height: 14px;
+}
+
+.nb-progress-fill {
+  background: #0A0A0A;
+  height: 100%;
+  transition: width 250ms ease;
+}
+
+/* Selection */
+::selection {
+  background: #FDE047;
+  color: #0A0A0A;
+}
+
+/* Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-pop {
+  animation: pop 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes slideUp {
+  0% { transform: translateY(16px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+.animate-slide-up {
+  animation: slideUp 0.4s ease both;
+}
+
+@keyframes pulseTimer {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+.pulse-timer {
+  animation: pulseTimer 1s infinite;
+}
+
+/* ============ DARK MODE (Neo-brutalist inverted) ============ */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #0A0A0A;
+  color: #F5F5F5;
+}
+
+html.dark .bg-\[\#FDFBF7\] {
+  background-color: #0A0A0A !important;
+}
+
+html.dark .bg-white {
+  background-color: #18181B !important;
+  color: #F5F5F5;
+}
+
+html.dark .text-black {
+  color: #F5F5F5 !important;
+}
+
+html.dark .border-black {
+  border-color: #F5F5F5 !important;
+}
+
+html.dark .border-b-2.border-black {
+  border-color: #F5F5F5 !important;
+}
+
+html.dark .nb-border {
+  border-color: #F5F5F5;
+}
+
+html.dark .nb-shadow {
+  box-shadow: 4px 4px 0px 0px rgba(245, 245, 245, 1);
+}
+html.dark .nb-shadow-sm {
+  box-shadow: 3px 3px 0px 0px rgba(245, 245, 245, 1);
+}
+html.dark .nb-shadow-lg {
+  box-shadow: 6px 6px 0px 0px rgba(245, 245, 245, 1);
+}
+html.dark .nb-hover:hover {
+  box-shadow: 2px 2px 0px 0px rgba(245, 245, 245, 1) !important;
+}
+html.dark .nb-hover-lg:hover {
+  box-shadow: 3px 3px 0px 0px rgba(245, 245, 245, 1) !important;
+}
+
+html.dark .nb-progress-track {
+  background: #18181B;
+  border-color: #F5F5F5;
+}
+html.dark .nb-progress-fill {
+  background: #F5F5F5;
+}
+
+/* Keep pastel subject cards vibrant but force dark text for readability */
+html.dark .bg-m1,
+html.dark .bg-m2,
+html.dark .bg-m3,
+html.dark .bg-m4,
+html.dark .bg-yellow-300,
+html.dark .bg-green-300,
+html.dark .bg-blue-300,
+html.dark .bg-pink-300,
+html.dark .bg-orange-300,
+html.dark .bg-red-300 {
+  color: #0A0A0A;
+}
+
+/* Black CTA inverts to white in dark mode for contrast */
+html.dark .bg-black {
+  background-color: #F5F5F5 !important;
+  color: #0A0A0A !important;
+}
+html.dark .bg-black * {
+  color: #0A0A0A !important;
+}
+
+/* Blue CTAs stay bright */
+html.dark .bg-blue-500 {
+  color: #FFFFFF !important;
+}
+html.dark .bg-blue-100 {
+  background-color: #1E3A8A !important;
+  color: #FFFFFF !important;
+}
+html.dark .bg-yellow-100 {
+  background-color: #422006 !important;
+  color: #FEF3C7 !important;
+}
+html.dark .bg-green-100 {
+  background-color: #14532D !important;
+  color: #DCFCE7 !important;
+}
+html.dark .bg-red-100 {
+  background-color: #7F1D1D !important;
+  color: #FEE2E2 !important;
+}
+
+html.dark .text-zinc-600,
+html.dark .text-zinc-700,
+html.dark .text-zinc-800 {
+  color: #D4D4D8 !important;
+}
+html.dark .text-zinc-500 {
+  color: #A1A1AA !important;
+}
+html.dark .text-zinc-400 {
+  color: #71717A !important;
+}

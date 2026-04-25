@@ -25,3 +25,7 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 - `pnpm --filter @workspace/api-server run dev` — run API server locally
 
 See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details.
+
+## Artifacts
+
+- `artifacts/quiz` — **O Level Quiz** (React + Vite, frontend-only). Bilingual (EN/HI) NIELIT O Level practice quizzes. 4 subject quizzes (M1 IT Tools, M2 Web Designing, M3 Python, M4 IoT) with 20 questions / 20 minutes each, plus a mixed Mock Test (50 questions / 60 minutes). Neo-brutalist design, dark mode, attempt history persisted in `localStorage`. Question bank (~405 questions) is static in `src/data/questions.ts`. Routing uses `wouter`. Result hand-off between Quiz and Results pages goes through `sessionStorage` via `src/lib/resultStore.ts`.
