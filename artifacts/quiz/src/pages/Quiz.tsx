@@ -12,6 +12,7 @@ import {
 import { startQuiz, submitQuiz, type QuizSession } from "@/lib/quiz";
 import { useLang, t } from "@/lib/lang";
 import { setLastResult } from "@/lib/resultStore";
+import { useQuestions } from "@/lib/useQuestions";
 
 const formatTime = (sec: number) => {
   const m = Math.floor(sec / 60).toString().padStart(2, "0");
@@ -24,6 +25,7 @@ export default function Quiz() {
   const code = params?.code ?? "";
   const [, navigate] = useLocation();
   const { lang, toggle: toggleLang, isHi } = useLang();
+  const questions = useQuestions();
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -35,11 +37,20 @@ export default function Quiz() {
   const [confirmOpen, setConfirmOpen] = useState(false);
 
   const startTsRef = useRef<number | null>(null);
+  const startedForCodeRef = useRef<string | null>(null);
 
   useEffect(() => {
+    if (questions.loading) return;
+    if (questions.error) {
+      setError(questions.error);
+      setLoading(false);
+      return;
+    }
+    if (startedForCodeRef.current === code) return;
+    startedForCodeRef.current = code;
     setLoading(true);
     try {
-      const session = startQuiz(code);
+      const session = startQuiz(code, questions.bySubject);
       setData(session);
       setTimeLeft(session.duration_min * 60);
       startTsRef.current = Date.now();
@@ -49,7 +60,7 @@ export default function Quiz() {
     } finally {
       setLoading(false);
     }
-  }, [code]);
+  }, [code, questions.loading, questions.error, questions.bySubject]);
 
   const handleSubmit = useCallback(
     (auto = false) => {
@@ -86,7 +97,7 @@ export default function Quiz() {
     [answers],
   );
 
-  if (loading) {
+  if (loading || questions.loading) {
     return (
       <div className="min-h-screen bg-[#FDFBF7] flex items-center justify-center">
         <div className="bg-white nb-border rounded-2xl px-6 py-8 nb-shadow text-center">

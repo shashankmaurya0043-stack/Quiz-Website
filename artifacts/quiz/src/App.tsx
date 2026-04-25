@@ -4,6 +4,8 @@ import Home from "@/pages/Home";
 import Quiz from "@/pages/Quiz";
 import Results from "@/pages/Results";
 import History from "@/pages/History";
+import AdminLogin from "@/pages/AdminLogin";
+import AdminQuestions from "@/pages/AdminQuestions";
 import { applyTheme, getInitialTheme } from "@/lib/theme";
 
 function NotFound() {
@@ -35,6 +37,8 @@ function App() {
         <Route path="/quiz/:code" component={Quiz} />
         <Route path="/results" component={Results} />
         <Route path="/history" component={History} />
+        <Route path="/admin/login" component={AdminLogin} />
+        <Route path="/admin" component={AdminQuestions} />
         <Route component={NotFound} />
       </Switch>
     </WouterRouter>

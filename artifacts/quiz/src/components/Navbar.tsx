@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { GraduationCap, Rocket, History as HistoryIcon, Sun, Moon, Languages } from "lucide-react";
+import { GraduationCap, Rocket, History as HistoryIcon, Sun, Moon, Languages, Lock } from "lucide-react";
 import { useTheme } from "@/lib/theme";
 import { useLang, t } from "@/lib/lang";
 
@@ -74,6 +74,15 @@ export function Navbar() {
             className="sm:hidden w-10 h-10 bg-white rounded-lg nb-border nb-shadow-sm nb-hover flex items-center justify-center"
           >
             <HistoryIcon className="w-4 h-4" strokeWidth={2.5} />
+          </button>
+          <button
+            data-testid="nav-admin-btn"
+            onClick={() => navigate("/admin")}
+            aria-label="Admin"
+            title="Admin panel"
+            className="hidden lg:inline-flex w-10 h-10 bg-white rounded-lg nb-border nb-shadow-sm nb-hover items-center justify-center"
+          >
+            <Lock className="w-4 h-4" strokeWidth={2.5} />
           </button>
           <button
             data-testid="nav-mock-test-btn"

@@ -1,4 +1,4 @@
-import { ALL_QUESTIONS, type QuestionRaw } from "@/data/questions";
+import type { QuestionRaw } from "@/data/questions";
 import { SUBJECTS, MOCK_TEST, getSubjectMeta } from "@/data/subjects";
 
 export interface QuizQuestion {
@@ -61,7 +61,10 @@ function newId(prefix = "id"): string {
   return `${prefix}_${Math.random().toString(36).slice(2, 10)}_${Date.now().toString(36)}`;
 }
 
-export function startQuiz(code: string): QuizSession {
+export function startQuiz(
+  code: string,
+  bySubject: Record<string, QuestionRaw[]>,
+): QuizSession {
   const upper = code.toUpperCase();
   let pool: QuestionRaw[] = [];
   let count = 0;
@@ -72,7 +75,7 @@ export function startQuiz(code: string): QuizSession {
   if (upper === "MOCK") {
     const all: QuestionRaw[] = [];
     for (const s of SUBJECTS) {
-      all.push(...(ALL_QUESTIONS[s.code] || []));
+      all.push(...(bySubject[s.code] || []));
     }
     pool = all;
     count = MOCK_TEST.num_questions;
@@ -84,11 +87,17 @@ export function startQuiz(code: string): QuizSession {
     if (!subj) {
       throw new Error(`Unknown subject: ${code}`);
     }
-    pool = ALL_QUESTIONS[subj.code] || [];
+    pool = bySubject[subj.code] || [];
     count = subj.num_questions;
     duration = subj.duration_min;
     name = subj.name;
     name_hi = subj.name_hi;
+  }
+
+  if (pool.length === 0) {
+    throw new Error(
+      `No questions available for ${upper}. Please add questions in the admin panel.`,
+    );
   }
 
   const picked = shuffle(pool).slice(0, Math.min(count, pool.length));
