@@ -28,6 +28,10 @@ localPort = 8081
 externalPort = 8081
 
 [[ports]]
+localPort = 8082
+externalPort = 3000
+
+[[ports]]
 localPort = 18359
 externalPort = 80
 
@@ -40,3 +44,5 @@ VITE_FIREBASE_PROJECT_ID = "quiz-app-6e164"
 VITE_FIREBASE_STORAGE_BUCKET = "quiz-app-6e164.firebasestorage.app"
 VITE_FIREBASE_MESSAGING_SENDER_ID = "384751307231"
 VITE_FIREBASE_APP_ID = "1:384751307231:web:923076e3fe46edb9c5dc6a"
+REPLIT_DOMAINS = "quiz-app.shivam.replit.dev"
+ISSUER_URL = "https://replit.com/oidc"
