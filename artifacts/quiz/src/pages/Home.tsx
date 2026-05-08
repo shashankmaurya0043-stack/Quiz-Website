@@ -298,12 +298,26 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="max-w-7xl mx-auto px-4 sm:px-6 py-10 text-center">
-        <p className="text-sm text-zinc-600 font-body">
-          Built with <span className="text-red-500">♥</span> for O Level
-          aspirants. All the best!
-        </p>
-      </footer>
+      <footer className="max-w-7xl mx-auto px-4 sm:px-6 py-10 text-center border-t mt-10">
+  <div className="flex justify-center gap-4 flex-wrap mb-4">
+    <a href="/about" className="text-sm text-zinc-700 hover:underline">
+      About
+    </a>
+
+    <a href="/privacy" className="text-sm text-zinc-700 hover:underline">
+      Privacy Policy
+    </a>
+
+    <a href="/contact" className="text-sm text-zinc-700 hover:underline">
+      Contact
+    </a>
+  </div>
+
+  <p className="text-sm text-zinc-600 font-body">
+    Built with <span className="text-red-500">♥</span> for O Level aspirants.
+    All rights reserved.
+  </p>
+</footer>
     </div>
   );
 }
