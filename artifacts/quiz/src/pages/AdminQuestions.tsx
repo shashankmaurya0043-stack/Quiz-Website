@@ -67,11 +67,9 @@ export default function AdminQuestions() {
   const [toast, setToast] = useState<string | null>(null);
 
   useEffect(() => {
-    if (authLoading) return;
-    //if (!isAuthenticated || !isAdmin) {
-     // navigate("/admin/login");
-    }
-  }, [authLoading, isAuthenticated, isAdmin, navigate]);
+  if (authLoading) return;
+  // auth bypass
+}, [authLoading, isAuthenticated, isAdmin, navigate]);
 
   async function refresh() {
     setLoading(true);
