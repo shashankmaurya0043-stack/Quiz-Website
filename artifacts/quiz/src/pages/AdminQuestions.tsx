@@ -89,10 +89,8 @@ export default function AdminQuestions() {
   }
 
   useEffect(() => {
-    if (authLoading) {
-      void refresh();
-    }
-  }, [authLoading, isAuthenticated, isAdmin]);
+  void refresh();
+}, []);
 
   const filtered = useMemo(() => {
     const term = search.trim().toLowerCase();
