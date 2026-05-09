@@ -162,7 +162,7 @@ export async function seedStaticQuestions(
 }
 
 export async function deleteAllQuestions(): Promise<number> {
-  const res = await fetch("/api/questions", {
+  const res = await const res = await fetch("https://quiz-website-api-server-ojb5.vercel.app/api/questions", {
     method: "DELETE",
     credentials: "include",
   });
