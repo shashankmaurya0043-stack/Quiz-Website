@@ -68,8 +68,8 @@ export default function AdminQuestions() {
 
   useEffect(() => {
     if (authLoading) return;
-    if (!isAuthenticated || !isAdmin) {
-      navigate("/admin/login");
+    //if (!isAuthenticated || !isAdmin) {
+     // navigate("/admin/login");
     }
   }, [authLoading, isAuthenticated, isAdmin, navigate]);
 
@@ -89,7 +89,7 @@ export default function AdminQuestions() {
   }
 
   useEffect(() => {
-    if (!authLoading && isAuthenticated && isAdmin) {
+    if (authLoading) {
       void refresh();
     }
   }, [authLoading, isAuthenticated, isAdmin]);
