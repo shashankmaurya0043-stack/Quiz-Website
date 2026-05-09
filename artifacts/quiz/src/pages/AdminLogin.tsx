@@ -61,7 +61,7 @@ export default function AdminLogin() {
 
         <button
           data-testid="admin-login-submit"
-          onClick={() => login()}
+          onClick={() => navigate("/admin")}
           className="mt-6 w-full inline-flex items-center justify-center gap-2 bg-black text-white font-heading font-bold px-5 py-3 rounded-xl nb-border nb-shadow nb-hover"
         >
           <LogIn className="w-4 h-4" strokeWidth={2.5} />
