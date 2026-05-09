@@ -217,8 +217,8 @@ export default function AdminQuestions() {
     }
   }
 
-  if (authLoading || !isAuthenticated || !isAdmin) {
-    return (
+  if (authLoading) {
+  return (
       <div className="min-h-screen bg-[#FDFBF7] flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin" strokeWidth={2.5} />
       </div>
