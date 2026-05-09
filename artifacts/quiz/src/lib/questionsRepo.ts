@@ -46,7 +46,7 @@ async function jsonOrThrow(res: Response): Promise<unknown> {
 }
 
 export async function fetchAllQuestions(): Promise<QuestionDoc[]> {
-  const res = await fetch("/api/questions", { credentials: "include" });
+  const res = await fetch("https://quiz-website-api-server-ojb5.vercel.app/api/questions", { credentials: "include" });
   const data = (await jsonOrThrow(res)) as { questions: ApiQuestion[] };
   return (data.questions ?? []).map((q) => ({ ...q, source: "api" }));
 }
@@ -103,7 +103,7 @@ export async function getActiveQuestions(): Promise<{
 }
 
 export async function createQuestion(input: NewQuestionInput): Promise<QuestionDoc> {
-  const res = await fetch("/api/questions", {
+  const res = await fetch("https://quiz-website-api-server-ojb5.vercel.app/api/questions", {
     method: "POST",
     credentials: "include",
     headers: { "Content-Type": "application/json" },
@@ -117,7 +117,7 @@ export async function updateQuestion(
   id: string,
   patch: NewQuestionInput,
 ): Promise<QuestionDoc> {
-  const res = await fetch(`/api/questions/${encodeURIComponent(id)}`, {
+  const res = await fetch(`https://quiz-website-api-server-ojb5.vercel.app/api/questions/${encodeURIComponent(id)}`, {
     method: "PATCH",
     credentials: "include",
     headers: { "Content-Type": "application/json" },
@@ -128,7 +128,7 @@ export async function updateQuestion(
 }
 
 export async function deleteQuestion(id: string): Promise<void> {
-  const res = await fetch(`/api/questions/${encodeURIComponent(id)}`, {
+  const res = await fetch(`https://quiz-website-api-server-ojb5.vercel.app/api/questions/${encodeURIComponent(id)}`, {
     method: "DELETE",
     credentials: "include",
   });
@@ -150,7 +150,7 @@ export async function seedStaticQuestions(
   }));
   if (flat.length === 0) return 0;
   onProgress?.(0, flat.length);
-  const res = await fetch("/api/questions/seed", {
+  const res = await fetch("https://quiz-website-api-server-ojb5.vercel.app/api/questions/seed"{
     method: "POST",
     credentials: "include",
     headers: { "Content-Type": "application/json" },
