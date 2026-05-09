@@ -150,7 +150,7 @@ export async function seedStaticQuestions(
   }));
   if (flat.length === 0) return 0;
   onProgress?.(0, flat.length);
-  const res = await fetch("https://quiz-website-api-server-ojb5.vercel.app/api/questions/seed"{
+  const res = await fetch("https://quiz-website-api-server-ojb5.vercel.app/api/questions/seed",{
     method: "POST",
     credentials: "include",
     headers: { "Content-Type": "application/json" },
