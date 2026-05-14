@@ -221,6 +221,10 @@ export default function Home() {
 
   <div className="grid md:grid-cols-3 gap-6">
     {[
+  {
+  title: "M1 IT Tools Important MCQs",
+  desc: "Most important questions for O Level M1 exam.",
+},
       {
         title: "Top 50 M3 Python Questions",
         desc: "Important MCQs and answers for O Level Python exam.",
