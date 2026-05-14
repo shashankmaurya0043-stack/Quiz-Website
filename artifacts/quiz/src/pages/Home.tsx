@@ -219,7 +219,7 @@ export default function Home() {
   </div>
 
   <div className="grid md:grid-cols-3 gap-6">
-    <div className="flex justify-center mt-8">
+    
   <button
     className="bg-black text-white px-6 py-3 rounded-2xl font-bold border-2 border-black hover:bg-yellow-300 hover:text-black transition-all"
   >
@@ -260,6 +260,13 @@ export default function Home() {
       </div>
     ))}
   </div>
+      <div className="flex justify-center mt-8">
+  <button
+    className="bg-black text-white px-6 py-3 rounded-2xl font-bold border-2 border-black hover:bg-yellow-300 hover:text-black transition-all"
+  >
+    View All Posts
+  </button>
+</div>
 </section>
 
       {/* MOCK TEST */}
