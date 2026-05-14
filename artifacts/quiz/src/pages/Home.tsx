@@ -207,6 +207,7 @@ export default function Home() {
       </section>
       {/* BLOG PREVIEW */}
 <section className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+
   <div className="flex items-end justify-between mb-8">
     <div>
       <div className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
@@ -220,59 +221,67 @@ export default function Home() {
   </div>
 
   <div className="grid md:grid-cols-3 gap-6">
-    {[
-  {
-    title: "M1 IT Tools Important MCQs",
-    desc: "Most important questions for O Level M1 exam.",
-    image:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
-  },
 
-  {
-    title: "Top 50 M3 Python Questions",
-    desc: "Important MCQs and answers for O Level Python exam.",
-    image:
-      "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80",
-  },
+    <div className="bg-white border-2 border-black rounded-2xl p-5 nb-shadow-lg">
+      <img
+        src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
+        alt="M1"
+        className="w-full h-40 object-cover rounded-xl mb-4"
+      />
 
-  {
-    title: "M2 Web Designing Notes",
-    desc: "Quick revision notes for HTML, CSS and JavaScript.",
-    image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
-  },
+      <h3 className="font-heading font-black text-xl">
+        M1 IT Tools Important MCQs
+      </h3>
 
-  {
-    title: "IoT Important MCQs",
-    desc: "Most repeated questions for O Level IoT paper.",
-    image:
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
-  },
-].map((post) => (
-  <div
-    key={post.title}
-    className="bg-white border-2 border-black rounded-2xl p-5 nb-shadow-lg"
-  >
-    <img
-      src={post.image}
-      alt={post.title}
-      className="w-full h-40 object-cover rounded-xl mb-4"
-    />
+      <p className="mt-2 text-sm text-zinc-600">
+        Most important questions for O Level M1 exam.
+      </p>
 
-    <h3 className="font-heading font-black text-xl">
-      {post.title}
-    </h3>
+      <button className="mt-4 font-bold underline">
+        Read More →
+      </button>
+    </div>
 
-    <p className="mt-2 text-sm text-zinc-600">
-      {post.desc}
-    </p>
+    <div className="bg-white border-2 border-black rounded-2xl p-5 nb-shadow-lg">
+      <img
+        src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80"
+        alt="Python"
+        className="w-full h-40 object-cover rounded-xl mb-4"
+      />
 
-    <button className="mt-4 font-bold underline">
-      Read More →
-    </button>
-  </div>
-))}
-  
+      <h3 className="font-heading font-black text-xl">
+        Top 50 M3 Python Questions
+      </h3>
+
+      <p className="mt-2 text-sm text-zinc-600">
+        Important MCQs and answers for O Level Python exam.
+      </p>
+
+      <button className="mt-4 font-bold underline">
+        Read More →
+      </button>
+    </div>
+
+    <div className="bg-white border-2 border-black rounded-2xl p-5 nb-shadow-lg">
+      <img
+        src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80"
+        alt="Web"
+        className="w-full h-40 object-cover rounded-xl mb-4"
+      />
+
+      <h3 className="font-heading font-black text-xl">
+        M2 Web Designing Notes
+      </h3>
+
+      <p className="mt-2 text-sm text-zinc-600">
+        Quick revision notes for HTML, CSS and JavaScript.
+      </p>
+
+      <button className="mt-4 font-bold underline">
+        Read More →
+      </button>
+    </div>
+
   </div>
 
   <div className="flex justify-center mt-8">
@@ -280,7 +289,9 @@ export default function Home() {
       View All Posts
     </button>
   </div>
+
 </section>
+      
 
       {/* MOCK TEST */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
