@@ -205,6 +205,55 @@ export default function Home() {
           })}
         </div>
       </section>
+      {/* BLOG PREVIEW */}
+<section className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+  <div className="flex items-end justify-between mb-8">
+    <div>
+      <div className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
+        Latest Updates
+      </div>
+      <h2 className="font-heading font-black text-3xl tracking-tight">
+        Blog & Notes
+      </h2>
+    </div>
+  </div>
+
+  <div className="grid md:grid-cols-3 gap-6">
+    {[
+      {
+        title: "Top 50 M3 Python Questions",
+        desc: "Important MCQs and answers for O Level Python exam.",
+      },
+      {
+        title: "M2 Web Designing Notes",
+        desc: "Quick revision notes for HTML, CSS and JavaScript.",
+      },
+      {
+        title: "IoT Important MCQs",
+        desc: "Most repeated questions for O Level IoT paper.",
+      },
+    ].map((post) => (
+      <div
+        key={post.title}
+        className="bg-white border-2 border-black rounded-2xl p-5 nb-shadow-lg"
+      >
+        <div className="w-full h-40 rounded-xl bg-gradient-to-br from-yellow-300 to-orange-400 mb-4" />
+
+        <h3 className="font-heading font-black text-xl">
+          {post.title}
+        </h3>
+
+        <p className="mt-2 text-sm text-zinc-600">
+          {post.desc}
+        </p>
+
+        <button className="mt-4 font-bold underline">
+          Read More →
+        </button>
+      </div>
+    ))}
+  </div>
+</section>
 
       {/* MOCK TEST */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
