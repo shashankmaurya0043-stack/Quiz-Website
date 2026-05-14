@@ -222,25 +222,22 @@ export default function Home() {
 
   <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
 
+    {/* M1 */}
     <div
-  onClick={() => navigate("/blog/m1-important-mcqs")}
-  className="bg-white border-2 border-black rounded-2xl p-5 nb-shadow-lg cursor-pointer hover:scale-[1.02] transition-all"
->
-      <img
-        <div className="relative mb-4">
-  <img
-    src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
-    alt="M1"
-    className="w-full h-32 object-cover rounded-xl"
-  />
+      onClick={() => navigate("/blog/m1-important-mcqs")}
+      className="bg-white border-2 border-black rounded-2xl p-5 nb-shadow-lg cursor-pointer hover:scale-[1.02] transition-all"
+    >
+      <div className="relative mb-4">
+        <img
+          src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
+          alt="M1"
+          className="w-full h-32 object-cover rounded-xl"
+        />
 
-  <button className="absolute top-2 right-2 bg-yellow-300 text-black text-xs font-bold px-3 py-1 rounded-full border-2 border-black">
-    Click Here
-  </button>
-</div>
-        alt="M1"
-        className="w-full h-40 object-cover rounded-xl mb-4"
-      />
+        <button className="absolute top-2 right-2 bg-yellow-300 text-black text-xs font-bold px-3 py-1 rounded-full border-2 border-black">
+          Click Here
+        </button>
+      </div>
 
       <h3 className="font-heading font-black text-xl">
         M1 IT Tools Important MCQs
@@ -255,11 +252,12 @@ export default function Home() {
       </button>
     </div>
 
+    {/* M3 */}
     <div className="bg-white border-2 border-black rounded-2xl p-5 nb-shadow-lg">
       <img
         src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80"
         alt="Python"
-        className="w-full h-40 object-cover rounded-xl mb-4"
+        className="w-full h-32 object-cover rounded-xl mb-4"
       />
 
       <h3 className="font-heading font-black text-xl">
@@ -275,11 +273,12 @@ export default function Home() {
       </button>
     </div>
 
+    {/* M2 */}
     <div className="bg-white border-2 border-black rounded-2xl p-5 nb-shadow-lg">
       <img
         src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80"
         alt="Web"
-        className="w-full h-40 object-cover rounded-xl mb-4"
+        className="w-full h-32 object-cover rounded-xl mb-4"
       />
 
       <h3 className="font-heading font-black text-xl">
@@ -294,27 +293,30 @@ export default function Home() {
         Read More →
       </button>
     </div>
-    
-  <div className="bg-white border-2 border-black rounded-2xl p-5 nb-shadow-lg">
-  <img
-    src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80"
-    alt="IoT"
-    className="w-full h-40 object-cover rounded-xl mb-4"
-  />
 
-  <h3 className="font-heading font-black text-xl">
-    M4 IoT Important MCQs
-  </h3>
+    {/* M4 */}
+    <div className="bg-white border-2 border-black rounded-2xl p-5 nb-shadow-lg">
+      <img
+        src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80"
+        alt="IoT"
+        className="w-full h-32 object-cover rounded-xl mb-4"
+      />
 
-  <p className="mt-2 text-sm text-zinc-600">
-    Most repeated questions for O Level IoT paper.
-  </p>
+      <h3 className="font-heading font-black text-xl">
+        M4 IoT Important MCQs
+      </h3>
 
-  <button className="mt-4 font-bold underline">
-    Read More →
-  </button>
-</div>
-</div>
+      <p className="mt-2 text-sm text-zinc-600">
+        Most repeated questions for O Level IoT paper.
+      </p>
+
+      <button className="mt-4 font-bold underline">
+        Read More →
+      </button>
+    </div>
+
+  </div>
+
   <div className="flex justify-center mt-8">
     <button className="bg-black text-white px-6 py-3 rounded-2xl font-bold border-2 border-black hover:bg-yellow-300 hover:text-black transition-all">
       View All Posts
