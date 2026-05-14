@@ -224,25 +224,36 @@ export default function Home() {
   {
   title: "M1 IT Tools Important MCQs",
   desc: "Most important questions for O Level M1 exam.",
+  image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
 },
-      {
-        title: "Top 50 M3 Python Questions",
-        desc: "Important MCQs and answers for O Level Python exam.",
-      },
-      {
-        title: "M2 Web Designing Notes",
-        desc: "Quick revision notes for HTML, CSS and JavaScript.",
-      },
-      {
-        title: "IoT Important MCQs",
-        desc: "Most repeated questions for O Level IoT paper.",
-      },
+
+{
+  title: "Top 50 M3 Python Questions",
+  desc: "Important MCQs and answers for O Level Python exam.",
+  image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4",
+},
+
+{
+  title: "M2 Web Designing Notes",
+  desc: "Quick revision notes for HTML, CSS and JavaScript.",
+  image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+},
+
+{
+  title: "IoT Important MCQs",
+  desc: "Most repeated questions for O Level IoT paper.",
+  image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31",
+},
     ].map((post) => (
       <div
         key={post.title}
         className="bg-white border-2 border-black rounded-2xl p-5 nb-shadow-lg"
       >
-        <div className="w-full h-40 rounded-xl bg-gradient-to-br from-yellow-300 to-orange-400 mb-4" />
+        <img
+  src={post.image}
+  alt={post.title}
+  className="w-full h-40 object-cover rounded-xl mb-4"
+/>
 
         <h3 className="font-heading font-black text-xl">
           {post.title}
