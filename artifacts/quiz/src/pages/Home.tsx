@@ -281,8 +281,7 @@ export default function Home() {
         Read More →
       </button>
     </div>
-
-  </div>
+    
   <div className="bg-white border-2 border-black rounded-2xl p-5 nb-shadow-lg">
   <img
     src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80"
