@@ -222,9 +222,22 @@ export default function Home() {
 
   <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-    <div className="bg-white border-2 border-black rounded-2xl p-5 nb-shadow-lg">
+    <div
+  onClick={() => navigate("/blog/m1-important-mcqs")}
+  className="bg-white border-2 border-black rounded-2xl p-5 nb-shadow-lg cursor-pointer hover:scale-[1.02] transition-all"
+>
       <img
-        src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
+        <div className="relative mb-4">
+  <img
+    src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
+    alt="M1"
+    className="w-full h-32 object-cover rounded-xl"
+  />
+
+  <button className="absolute top-2 right-2 bg-yellow-300 text-black text-xs font-bold px-3 py-1 rounded-full border-2 border-black">
+    Click Here
+  </button>
+</div>
         alt="M1"
         className="w-full h-40 object-cover rounded-xl mb-4"
       />
