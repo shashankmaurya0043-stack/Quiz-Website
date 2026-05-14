@@ -224,25 +224,25 @@ export default function Home() {
   {
   title: "M1 IT Tools Important MCQs",
   desc: "Most important questions for O Level M1 exam.",
-  image: "https://picsum.photos/600/400?random=1",
+  image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop",
 },
 
 {
   title: "Top 50 M3 Python Questions",
   desc: "Important MCQs and answers for O Level Python exam.",
-  image:"https://picsum.photos/600/400?random=2",
+  image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop",
 },
 
 {
   title: "M2 Web Designing Notes",
   desc: "Quick revision notes for HTML, CSS and JavaScript.",
-  image:"https://picsum.photos/600/400?random=3",
+  image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop",
 },
 
 {
   title: "IoT Important MCQs",
   desc: "Most repeated questions for O Level IoT paper.",
-  image: "https://picsum.photos/600/400?random=4",
+  image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop",
 },
     ].map((post) => (
       <div
