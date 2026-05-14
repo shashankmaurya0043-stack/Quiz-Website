@@ -226,7 +226,7 @@ export default function Home() {
       <img
         src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
         alt="M1"
-        className="w-full h-32 object-cover rounded-xl mb-4"
+        className="w-full h-40 object-cover rounded-xl mb-4"
       />
 
       <h3 className="font-heading font-black text-xl">
@@ -286,7 +286,7 @@ export default function Home() {
   <img
     src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80"
     alt="IoT"
-    className="w-full h-32 object-cover rounded-xl mb-4"
+    className="w-full h-40 object-cover rounded-xl mb-4"
   />
 
   <h3 className="font-heading font-black text-xl">
