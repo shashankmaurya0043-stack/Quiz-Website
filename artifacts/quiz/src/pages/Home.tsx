@@ -222,52 +222,57 @@ export default function Home() {
   <div className="grid md:grid-cols-3 gap-6">
     {[
   {
-  title: "M1 IT Tools Important MCQs",
-  desc: "Most important questions for O Level M1 exam.",
-  image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop",
-},
+    title: "M1 IT Tools Important MCQs",
+    desc: "Most important questions for O Level M1 exam.",
+    image:
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+  },
 
-{
-  title: "Top 50 M3 Python Questions",
-  desc: "Important MCQs and answers for O Level Python exam.",
-  image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop",
-},
+  {
+    title: "Top 50 M3 Python Questions",
+    desc: "Important MCQs and answers for O Level Python exam.",
+    image:
+      "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80",
+  },
 
-{
-  title: "M2 Web Designing Notes",
-  desc: "Quick revision notes for HTML, CSS and JavaScript.",
-  image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop",
-},
+  {
+    title: "M2 Web Designing Notes",
+    desc: "Quick revision notes for HTML, CSS and JavaScript.",
+    image:
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
+  },
 
-{
-  title: "IoT Important MCQs",
-  desc: "Most repeated questions for O Level IoT paper.",
-  image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop",
-},
-    ].map((post) => (
-      <div
-        key={post.title}
-        className="bg-white border-2 border-black rounded-2xl p-5 nb-shadow-lg"
-      >
-        <img
-  src={post.image}
-  alt={post.title}
-  className="w-full h-40 object-cover rounded-xl mb-4"
-/>
+  {
+    title: "IoT Important MCQs",
+    desc: "Most repeated questions for O Level IoT paper.",
+    image:
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
+  },
+].map((post) => (
+  <div
+    key={post.title}
+    className="bg-white border-2 border-black rounded-2xl p-5 nb-shadow-lg"
+  >
+    <img
+      src={post.image}
+      alt={post.title}
+      className="w-full h-40 object-cover rounded-xl mb-4"
+    />
 
-        <h3 className="font-heading font-black text-xl">
-          {post.title}
-        </h3>
+    <h3 className="font-heading font-black text-xl">
+      {post.title}
+    </h3>
 
-        <p className="mt-2 text-sm text-zinc-600">
-          {post.desc}
-        </p>
+    <p className="mt-2 text-sm text-zinc-600">
+      {post.desc}
+    </p>
 
-        <button className="mt-4 font-bold underline">
-          Read More →
-        </button>
-      </div>
-    ))}
+    <button className="mt-4 font-bold underline">
+      Read More →
+    </button>
+  </div>
+))}
+  
   </div>
 
   <div className="flex justify-center mt-8">
