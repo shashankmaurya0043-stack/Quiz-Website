@@ -345,6 +345,7 @@ export default function Home() {
     Read More →
   </button>
 </div>
+</div>
     
 
   <div className="flex justify-center mt-8">
