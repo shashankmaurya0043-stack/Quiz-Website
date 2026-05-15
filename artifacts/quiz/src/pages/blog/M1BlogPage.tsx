@@ -94,48 +94,94 @@ export default function M1BlogPage() {
             </div>
             <div className="mt-14">
 
-              <div className="flex items-center gap-3 mb-6">
-                <FileText className="w-7 h-7" />
-                <h2 className="text-3xl font-black">
-                  Top Important Questions
-                </h2>
-              </div>
+  <div className="flex items-center gap-3 mb-6">
+    <FileText className="w-7 h-7" />
 
-              <div className="space-y-4">
+    <h2 className="text-3xl font-black">
+      Previous Year Questions
+    </h2>
+  </div>
 
-                {questions.map((q, index) => (
-                  <div
-                    key={index}
-                    className="bg-[#FDFBF7] border-2 border-black rounded-2xl p-5"
-                  >
-                    <div className="flex items-start gap-4">
+  <div className="space-y-4">
 
-                      <div className="min-w-[45px] h-[45px] rounded-full bg-black text-white flex items-center justify-center font-black">
-                        {index + 1}
-                      </div>
+    {/* 2025 PYQ */}
 
-                      <div>
-                        <p className="font-bold text-lg leading-relaxed">
-                          {q}
-                        </p>
+    <div
+      onClick={() => navigate("/blog/m1-2025-pyq")}
+      className="cursor-pointer bg-[#FDFBF7] border-2 border-black rounded-2xl p-5 hover:scale-[1.01] transition-all"
+    >
+      <div className="flex items-start gap-4">
 
-                        <div className="flex items-center gap-2 mt-3 text-zinc-600">
-                          <Clock className="w-4 h-4" />
-                          Frequently Asked in O Level Exams
-                        </div>
-                      </div>
+        <div className="min-w-[45px] h-[45px] rounded-full bg-black text-white flex items-center justify-center font-black">
+          1
+        </div>
 
-                    </div>
-                  </div>
-                ))}
+        <div>
+          <p className="font-bold text-lg leading-relaxed">
+            📘 M1 Previous Year Questions 2025
+          </p>
 
-              </div>
-
-            </div>
-
+          <div className="flex items-center gap-2 mt-3 text-zinc-600">
+            <Clock className="w-4 h-4" />
+            Latest O Level Exam Questions
           </div>
         </div>
+
       </div>
     </div>
-  );
-}
+
+    {/* 2024 PYQ */}
+
+    <div
+      onClick={() => navigate("/blog/m1-2024-pyq")}
+      className="cursor-pointer bg-[#FDFBF7] border-2 border-black rounded-2xl p-5 hover:scale-[1.01] transition-all"
+    >
+      <div className="flex items-start gap-4">
+
+        <div className="min-w-[45px] h-[45px] rounded-full bg-black text-white flex items-center justify-center font-black">
+          2
+        </div>
+
+        <div>
+          <p className="font-bold text-lg leading-relaxed">
+            📗 M1 Previous Year Questions 2024
+          </p>
+
+          <div className="flex items-center gap-2 mt-3 text-zinc-600">
+            <Clock className="w-4 h-4" />
+            Important PYQ Practice Set
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    {/* Repeated Questions */}
+
+    <div
+      onClick={() => navigate("/blog/m1-repeated-questions")}
+      className="cursor-pointer bg-[#FDFBF7] border-2 border-black rounded-2xl p-5 hover:scale-[1.01] transition-all"
+    >
+      <div className="flex items-start gap-4">
+
+        <div className="min-w-[45px] h-[45px] rounded-full bg-black text-white flex items-center justify-center font-black">
+          3
+        </div>
+
+        <div>
+          <p className="font-bold text-lg leading-relaxed">
+            🔥 M1 Repeated Questions
+          </p>
+
+          <div className="flex items-center gap-2 mt-3 text-zinc-600">
+            <Clock className="w-4 h-4" />
+            Most Repeated Questions in Exams
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
