@@ -29,7 +29,7 @@ export default function M1BlogPage() {
 
             <div className="inline-flex items-center gap-2 bg-yellow-300 border-2 border-black px-4 py-2 rounded-full font-bold text-sm">
               <Trophy className="w-4 h-4" />
-              O Level M1 Preparation
+              O Level M4 Preparation
             </div>
 
             <h1 className="text-4xl font-black mt-5 leading-tight">
