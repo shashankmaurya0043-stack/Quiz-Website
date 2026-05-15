@@ -33,7 +33,7 @@ export default function M1BlogPage() {
             </div>
 
             <h1 className="text-4xl font-black mt-5 leading-tight">
-              M1 IT Tools & Network Basics Important MCQs
+              M1  IT Tools & Network Basics Important MCQs
             </h1>
 
             <p className="mt-5 text-zinc-700 text-lg leading-relaxed">
