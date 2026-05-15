@@ -29,7 +29,7 @@ export default function M1BlogPage() {
 
             <div className="inline-flex items-center gap-2 bg-yellow-300 border-2 border-black px-4 py-2 rounded-full font-bold text-sm">
               <Trophy className="w-4 h-4" />
-              O Level M1 Preparation
+              O Level M2 Preparation
             </div>
 
             <h1 className="text-4xl font-black mt-5 leading-tight">
@@ -73,7 +73,7 @@ export default function M1BlogPage() {
                 onClick={() => navigate("/quiz/M1")}
                 className="bg-black text-white px-6 py-3 rounded-2xl font-bold border-2 border-black hover:bg-yellow-300 hover:text-black transition-all"
               >
-                Start M1 Quiz
+                Start M2 Quiz
               </button>
 
               <button
