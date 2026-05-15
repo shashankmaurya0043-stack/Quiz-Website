@@ -85,89 +85,100 @@ export default function M1BlogPage() {
             </div>
             <div className="mt-14">
 
-  <div className="flex items-center gap-3 mb-6">
-    <FileText className="w-7 h-7" />
+  <div className="flex items-center gap-3 mb-8">
+    <FileText className="w-8 h-8" />
 
-    <h2 className="text-3xl font-black">
+    <h2 className="text-4xl font-black">
       Previous Year Questions
     </h2>
   </div>
 
-  <div className="space-y-4">
+  <div className="space-y-5">
 
-    {/* 2025 PYQ */}
+    {/* 2025 */}
 
     <div
       onClick={() => navigate("/blog/m1-2025-pyq")}
-      className="cursor-pointer bg-[#FDFBF7] border-2 border-black rounded-2xl p-5 hover:scale-[1.01] transition-all"
+      className="cursor-pointer bg-black text-white border-2 border-black rounded-3xl p-6 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(234,179,8,1)] transition-all"
     >
-      <div className="flex items-start gap-4">
+      <div className="flex items-start gap-5">
 
-        <div className="min-w-[45px] h-[45px] rounded-full bg-black text-white flex items-center justify-center font-black">
-          1
+        <div className="min-w-[55px] h-[55px] rounded-2xl bg-yellow-300 text-black flex items-center justify-center font-black text-xl">
+          25
         </div>
 
-        <div>
-          <p className="font-bold text-lg leading-relaxed">
-            📘 M1 Previous Year Questions 2025
+        <div className="flex-1">
+
+          <div className="flex items-center justify-between gap-4 flex-wrap">
+
+            <h3 className="font-black text-2xl">
+              📘 M1 Previous Year Questions 2025
+            </h3>
+
+            <span className="bg-yellow-300 text-black px-3 py-1 rounded-full text-sm font-black">
+              Latest
+            </span>
+
+          </div>
+
+          <p className="text-zinc-300 mt-3 text-base">
+            Latest O Level exam questions with important repeated concepts.
           </p>
 
-          <div className="flex items-center gap-2 mt-3 text-zinc-600">
-            <Clock className="w-4 h-4" />
-            Latest O Level Exam Questions
-          </div>
         </div>
 
       </div>
     </div>
 
-    {/* 2024 PYQ */}
+    {/* 2024 */}
 
     <div
       onClick={() => navigate("/blog/m1-2024-pyq")}
-      className="cursor-pointer bg-[#FDFBF7] border-2 border-black rounded-2xl p-5 hover:scale-[1.01] transition-all"
+      className="cursor-pointer bg-white border-2 border-black rounded-3xl p-6 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all"
     >
-      <div className="flex items-start gap-4">
+      <div className="flex items-start gap-5">
 
-        <div className="min-w-[45px] h-[45px] rounded-full bg-black text-white flex items-center justify-center font-black">
-          2
+        <div className="min-w-[55px] h-[55px] rounded-2xl bg-black text-white flex items-center justify-center font-black text-xl">
+          24
         </div>
 
-        <div>
-          <p className="font-bold text-lg leading-relaxed">
+        <div className="flex-1">
+
+          <h3 className="font-black text-2xl">
             📗 M1 Previous Year Questions 2024
+          </h3>
+
+          <p className="text-zinc-600 mt-3 text-base">
+            Important PYQs asked in previous O Level examinations.
           </p>
 
-          <div className="flex items-center gap-2 mt-3 text-zinc-600">
-            <Clock className="w-4 h-4" />
-            Important PYQ Practice Set
-          </div>
         </div>
 
       </div>
     </div>
 
-    {/* Repeated Questions */}
+    {/* Repeated */}
 
     <div
       onClick={() => navigate("/blog/m1-repeated-questions")}
-      className="cursor-pointer bg-[#FDFBF7] border-2 border-black rounded-2xl p-5 hover:scale-[1.01] transition-all"
+      className="cursor-pointer bg-pink-300 border-2 border-black rounded-3xl p-6 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all"
     >
-      <div className="flex items-start gap-4">
+      <div className="flex items-start gap-5">
 
-        <div className="min-w-[45px] h-[45px] rounded-full bg-black text-white flex items-center justify-center font-black">
-          3
+        <div className="min-w-[55px] h-[55px] rounded-2xl bg-black text-white flex items-center justify-center font-black text-xl">
+          🔥
         </div>
 
-        <div>
-          <p className="font-bold text-lg leading-relaxed">
-            🔥 M1 Repeated Questions
+        <div className="flex-1">
+
+          <h3 className="font-black text-2xl">
+            M1 Most Repeated Questions
+          </h3>
+
+          <p className="text-zinc-800 mt-3 text-base">
+            Most repeated MCQs from previous year O Level papers.
           </p>
 
-          <div className="flex items-center gap-2 mt-3 text-zinc-600">
-            <Clock className="w-4 h-4" />
-            Most Repeated Questions in Exams
-          </div>
         </div>
 
       </div>
@@ -176,3 +187,5 @@ export default function M1BlogPage() {
   </div>
 
 </div>
+
+  
