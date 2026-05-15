@@ -235,8 +235,8 @@ export default function Home() {
         />
 
         <button className="absolute top-2 right-2 bg-yellow-300 text-black text-xs font-bold px-3 py-1 rounded-full border-2 border-black">
-          Click Here
-        </button>
+  Click Here
+</button>
       </div>
 
       <h3 className="font-heading font-black text-xl">
@@ -265,8 +265,8 @@ export default function Home() {
     />
 
     <button className="absolute top-2 right-2 bg-yellow-300 text-black text-xs font-bold px-3 py-1 rounded-full border-2 border-black">
-      Click Here
-    </button>
+  Click Here
+</button>
   </div>
 
   <h3 className="font-heading font-black text-xl">
@@ -296,8 +296,8 @@ export default function Home() {
     />
 
     <button className="absolute top-2 right-2 bg-yellow-300 text-black text-xs font-bold px-3 py-1 rounded-full border-2 border-black">
-      Click Here
-    </button>
+  Click Here
+</button>
   </div>
 
   <h3 className="font-heading font-black text-xl">
@@ -329,8 +329,8 @@ export default function Home() {
     />
 
     <button className="absolute top-2 right-2 bg-yellow-300 text-black text-xs font-bold px-3 py-1 rounded-full border-2 border-black">
-      Click Here
-    </button>
+  Click Here
+</button>
   </div>
 
   <h3 className="font-heading font-black text-xl">
