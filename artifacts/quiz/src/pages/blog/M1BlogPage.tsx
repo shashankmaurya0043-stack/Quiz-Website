@@ -4,15 +4,6 @@ import { ArrowLeft, Trophy, FileText, Clock } from "lucide-react";
 export default function M1BlogPage() {
   const [, navigate] = useLocation();
 
-  const questions = [
-    "Presentation file created in LibreOffice Impress is saved with extension .odp",
-    "OSS means Open Source Software",
-    "Shortcut for Find and Replace is CTRL + H",
-    "Footnote is placed at bottom of each page",
-    "DHCP provides dynamic IP addressing",
-    "Twitter post length can be 280 characters",
-  ];
-
   return (
     <div className="min-h-screen bg-[#FDFBF7]">
 
