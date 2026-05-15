@@ -33,7 +33,7 @@ export default function M1BlogPage() {
             </div>
 
             <h1 className="text-4xl font-black mt-5 leading-tight">
-              M1 IT Tools & Network Basics Important MCQs
+              M2 Web Designing & Publishing Important MCQs
             </h1>
 
             <p className="mt-5 text-zinc-700 text-lg leading-relaxed">
@@ -113,7 +113,7 @@ export default function M1BlogPage() {
                       <div className="flex items-center justify-between gap-4 flex-wrap">
 
                         <h3 className="font-black text-2xl">
-                          📘 M1 Previous Year Questions 2025
+                          📘 M2 Previous Year Questions 2025
                         </h3>
 
                         <span className="bg-yellow-300 text-black px-3 py-1 rounded-full text-sm font-black">
@@ -146,7 +146,7 @@ export default function M1BlogPage() {
                     <div className="flex-1">
 
                       <h3 className="font-black text-2xl">
-                        📗 M1 Previous Year Questions 2024
+                        📗 M2 Previous Year Questions 2024
                       </h3>
 
                       <p className="text-zinc-600 mt-3 text-base">
@@ -173,7 +173,7 @@ export default function M1BlogPage() {
                     <div className="flex-1">
 
                       <h3 className="font-black text-2xl">
-                        M1 Most Repeated Questions
+                        M2 Most Repeated Questions
                       </h3>
 
                       <p className="text-zinc-800 mt-3 text-base">
