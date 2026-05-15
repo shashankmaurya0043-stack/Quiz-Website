@@ -92,10 +92,7 @@ export default function M1BlogPage() {
               </button>
 
             </div>
-
-            <div className="mt-14">
-
-              <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-3 mb-6">
                 <FileText className="w-7 h-7" />
                 <h2 className="text-3xl font-black">
                   Top Important Questions
@@ -138,5 +135,9 @@ export default function M1BlogPage() {
         </div>
       </div>
     </div>
+
+        
+
+              
   );
 }
