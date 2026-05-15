@@ -45,7 +45,10 @@ function App() {
         <Route path="/results" component={Results} />
         <Route path="/history" component={History} />
         <Route path="/admin/login" component={AdminLogin} />
-<Route path="/admin" component={AdminQuestions} />
+ <Route
+  path="/shashank-secure-admin-2026"
+  component={AdminQuestions}
+/>
 <Route path="/admin/questions" component={AdminQuestions} />
         <Route path="/about" component={About} />
 <Route path="/privacy" component={Privacy} />
