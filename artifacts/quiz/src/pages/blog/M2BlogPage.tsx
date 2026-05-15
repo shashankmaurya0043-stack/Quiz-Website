@@ -38,7 +38,7 @@ export default function M1BlogPage() {
 
             <p className="mt-5 text-zinc-700 text-lg leading-relaxed">
               Yeh important MCQs previous year exam pattern aur repeated
-              concepts par based hain. Daily practice se aap M1 paper me
+              concepts par based hain. Daily practice se aap M2 paper me
               excellent score la sakte ho.
             </p>
 
@@ -70,7 +70,7 @@ export default function M1BlogPage() {
             <div className="flex flex-wrap gap-4 mt-10">
 
               <button
-                onClick={() => navigate("/quiz/M1")}
+                onClick={() => navigate("/quiz/M2")}
                 className="bg-black text-white px-6 py-3 rounded-2xl font-bold border-2 border-black hover:bg-yellow-300 hover:text-black transition-all"
               >
                 Start M2 Quiz
@@ -99,7 +99,7 @@ export default function M1BlogPage() {
                 {/* 2025 */}
 
                 <div
-                  onClick={() => navigate("/blog/m1-2025-pyq")}
+                  onClick={() => navigate("/blog/m2-2025-pyq")}
                   className="cursor-pointer bg-black text-white border-2 border-black rounded-3xl p-6 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(234,179,8,1)] transition-all"
                 >
                   <div className="flex items-start gap-5">
@@ -134,7 +134,7 @@ export default function M1BlogPage() {
                 {/* 2024 */}
 
                 <div
-                  onClick={() => navigate("/blog/m1-2024-pyq")}
+                  onClick={() => navigate("/blog/m2-2024-pyq")}
                   className="cursor-pointer bg-white border-2 border-black rounded-3xl p-6 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all"
                 >
                   <div className="flex items-start gap-5">
@@ -161,7 +161,7 @@ export default function M1BlogPage() {
                 {/* Repeated */}
 
                 <div
-                  onClick={() => navigate("/blog/m1-repeated-questions")}
+                  onClick={() => navigate("/blog/m2-repeated-questions")}
                   className="cursor-pointer bg-pink-300 border-2 border-black rounded-3xl p-6 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all"
                 >
                   <div className="flex items-start gap-5">
