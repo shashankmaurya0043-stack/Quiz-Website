@@ -20,7 +20,7 @@ export default function M1BlogPage() {
         <div className="mt-8 bg-white border-2 border-black rounded-3xl overflow-hidden shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
 
           <img
-            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
+            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085"
             alt="M1"
             className="w-full h-72 object-cover"
           />
