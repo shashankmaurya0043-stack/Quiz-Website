@@ -251,3 +251,94 @@ const questions: Question[] = [
     options: ["A3", "$A$3", "A$3", "$A3"],
     answer: "$A$3",
   },
+    {
+    question: "What does BHIM stand for?",
+    options: [
+      "Bharat Interface for Money",
+      "Bharat Interface for Machine",
+      "Bharat Internet for Money",
+      "Bharat Interface to Money",
+    ],
+    answer: "Bharat Interface for Money",
+  },
+  {
+    question:
+      "The slide that is used to introduce a topic and set the tone for the presentation is called:",
+    options: [
+      "Bullet slide",
+      "Table Slide",
+      "Title Slide",
+      "Graph Slide",
+    ],
+    answer: "Title Slide",
+  },
+  {
+    question:
+      "Which option should be used to type CO2 to get 2 at its proper place?",
+    options: ["Bold", "Underline", "Subscript", "Superscript"],
+    answer: "Subscript",
+  },
+  {
+    question:
+      "Which option is used to insert the related hints of a slide?",
+    options: [
+      "Note Master",
+      "Presentation Master",
+      "Slide Master",
+      "Hint Master",
+    ],
+    answer: "Note Master",
+  },
+  {
+    question: "Why is one time password safe?",
+    options: [
+      "Easy to generate",
+      "Not sharable",
+      "Different for every access",
+      "Encrypted password",
+    ],
+    answer: "Different for every access",
+  },
+  {
+    question:
+      "Which of the following will not advance the slides in a slide show view?",
+    options: [
+      "Esc key",
+      "Spacebar",
+      "Enter key",
+      "Mouse button",
+    ],
+    answer: "Esc key",
+  },
+  {
+    question: "WLAN stands for:",
+    options: [
+      "Wireless Local Area Network",
+      "Wired Local Area Network",
+      "Wireless Local Ambiguity Network",
+      "Wired Latent Area Network",
+    ],
+    answer: "Wireless Local Area Network",
+  },
+  {
+    question: "What is full form of PDF?",
+    options: [
+      "Portable Document File",
+      "Portable Data Format",
+      "Portable Document Format",
+      "Partial Data File",
+    ],
+    answer: "Portable Document Format",
+  },
+  {
+    question:
+      "The active cell is M10. If you press the enter key, then you will reach at:",
+    options: ["N10", "M11", "M9", "M12"],
+    answer: "M11",
+  },
+  {
+    question:
+      "Which of the following must be used with the mouse when you want to resize an image from the center and keep it proportioned?",
+    options: ["Alt", "Ctrl key", "Space bar", "Shift"],
+    answer: "Shift",
+  },
