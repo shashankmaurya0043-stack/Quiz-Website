@@ -1736,3 +1736,127 @@ const M1PYQ2025: React.FC = () => {
           </div>
         </div>
       </div>
+            <div
+        className="sticky bottom-0 z-20 px-4 py-3"
+        style={{
+          backgroundColor: "rgba(30,41,59,0.97)",
+          backdropFilter: "blur(12px)",
+          borderTop: "1px solid #334155",
+        }}
+      >
+        <div className="max-w-3xl mx-auto flex items-center justify-between gap-3">
+          <button
+            onClick={prev}
+            disabled={current === 0}
+            className="flex items-center gap-2 font-bold py-3 px-5 rounded-2xl transition-all text-sm active:scale-95"
+            style={{
+              backgroundColor:
+                current === 0
+                  ? "#1e293b"
+                  : "#334155",
+              color:
+                current === 0
+                  ? "#475569"
+                  : "#ffffff",
+              border: "1px solid #475569",
+              cursor:
+                current === 0
+                  ? "not-allowed"
+                  : "pointer",
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+            Prev
+          </button>
+
+          {selected[current] !== null && (
+            <button
+              onClick={() => {
+                const copy = [...selected];
+                copy[current] = null;
+                setSelected(copy);
+              }}
+              className="text-xs font-medium underline transition-all"
+              style={{ color: "#ef4444" }}
+            >
+              Clear
+            </button>
+          )}
+
+          {current === TOTAL - 1 ? (
+            <button
+              onClick={submitQuiz}
+              className="flex items-center gap-2 font-bold py-3 px-5 rounded-2xl transition-all text-sm active:scale-95"
+              style={{
+                backgroundColor: "#22c55e",
+                color: "#ffffff",
+                border: "1px solid #4ade80",
+                boxShadow:
+                  "0 4px 20px rgba(34,197,94,0.3)",
+              }}
+            >
+              Submit
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            </button>
+          ) : (
+            <button
+              onClick={next}
+              className="flex items-center gap-2 font-bold py-3 px-5 rounded-2xl transition-all text-sm active:scale-95"
+              style={{
+                backgroundColor: "#facc15",
+                color: "#0f172a",
+                border: "1px solid #eab308",
+                boxShadow:
+                  "0 4px 20px rgba(250,204,21,0.25)",
+              }}
+            >
+              Next
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default M1PYQ2025;
