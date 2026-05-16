@@ -631,3 +631,93 @@ const questions: Question[] = [
     ],
     answer: "Insert - header",
   },
+    {
+    question:
+      "Which function key is used to change the name of any file through the keyboard?",
+    options: ["F1", "F2", "F3", "F4"],
+    answer: "F2",
+  },
+  {
+    question:
+      "What is the shortcut key to full screen LibreOffice?",
+    options: [
+      "Ctrl + Shift + J",
+      "Ctrl + Shift + K",
+      "Shift + J",
+      "None",
+    ],
+    answer: "Ctrl + Shift + J",
+  },
+  {
+    question:
+      "In LibreOffice Writer, __________ key is used for subscript the text.",
+    options: [
+      "Ctrl+Shift+F5",
+      "Ctrl+Shift+V",
+      "Ctrl+Shift+B",
+      "Ctrl+Shift+F1",
+    ],
+    answer: "Ctrl+Shift+B",
+  },
+  {
+    question:
+      "Communication software and operating system are examples of:",
+    options: [
+      "Device drivers",
+      "System software",
+      "Application software",
+      "Customized software",
+    ],
+    answer: "System software",
+  },
+  {
+    question:
+      "In LibreOffice Writer, where is the Mail Merge option found?",
+    options: ["File", "Insert", "Tools", "View"],
+    answer: "Tools",
+  },
+  {
+    question:
+      "Which of the following items is not used in Local Area Networks (LANs)?",
+    options: [
+      "Computer",
+      "Modem",
+      "Printer",
+      "Cable",
+    ],
+    answer: "Modem",
+  },
+  {
+    question:
+      "What is the shortcut key to cut in LibreOffice?",
+    options: [
+      "Ctrl + C",
+      "Ctrl + X",
+      "Ctrl + K",
+      "Shift + X",
+    ],
+    answer: "Ctrl + X",
+  },
+  {
+    question:
+      "In LibreOffice Writer, in which menu can you find the Ruler option?",
+    options: ["Tools", "View", "File", "Insert"],
+    answer: "View",
+  },
+  {
+    question:
+      "Which command is used for removing files in the Linux operating system?",
+    options: ["delete", "rm", "dm", "erase"],
+    answer: "rm",
+  },
+  {
+    question:
+      "Which of the following is not present in the status bar of LibreOffice Writer?",
+    options: [
+      "Name of Computer",
+      "Page Number",
+      "Character",
+      "None of the above",
+    ],
+    answer: "Name of Computer",
+  },
