@@ -1259,3 +1259,92 @@ const M1PYQ2025: React.FC = () => {
           </div>
         </div>
       </div>
+            <div className="sticky bottom-0 bg-gray-900/95 backdrop-blur-md border-t border-gray-800 px-4 py-3">
+        <div className="max-w-3xl mx-auto flex items-center justify-between gap-3">
+          <button
+            onClick={prev}
+            disabled={current === 0}
+            className={`flex items-center gap-2 font-bold py-3 px-6 rounded-2xl transition-all text-sm ${
+              current === 0
+                ? "bg-gray-800 text-gray-600 cursor-not-allowed"
+                : "bg-gray-800 text-white hover:bg-gray-700 active:scale-95"
+            }`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+            Prev
+          </button>
+          {selected[current] !== null && (
+            <button
+              onClick={() => {
+                const copy = [...selected];
+                copy[current] = null;
+                setSelected(copy);
+              }}
+              className="text-gray-400 hover:text-red-400 text-xs font-medium transition-all underline"
+            >
+              Clear
+            </button>
+          )}
+          {current === TOTAL - 1 ? (
+            <button
+              onClick={submitQuiz}
+              className="flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white font-bold py-3 px-6 rounded-2xl transition-all text-sm active:scale-95"
+            >
+              Submit
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            </button>
+          ) : (
+            <button
+              onClick={next}
+              className="flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-3 px-6 rounded-2xl transition-all text-sm active:scale-95"
+            >
+              Next
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default M1PYQ2025;
