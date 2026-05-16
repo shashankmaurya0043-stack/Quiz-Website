@@ -938,3 +938,79 @@ const M1PYQ2025: React.FC = () => {
       </div>
     );
     }
+    if (screen === "result") {
+    const getGrade = () => {
+      if (percentage >= 90)
+        return { label: "Excellent! 🏆", color: "text-green-400" };
+      if (percentage >= 70)
+        return { label: "Great Job! 🎯", color: "text-yellow-400" };
+      if (percentage >= 50)
+        return { label: "Good Effort! 💪", color: "text-orange-400" };
+      return { label: "Keep Practicing! 📚", color: "text-red-400" };
+    };
+    const grade = getGrade();
+
+    return (
+      <div className="min-h-screen bg-black px-4 py-10">
+        <div className="max-w-2xl mx-auto space-y-6">
+          <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl border border-yellow-500/30 p-8 text-center space-y-4">
+            <h2 className="text-2xl font-bold text-white">
+              Quiz Completed!
+            </h2>
+            <p className={`text-3xl font-extrabold ${grade.color}`}>
+              {grade.label}
+            </p>
+            <div className="relative w-40 h-40 mx-auto">
+              <svg
+                className="w-full h-full -rotate-90"
+                viewBox="0 0 120 120"
+              >
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="52"
+                  fill="none"
+                  stroke="#374151"
+                  strokeWidth="10"
+                />
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="52"
+                  fill="none"
+                  stroke="#FBBF24"
+                  strokeWidth="10"
+                  strokeLinecap="round"
+                  strokeDasharray={`${
+                    (percentage / 100) * 327
+                  } 327`}
+                />
+              </svg>
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <span className="text-3xl font-extrabold text-yellow-400">
+                  {percentage}%
+                </span>
+                <span className="text-xs text-gray-400">Score</span>
+              </div>
+            </div>
+            <div className="grid grid-cols-3 gap-3 text-sm">
+              <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-3">
+                <p className="text-green-400 font-bold text-xl">
+                  {score}
+                </p>
+                <p className="text-gray-400">Correct</p>
+              </div>
+              <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-3">
+                <p className="text-red-400 font-bold text-xl">
+                  {attempted - score}
+                </p>
+                <p className="text-gray-400">Wrong</p>
+              </div>
+              <div className="bg-gray-500/10 border border-gray-500/30 rounded-xl p-3">
+                <p className="text-gray-300 font-bold text-xl">
+                  {TOTAL - attempted}
+                </p>
+                <p className="text-gray-400">Skipped</p>
+              </div>
+            </div>
+          </div>
