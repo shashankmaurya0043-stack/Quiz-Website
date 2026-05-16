@@ -1649,3 +1649,90 @@ const M1PYQ2025: React.FC = () => {
           </div>
         </>
       )}
+            <div className="flex-1 flex items-start justify-center px-4 py-5">
+        <div className="max-w-3xl w-full space-y-5">
+          <div
+            className="rounded-2xl p-5 sm:p-6"
+            style={{
+              backgroundColor: "#1e293b",
+              border: "1px solid #334155",
+            }}
+          >
+            <span
+              className="inline-block text-xs font-bold px-3 py-1.5 rounded-full mb-4"
+              style={{
+                backgroundColor:
+                  "rgba(250,204,21,0.15)",
+                color: "#facc15",
+                border:
+                  "1px solid rgba(250,204,21,0.3)",
+              }}
+            >
+              Question {current + 1} of {TOTAL}
+            </span>
+            <h2
+              className="text-lg sm:text-xl font-semibold leading-relaxed"
+              style={{ color: "#ffffff" }}
+            >
+              {q.question}
+            </h2>
+          </div>
+
+          <div className="space-y-3">
+            {q.options.map((opt, idx) => {
+              const isSel =
+                selected[current] === opt;
+              const labels = ["A", "B", "C", "D"];
+
+              return (
+                <button
+                  key={idx}
+                  onClick={() => selectOption(opt)}
+                  className="w-full text-left p-4 rounded-2xl transition-all duration-200 flex items-center gap-4"
+                  style={{
+                    backgroundColor: isSel
+                      ? "rgba(250,204,21,0.12)"
+                      : "#111827",
+                    border: isSel
+                      ? "2px solid #facc15"
+                      : "2px solid #334155",
+                    boxShadow: isSel
+                      ? "0 4px 20px rgba(250,204,21,0.15)"
+                      : "none",
+                  }}
+                >
+                  <span
+                    className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0"
+                    style={{
+                      backgroundColor: isSel
+                        ? "#facc15"
+                        : "#1e293b",
+                      color: isSel
+                        ? "#0f172a"
+                        : "#d1d5db",
+                      border: isSel
+                        ? "none"
+                        : "1px solid #475569",
+                    }}
+                  >
+                    {labels[idx]}
+                  </span>
+                  <span
+                    className="text-sm sm:text-base"
+                    style={{
+                      color: isSel
+                        ? "#facc15"
+                        : "#e2e8f0",
+                      fontWeight: isSel
+                        ? 600
+                        : 400,
+                    }}
+                  >
+                    {opt}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
