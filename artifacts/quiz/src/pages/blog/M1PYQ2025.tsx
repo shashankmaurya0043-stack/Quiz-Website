@@ -441,3 +441,103 @@ const questions: Question[] = [
     ],
     answer: "Airtel",
   },
+    {
+    question:
+      "If you want to share a document and you want people to just see it and not edit it then what should you use?",
+    options: ["ODT", "DOCX", "PDF", "DOC"],
+    answer: "PDF",
+  },
+  {
+    question:
+      "Which of the following is the search engine?",
+    options: [
+      "Google Chrome",
+      "Internet Explorer",
+      "Google",
+      "Mozilla Firefox",
+    ],
+    answer: "Google",
+  },
+  {
+    question:
+      "Undo and redo can be done with which of the following shortcut keys?",
+    options: [
+      "Ctrl + Z, Ctrl + Y",
+      "Ctrl + Y, Ctrl + Z",
+      "Ctrl + Alt + Z, Ctrl + Alt + Y",
+      "Ctrl + Alt + Y, Ctrl + Alt + Z",
+    ],
+    answer: "Ctrl + Z, Ctrl + Y",
+  },
+  {
+    question:
+      "Dotted areas in empty slide are called:",
+    options: [
+      "Template",
+      "Placard",
+      "Placeholders",
+      "Themes",
+    ],
+    answer: "Placeholders",
+  },
+  {
+    question:
+      "Which of the following technology was used in third generation computers?",
+    options: [
+      "VLSI technique",
+      "Transistors",
+      "Vacuum Tubes",
+      "Integrated circuits",
+    ],
+    answer: "Integrated circuits",
+  },
+  {
+    question:
+      'Shortcut key for "Save as" is ________',
+    options: [
+      "CTRL+S",
+      "CTRL+SHIFT+S",
+      "CTRL+ALT+S",
+      "None of the above",
+    ],
+    answer: "CTRL+SHIFT+S",
+  },
+  {
+    question:
+      "Shortcut Key to Auto Filter in LibreOffice Calc is ________",
+    options: [
+      "CTRL+Shift+L",
+      "CTRL+Shift+A",
+      "CTRL+Shift+F",
+      "CTRL+Shift+K",
+    ],
+    answer: "CTRL+Shift+L",
+  },
+  {
+    question:
+      "Third Generation of Computers used ________",
+    options: [
+      "VLSI",
+      "Integrated Circuits",
+      "Transistors",
+      "Vacuum Tubes",
+    ],
+    answer: "Integrated Circuits",
+  },
+  {
+    question:
+      "How many minimum data cells are required to create autofill series?",
+    options: ["4", "5", "2", "3"],
+    answer: "2",
+  },
+  {
+    question:
+      "To adjust the width of table columns, you:",
+    options: [
+      "Drag the column markers on the table ruler bar",
+      "Click table menu, Column width, then make adjustments",
+      "Both A and B",
+      "Drag the vertical gridline between two columns",
+    ],
+    answer: "Both A and B",
+  },
