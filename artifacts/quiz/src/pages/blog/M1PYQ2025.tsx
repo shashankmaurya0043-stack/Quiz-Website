@@ -881,3 +881,60 @@ const M1PYQ2025: React.FC = () => {
     timer.pause();
     setScreen("result");
   };
+    if (screen === "home") {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center px-4 py-10">
+        <div className="max-w-lg w-full bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl shadow-2xl border border-yellow-500/30 p-8 text-center space-y-6">
+          <div className="inline-block bg-yellow-400 text-black text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">
+            O Level M1-R5
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-yellow-400 leading-tight">
+            M1-R5 PYQ
+            <br />
+            <span className="text-white">Jan 2025</span>
+          </h1>
+          <p className="text-gray-400 text-sm">
+            {TOTAL} MCQ Questions &bull; {TOTAL} Minutes &bull; Instant Result
+          </p>
+          <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
+              <p className="text-yellow-400 font-bold text-xl">{TOTAL}</p>
+              <p className="text-gray-400">Questions</p>
+            </div>
+            <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
+              <p className="text-yellow-400 font-bold text-xl">{TOTAL} min</p>
+              <p className="text-gray-400">Duration</p>
+            </div>
+            <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
+              <p className="text-yellow-400 font-bold text-xl">+1</p>
+              <p className="text-gray-400">Per Correct</p>
+            </div>
+            <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
+              <p className="text-yellow-400 font-bold text-xl">0</p>
+              <p className="text-gray-400">Negative Mark</p>
+            </div>
+          </div>
+          <button
+            onClick={startQuiz}
+            className="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-4 rounded-2xl text-lg transition-all duration-200 shadow-lg shadow-yellow-400/20 hover:shadow-yellow-400/40 active:scale-[0.98]"
+          >
+            🚀 Attempt Mock Test
+          </button>
+          <a
+            href="https://olevelstudy.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black font-bold py-3 rounded-2xl text-base transition-all duration-200"
+          >
+            📄 View PDF
+          </a>
+          <p className="text-gray-600 text-xs pt-2">
+            Powered by{" "}
+            <span className="text-yellow-400 font-semibold">
+              oLevelStudy.com
+            </span>
+          </p>
+        </div>
+      </div>
+    );
+    }
