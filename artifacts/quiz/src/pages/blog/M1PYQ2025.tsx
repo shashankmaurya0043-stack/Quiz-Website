@@ -541,3 +541,93 @@ const questions: Question[] = [
     ],
     answer: "Both A and B",
   },
+    {
+    question:
+      "Which acts as a personal assistant in Windows 10?",
+    options: ["Alexa", "Cortana", "Google", "Siri"],
+    answer: "Cortana",
+  },
+  {
+    question:
+      "The default text area for slide will start from __________",
+    options: [
+      "Letters",
+      "Numbers",
+      "Alpha Numeric",
+      "Bullet",
+    ],
+    answer: "Bullet",
+  },
+  {
+    question:
+      "The search results are generally presented in a line of results often referred to as __________",
+    options: [
+      "Search Engine Result Pages",
+      "Tag List",
+      "Search Engine Pages",
+      "Category List",
+    ],
+    answer: "Search Engine Result Pages",
+  },
+  {
+    question:
+      "In which menu do we insert the video from file in LibreOffice Impress?",
+    options: ["Slide", "View", "Insert", "Home"],
+    answer: "Insert",
+  },
+  {
+    question:
+      "What is the shortcut for Print Preview in LibreOffice Writer?",
+    options: [
+      "CTRL+Shift+O",
+      "CTRL+Shift+P",
+      "CTRL+Shift+PP",
+      "CTRL+P+P",
+    ],
+    answer: "CTRL+Shift+P",
+  },
+  {
+    question:
+      "To revert the formatting of a manually formatted object on a slide to the style defined in the master slide use __________.",
+    options: [
+      "Clear",
+      "Clear Format",
+      "Clear Direct Formatting",
+      "Format Eraser",
+    ],
+    answer: "Clear Direct Formatting",
+  },
+  {
+    question:
+      "Shortcut to activate Extension Manager in LibreOffice Calc is __________.",
+    options: [
+      "CTRL+Alt+E",
+      "CTRL+E",
+      "CTRL+Shift+E",
+      "CTRL+F9",
+    ],
+    answer: "CTRL+Alt+E",
+  },
+  {
+    question:
+      "Two shapes in Presentation file created in LibreOffice Impress can be connected using __________.",
+    options: ["Joint", "Fix", "Attacher", "Connector"],
+    answer: "Connector",
+  },
+  {
+    question:
+      "What is the shortcut key for Styles and Formatting in LibreOffice?",
+    options: ["F11", "F6", "F12", "F9"],
+    answer: "F11",
+  },
+  {
+    question:
+      "Which is the correct option to insert header in LibreOffice?",
+    options: [
+      "Format - header",
+      "Edit - header",
+      "View - header",
+      "Insert - header",
+    ],
+    answer: "Insert - header",
+  },
