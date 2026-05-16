@@ -821,3 +821,103 @@ const questions: Question[] = [
     answer:
       "A distributed ledger on a peer to peer network",
   },
+    {
+    question:
+      "Which of the following is/are the cloud deployment models?",
+    options: [
+      "Public Cloud",
+      "Private Cloud",
+      "Hybrid Cloud",
+      "All of the above",
+    ],
+    answer: "All of the above",
+  },
+  {
+    question:
+      "__________ key is used for Line Break in LibreOffice Writer without paragraph change.",
+    options: [
+      "Shift + Enter",
+      "Ctrl + L",
+      "Ctrl + Enter",
+      "Ctrl + O",
+    ],
+    answer: "Shift + Enter",
+  },
+  {
+    question:
+      "__________ total charts are in LibreOffice Calc.",
+    options: ["8", "12", "14", "10"],
+    answer: "10",
+  },
+  {
+    question:
+      "Which of the following function key is used to perform a spelling check?",
+    options: ["F1", "F3", "F7", "F8"],
+    answer: "F7",
+  },
+  {
+    question:
+      "How many menus are found in LibreOffice Writer?",
+    options: ["11", "13", "8", "10"],
+    answer: "11",
+  },
+  {
+    question:
+      "Which of the following keyboard shortcuts is used to open the Start menu of Windows?",
+    options: [
+      "Alt + Esc",
+      "Ctrl + Esc",
+      "Esc",
+      "Ctrl + S",
+    ],
+    answer: "Ctrl + Esc",
+  },
+  {
+    question:
+      "You can send and read messages on ______ up to 140 words, which is the length of the phrase including all punctuation and spaces.",
+    options: [
+      "Twitter",
+      "WhatsApp",
+      "Facebook",
+      "Telegram",
+    ],
+    answer: "Twitter",
+  },
+  {
+    question: "Which one is not an element of IoT?",
+    options: [
+      "Process",
+      "Security",
+      "People",
+      "Things",
+    ],
+    answer: "Security",
+  },
+  {
+    question:
+      "Which shortcut key do you use to close the slide in LibreOffice Impress?",
+    options: [
+      "Ctrl + N",
+      "Ctrl + M",
+      "Ctrl + W",
+      "Ctrl + P",
+    ],
+    answer: "Ctrl + W",
+  },
+  {
+    question:
+      "Which of these web browsers has the largest market share presently, across all platforms?",
+    options: ["Edge", "Chrome", "Safari", "Firefox"],
+    answer: "Chrome",
+  },
+  {
+    question: "What is the full form of WiFi?",
+    options: [
+      "Wireless Federation",
+      "Wireless For Internet",
+      "Wireless Fidelity",
+      "Wireless Internet",
+    ],
+    answer: "Wireless Fidelity",
+  },
+];
