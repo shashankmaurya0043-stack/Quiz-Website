@@ -1085,3 +1085,70 @@ const M1PYQ2025: React.FC = () => {
       </div>
     );
     }
+    const q = questions[current];
+
+  return (
+    <div className="min-h-screen bg-black flex flex-col">
+      <div className="sticky top-0 z-30 bg-gray-900/95 backdrop-blur-md border-b border-gray-800 px-4 py-3">
+        <div className="max-w-3xl mx-auto flex items-center justify-between">
+          <button
+            onClick={() => setShowNav(!showNav)}
+            className="flex items-center gap-2 text-yellow-400 font-bold text-sm bg-yellow-400/10 hover:bg-yellow-400/20 px-3 py-2 rounded-xl transition-all"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+            Q{current + 1}/{TOTAL}
+          </button>
+          <div
+            className={`flex items-center gap-2 font-mono font-bold text-lg px-4 py-2 rounded-xl ${
+              timer.time <= 60
+                ? "bg-red-500/20 text-red-400 animate-pulse"
+                : timer.time <= 300
+                ? "bg-orange-500/15 text-orange-400"
+                : "bg-yellow-400/10 text-yellow-400"
+            }`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            {timer.formatTime}
+          </div>
+          <button
+            onClick={submitQuiz}
+            className="bg-red-500 hover:bg-red-400 text-white font-bold text-sm px-4 py-2 rounded-xl transition-all active:scale-95"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+      <div className="w-full h-1 bg-gray-800">
+        <div
+          className="h-full bg-gradient-to-r from-yellow-400 to-yellow-500 transition-all duration-500 ease-out"
+          style={{
+            width: `${((current + 1) / TOTAL) * 100}%`,
+          }}
+        />
+      </div>
