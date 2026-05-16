@@ -159,3 +159,95 @@ const questions: Question[] = [
     ],
     answer: "Uniform Resource Locator",
   },
+    {
+    question:
+      "The term word processing was invented by ______.",
+    options: ["IBM", "HP", "Intel", "Microsoft"],
+    answer: "IBM",
+  },
+  {
+    question: "Which is not a type of e-commerce?",
+    options: [
+      "Business to Business (B2B)",
+      "Business to Customer (B2C)",
+      "Alpha-commerce",
+      "M-commerce",
+    ],
+    answer: "Alpha-commerce",
+  },
+  {
+    question:
+      "Which option can be used to set custom timings for slides in a presentation?",
+    options: [
+      "Slide Timings",
+      "Slide Timer",
+      "Rehearsal",
+      "Slide show setup",
+    ],
+    answer: "Rehearsal",
+  },
+  {
+    question: "The acronym OCR stands for:",
+    options: [
+      "Outsized Character Reader",
+      "Optical Character Reader",
+      "Operational Character Reader",
+      "Only Character Reader",
+    ],
+    answer: "Optical Character Reader",
+  },
+  {
+    question:
+      "1 Petabyte (PB) of memory is equal to how many Gigabytes (GB)?",
+    options: [
+      "1024 GB",
+      "1048576 GB",
+      "524288 GB",
+      "4194304 GB",
+    ],
+    answer: "1048576 GB",
+  },
+  {
+    question:
+      "What is the term used when you press and hold the left mouse key and mouse around the slide?",
+    options: [
+      "Highlighting",
+      "Moving",
+      "Dragging",
+      "Monitoring",
+    ],
+    answer: "Dragging",
+  },
+  {
+    question:
+      "Different options related to printing of the LibreOffice Writer document like Print, Print Preview, and Printer Settings are available in which one of the following menus?",
+    options: ["File", "Padit", "Insert", "Format"],
+    answer: "File",
+  },
+  {
+    question:
+      "Unauthorized access and viruses are which type of network issue? (Q.26)",
+    options: [
+      "Performance",
+      "Security",
+      "Reliability",
+      "Ability",
+    ],
+    answer: "Security",
+  },
+  {
+    question: "What appears in the name box?",
+    options: [
+      "To the right of the formula bar",
+      "Under the status bar",
+      "Under the menu bar",
+      "To the left of the formula bar",
+    ],
+    answer: "To the left of the formula bar",
+  },
+  {
+    question:
+      "In a computer spreadsheet, absolute cell reference can be represented as:",
+    options: ["A3", "$A$3", "A$3", "$A3"],
+    answer: "$A$3",
+  },
