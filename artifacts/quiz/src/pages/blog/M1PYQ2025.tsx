@@ -1152,3 +1152,62 @@ const M1PYQ2025: React.FC = () => {
           }}
         />
       </div>
+            {showNav && (
+        <>
+          <div
+            className="fixed inset-0 bg-black/60 z-40"
+            onClick={() => setShowNav(false)}
+          />
+          <div className="fixed left-0 top-0 bottom-0 w-80 max-w-[85vw] bg-gray-900 z-50 border-r border-gray-700 overflow-y-auto p-5 space-y-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-yellow-400 font-bold text-lg">
+                Question Navigator
+              </h3>
+              <button
+                onClick={() => setShowNav(false)}
+                className="text-gray-400 hover:text-white text-2xl"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="flex gap-3 text-xs">
+              <span className="flex items-center gap-1">
+                <span className="w-3 h-3 rounded-full bg-yellow-400 inline-block" />
+                Current
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="w-3 h-3 rounded-full bg-green-500 inline-block" />
+                Answered
+              </span>
+              <span className="flex items-center gap-1">
+                <span className="w-3 h-3 rounded-full bg-gray-600 inline-block" />
+                Unanswered
+              </span>
+            </div>
+            <div className="grid grid-cols-6 gap-2">
+              {questions.map((_, i) => {
+                const isCurrent = i === current;
+                const isAnswered = selected[i] !== null;
+                return (
+                  <button
+                    key={i}
+                    onClick={() => goTo(i)}
+                    className={`w-10 h-10 rounded-lg text-sm font-bold transition-all ${
+                      isCurrent
+                        ? "bg-yellow-400 text-black scale-110 shadow-lg shadow-yellow-400/30"
+                        : isAnswered
+                        ? "bg-green-500/20 text-green-400 border border-green-500/40"
+                        : "bg-gray-800 text-gray-400 border border-gray-700 hover:border-gray-500"
+                    }`}
+                  >
+                    {i + 1}
+                  </button>
+                );
+              })}
+            </div>
+            <div className="text-gray-400 text-xs text-center pt-2">
+              Answered: {attempted} / {TOTAL}
+            </div>
+          </div>
+        </>
+      )}
