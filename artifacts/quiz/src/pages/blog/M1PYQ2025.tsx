@@ -1106,19 +1106,17 @@ const M1PYQ2025: React.FC = () => {
             🚀 Attempt Mock Test
           </button>
 
-          <a
-            href="https://olevelstudy.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block w-full font-bold py-3 rounded-2xl text-base transition-all duration-200"
-            style={{
-              border: "2px solid #facc15",
-              color: "#facc15",
-              backgroundColor: "transparent",
-            }}
-          >
-            📄 View PDF
-          </a>
+          <button
+  onClick={() => alert("PDF Coming Soon")}
+  className="block w-full font-bold py-3 rounded-2xl text-base transition-all duration-200"
+  style={{
+    border: "2px solid #facc15",
+    color: "#facc15",
+    backgroundColor: "transparent",
+  }}
+>
+  📄 View PDF
+</button>
 
           <p
             className="text-xs pt-2"
