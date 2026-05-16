@@ -14,6 +14,9 @@ import M1BlogPage from "@/pages/blog/M1BlogPage";
 import M2BlogPage from "@/pages/blog/M2BlogPage";
 import M3BlogPage from "@/pages/blog/M3BlogPage";
 import M4BlogPage from "@/pages/blog/M4BlogPage";
+import M1PYQ2025 from "@/pages/blog/M1PYQ2025";
+import M1PYQ2024 from "@/pages/blog/M1PYQ2024";
+import M1RepeatedQuestions from "@/pages/blog/M1RepeatedQuestions";
 
 function NotFound() {
   return (
@@ -57,6 +60,14 @@ function App() {
 <Route path="/blog/m2-web-notes" component={M2BlogPage} />
 <Route path="/blog/m3-python-questions" component={M3BlogPage} />
 <Route path="/blog/m4-iot-mcqs" component={M4BlogPage} />
+        <Route path="/blog/m1-2025-pyq" component={M1PYQ2025} />
+
+<Route path="/blog/m1-2024-pyq" component={M1PYQ2024} />
+
+<Route
+  path="/blog/m1-repeated-questions"
+  component={M1RepeatedQuestions}
+/>
         <Route component={NotFound} />
       </Switch>
     </WouterRouter>
