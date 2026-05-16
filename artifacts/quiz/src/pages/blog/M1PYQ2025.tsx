@@ -629,3 +629,86 @@ const questions: Question[] = [
     ],
     answer: "Name of Computer",
   },
+    {
+    question:
+      "Which of the following key is used to add bullet list in LibreOffice Writer?",
+    options: [
+      "Ctrl + F12",
+      "Ctrl + Shift + F12",
+      "F12",
+      "Shift + F12",
+    ],
+    answer: "Shift + F12",
+  },
+  {
+    question:
+      "What is the file extension to save Calc spreadsheet?",
+    options: [".ods", ".odl", ".xlsx", ".odc"],
+    answer: ".ods",
+  },
+  {
+    question:
+      "Which option is available for editing macros in LibreOffice?",
+    options: [
+      "Save original Basic code",
+      "Executable code",
+      "Load Basic code",
+      "None of this",
+    ],
+    answer: "Save original Basic code",
+  },
+  {
+    question:
+      "What will be the shortcut key to use Heading-1?",
+    options: ["Ctrl + 4", "Ctrl + 2", "Ctrl + 3", "Ctrl + 1"],
+    answer: "Ctrl + 1",
+  },
+  {
+    question:
+      "What is the minimum and maximum default font size in LibreOffice?",
+    options: ["6, 96", "6, 69", "7, 72", "11, 96"],
+    answer: "6, 96",
+  },
+  {
+    question:
+      "In LibreOffice, which of the following is used as Spreadsheet Software?",
+    options: ["Math", "Calc", "Writer", "Customized software"],
+    answer: "Calc",
+  },
+  {
+    question:
+      "__________ is the most common limitation in LibreOffice Calc.",
+    options: [
+      "Error-checking",
+      "The trap of fixed values",
+      "Lack of documentation",
+      "Operators in formulas",
+    ],
+    answer: "The trap of fixed values",
+  },
+  {
+    question: "Which of the following is not an input device?",
+    options: ["Touch Pad", "Mouse", "Monitor", "Scanner"],
+    answer: "Monitor",
+  },
+  {
+    question:
+      "Which key is used to manage the template in LibreOffice Writer?",
+    options: [
+      "Ctrl + N",
+      "Ctrl + Shift + N",
+      "Shift + O",
+      "Ctrl + Shift + O",
+    ],
+    answer: "Ctrl + Shift + N",
+  },
+  {
+    question: "What is Blockchain? (Q.89)",
+    options: [
+      "A type of cryptocurrency",
+      "A distributed ledger on a peer to peer network",
+      "A centralized ledger",
+      "A Currency",
+    ],
+    answer: "A distributed ledger on a peer to peer network",
+  },
