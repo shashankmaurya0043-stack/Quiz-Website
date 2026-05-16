@@ -1287,3 +1287,141 @@ const M1PYQ2025: React.FC = () => {
               </div>
             </div>
           </div>
+                    <div
+            className="rounded-2xl p-5 space-y-4"
+            style={{
+              backgroundColor: "#1e293b",
+              border: "1px solid #334155",
+            }}
+          >
+            <h3
+              className="text-lg font-bold"
+              style={{ color: "#facc15" }}
+            >
+              📋 Answer Review
+            </h3>
+            <div
+              className="space-y-3 overflow-y-auto pr-1"
+              style={{ maxHeight: "55vh" }}
+            >
+              {questions.map((q, i) => {
+                const isCorrect =
+                  selected[i] === q.answer;
+                const isSkipped =
+                  selected[i] === null;
+
+                let borderCol = "#475569";
+                let bgCol = "rgba(71,85,105,0.15)";
+                if (!isSkipped && isCorrect) {
+                  borderCol =
+                    "rgba(34,197,94,0.5)";
+                  bgCol =
+                    "rgba(34,197,94,0.08)";
+                } else if (
+                  !isSkipped &&
+                  !isCorrect
+                ) {
+                  borderCol =
+                    "rgba(239,68,68,0.5)";
+                  bgCol =
+                    "rgba(239,68,68,0.08)";
+                }
+
+                return (
+                  <div
+                    key={i}
+                    className="p-4 rounded-xl"
+                    style={{
+                      border: `1px solid ${borderCol}`,
+                      backgroundColor: bgCol,
+                    }}
+                  >
+                    <p
+                      className="text-sm font-medium mb-2"
+                      style={{ color: "#e2e8f0" }}
+                    >
+                      <span
+                        className="font-bold"
+                        style={{
+                          color: "#facc15",
+                        }}
+                      >
+                        Q{i + 1}.
+                      </span>{" "}
+                      {q.question}
+                    </p>
+                    <div className="flex flex-wrap gap-2 text-xs">
+                      {!isSkipped && (
+                        <span
+                          className="px-2 py-1 rounded-full"
+                          style={{
+                            backgroundColor:
+                              isCorrect
+                                ? "rgba(34,197,94,0.2)"
+                                : "rgba(239,68,68,0.2)",
+                            color: isCorrect
+                              ? "#22c55e"
+                              : "#ef4444",
+                          }}
+                        >
+                          Your: {selected[i]}
+                        </span>
+                      )}
+                      {isSkipped && (
+                        <span
+                          className="px-2 py-1 rounded-full"
+                          style={{
+                            backgroundColor:
+                              "rgba(148,163,184,0.2)",
+                            color: "#94a3b8",
+                          }}
+                        >
+                          Skipped
+                        </span>
+                      )}
+                      {!isCorrect && (
+                        <span
+                          className="px-2 py-1 rounded-full"
+                          style={{
+                            backgroundColor:
+                              "rgba(34,197,94,0.2)",
+                            color: "#22c55e",
+                          }}
+                        >
+                          ✓ {q.answer}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="flex gap-3">
+            <button
+              onClick={startQuiz}
+              className="flex-1 font-bold py-4 rounded-2xl transition-all active:scale-95"
+              style={{
+                backgroundColor: "#facc15",
+                color: "#0f172a",
+              }}
+            >
+              🔄 Retry Quiz
+            </button>
+            <button
+              onClick={() => setScreen("home")}
+              className="flex-1 font-bold py-4 rounded-2xl transition-all active:scale-95"
+              style={{
+                border: "2px solid #facc15",
+                color: "#facc15",
+                backgroundColor: "transparent",
+              }}
+            >
+              🏠 Home
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+    }
