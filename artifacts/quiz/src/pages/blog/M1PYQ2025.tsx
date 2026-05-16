@@ -1425,3 +1425,120 @@ const M1PYQ2025: React.FC = () => {
       </div>
     );
     }
+    const q = questions[current];
+
+  return (
+    <div
+      className="min-h-screen flex flex-col"
+      style={{ backgroundColor: "#0f172a" }}
+    >
+      <div
+        className="sticky top-0 z-30 px-4 py-3"
+        style={{
+          backgroundColor: "rgba(30,41,59,0.97)",
+          backdropFilter: "blur(12px)",
+          borderBottom: "1px solid #334155",
+        }}
+      >
+        <div className="max-w-3xl mx-auto flex items-center justify-between">
+          <button
+            onClick={() => setShowNav(!showNav)}
+            className="flex items-center gap-2 font-bold text-sm px-3 py-2 rounded-xl transition-all"
+            style={{
+              backgroundColor: "rgba(250,204,21,0.15)",
+              color: "#facc15",
+              border: "1px solid rgba(250,204,21,0.3)",
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+            Q{current + 1}/{TOTAL}
+          </button>
+
+          <div
+            className="flex items-center gap-2 font-mono font-bold text-lg px-4 py-2 rounded-xl"
+            style={{
+              backgroundColor:
+                timer.time <= 60
+                  ? "rgba(239,68,68,0.2)"
+                  : timer.time <= 300
+                  ? "rgba(249,115,22,0.15)"
+                  : "rgba(250,204,21,0.12)",
+              color:
+                timer.time <= 60
+                  ? "#ef4444"
+                  : timer.time <= 300
+                  ? "#f97316"
+                  : "#facc15",
+              border: `1px solid ${
+                timer.time <= 60
+                  ? "rgba(239,68,68,0.4)"
+                  : timer.time <= 300
+                  ? "rgba(249,115,22,0.3)"
+                  : "rgba(250,204,21,0.3)"
+              }`,
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            {timer.formatTime}
+          </div>
+
+          <button
+            onClick={submitQuiz}
+            className="font-bold text-sm px-4 py-2 rounded-xl transition-all active:scale-95"
+            style={{
+              backgroundColor: "#ef4444",
+              color: "#ffffff",
+              border: "1px solid #f87171",
+            }}
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+
+      <div
+        className="w-full"
+        style={{
+          height: "4px",
+          backgroundColor: "#1e293b",
+        }}
+      >
+        <div
+          style={{
+            height: "100%",
+            width: `${
+              ((current + 1) / TOTAL) * 100
+            }%`,
+            background:
+              "linear-gradient(90deg, #facc15, #eab308)",
+            transition: "width 0.5s ease-out",
+            borderRadius: "0 4px 4px 0",
+          }}
+        />
+      </div>
