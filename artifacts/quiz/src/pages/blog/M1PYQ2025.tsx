@@ -1127,7 +1127,7 @@ const M1PYQ2025: React.FC = () => {
               className="font-semibold"
               style={{ color: "#facc15" }}
             >
-              oLevelStudy.com
+              OLevelQuiz.in
             </span>
           </p>
         </div>
