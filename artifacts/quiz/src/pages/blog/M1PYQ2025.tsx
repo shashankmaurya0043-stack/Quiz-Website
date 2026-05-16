@@ -1014,3 +1014,74 @@ const M1PYQ2025: React.FC = () => {
               </div>
             </div>
           </div>
+                    <div className="bg-gray-900 rounded-3xl border border-gray-700 p-6 space-y-4">
+            <h3 className="text-lg font-bold text-yellow-400">
+              📋 Answer Review
+            </h3>
+            <div className="space-y-3 max-h-[60vh] overflow-y-auto pr-2">
+              {questions.map((q, i) => {
+                const isCorrect = selected[i] === q.answer;
+                const isSkipped = selected[i] === null;
+                return (
+                  <div
+                    key={i}
+                    className={`p-4 rounded-xl border ${
+                      isSkipped
+                        ? "border-gray-600 bg-gray-800/50"
+                        : isCorrect
+                        ? "border-green-500/40 bg-green-500/5"
+                        : "border-red-500/40 bg-red-500/5"
+                    }`}
+                  >
+                    <p className="text-gray-300 text-sm font-medium mb-1">
+                      <span className="text-yellow-400 font-bold">
+                        Q{i + 1}.
+                      </span>{" "}
+                      {q.question}
+                    </p>
+                    <div className="flex flex-wrap gap-2 text-xs">
+                      {!isSkipped && (
+                        <span
+                          className={`px-2 py-1 rounded-full ${
+                            isCorrect
+                              ? "bg-green-500/20 text-green-400"
+                              : "bg-red-500/20 text-red-400"
+                          }`}
+                        >
+                          Your: {selected[i]}
+                        </span>
+                      )}
+                      {isSkipped && (
+                        <span className="px-2 py-1 rounded-full bg-gray-600/40 text-gray-400">
+                          Skipped
+                        </span>
+                      )}
+                      {!isCorrect && (
+                        <span className="px-2 py-1 rounded-full bg-green-500/20 text-green-400">
+                          ✓ {q.answer}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <button
+              onClick={startQuiz}
+              className="flex-1 bg-yellow-400 hover:bg-yellow-300 text-black font-bold py-4 rounded-2xl transition-all active:scale-[0.98]"
+            >
+              🔄 Retry Quiz
+            </button>
+            <button
+              onClick={() => setScreen("home")}
+              className="flex-1 border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black font-bold py-4 rounded-2xl transition-all"
+            >
+              🏠 Home
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+    }
