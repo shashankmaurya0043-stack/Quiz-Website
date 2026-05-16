@@ -73,3 +73,89 @@ const questions: Question[] = [
     options: ["Performance", "Security", "Reliability", "Ability"],
     answer: "Security",
   },
+    {
+    question:
+      "On which bar default document name is shown in Libre Writer?",
+    options: [
+      "Menu bar",
+      "Status bar",
+      "Title bar",
+      "Standard Toolbar",
+    ],
+    answer: "Title bar",
+  },
+  {
+    question:
+      "Which of the following function is used to display current date and time?",
+    options: ["Date( )", "Today( )", "Now( )", "Time( )"],
+    answer: "Now( )",
+  },
+  {
+    question:
+      "In presentations, which of the following can be inserted?",
+    options: [
+      "Sound Clips",
+      "Movie Clips",
+      "Both (A) & (B)",
+      "None of the above",
+    ],
+    answer: "Both (A) & (B)",
+  },
+  {
+    question: "The correct full form for UPI is __________.",
+    options: [
+      "Unified Payment Interface",
+      "Intermediate Payment Interface",
+      "Unified Pay Interface",
+      "Unified Peoples Interface",
+    ],
+    answer: "Unified Payment Interface",
+  },
+  {
+    question: "What is slide transition?",
+    options: [
+      "Letters",
+      "Overheads",
+      "Animations",
+      "Visual effect in slide show",
+    ],
+    answer: "Visual effect in slide show",
+  },
+  {
+    question:
+      "What is the default page orientation of LibreOffice?",
+    options: ["Landscape", "Portrait", "A4", "A3"],
+    answer: "Portrait",
+  },
+  {
+    question:
+      "Which among the following is not a pointing device?",
+    options: ["Digitizer", "Mouse", "Joystick", "Light pen"],
+    answer: "Digitizer",
+  },
+  {
+    question: "E-mail stands for",
+    options: [
+      "Electronic man",
+      "Electromagnetic mail",
+      "Electronic mail",
+      "Engine Mail",
+    ],
+    answer: "Electronic mail",
+  },
+  {
+    question:
+      "Any expression that begins with an equals '=' is treated as __________.",
+    options: ["Function", "Formula", "Graph", "Chart"],
+    answer: "Formula",
+  },
+  {
+    question: "The full form of URL is",
+    options: [
+      "Useful Resource Logo",
+      "Uniform Resource Locator",
+      "Useful Resource Language",
+      "Uniform Resource Language",
+    ],
+    answer: "Uniform Resource Locator",
+  },
