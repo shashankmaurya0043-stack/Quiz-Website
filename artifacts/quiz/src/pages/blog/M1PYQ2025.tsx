@@ -342,3 +342,102 @@ const questions: Question[] = [
     options: ["Alt", "Ctrl key", "Space bar", "Shift"],
     answer: "Shift",
   },
+    {
+    question:
+      "On which bar default document name is shown in LibreWriter? (Q.39)",
+    options: [
+      "Menu bar",
+      "Status bar",
+      "Title bar",
+      "Standard Toolbar",
+    ],
+    answer: "Title bar",
+  },
+  {
+    question:
+      "Which of the following chart shows values as circular sectors of the total circle?",
+    options: [
+      "Bar chart",
+      "Circular chart",
+      "Oval chart",
+      "Pie chart",
+    ],
+    answer: "Pie chart",
+  },
+  {
+    question:
+      "In spreadsheet, letters are used to represent __________.",
+    options: ["Columns", "Block", "Rows", "Cells"],
+    answer: "Columns",
+  },
+  {
+    question:
+      "Which of the following is the file extension of the PowerPoint application?",
+    options: [".ppt", ".jpg", ".html", ".docx"],
+    answer: ".ppt",
+  },
+  {
+    question:
+      "Which of the following function calculates average in LibreOffice Calc?",
+    options: [
+      "AVG( )",
+      "AVERAGE( )",
+      "AVR( )",
+      "MEAN( )",
+    ],
+    answer: "AVERAGE( )",
+  },
+  {
+    question:
+      "Which of the following documents appears blurred behind the text?",
+    options: [
+      "Background",
+      "Watermark",
+      "Front land",
+      "Image",
+    ],
+    answer: "Watermark",
+  },
+  {
+    question:
+      "Which of the following methods can be used to send money over UPI?",
+    options: [
+      "Mobile Number",
+      "VPA",
+      "Bank Account Number",
+      "Aadhar number",
+    ],
+    answer: "VPA",
+  },
+  {
+    question: "Who is the father of internet?",
+    options: [
+      "Charles Babbage",
+      "Vint Cerf",
+      "Denis Riche",
+      "Martin Cooper",
+    ],
+    answer: "Vint Cerf",
+  },
+  {
+    question:
+      "In the beginning __________ was the most widely used word processing software.",
+    options: [
+      "Word Start",
+      "WordStar",
+      "Writer",
+      "Microsoft Word",
+    ],
+    answer: "WordStar",
+  },
+  {
+    question:
+      "Which of the following is the example of ISP?",
+    options: [
+      "Chrome",
+      "Firefox",
+      "Internet Explorer",
+      "Airtel",
+    ],
+    answer: "Airtel",
+  },
