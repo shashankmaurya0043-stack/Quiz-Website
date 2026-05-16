@@ -1024,3 +1024,115 @@ const M1PYQ2025: React.FC = () => {
     timer.pause();
     setScreen("result");
   };
+    if (screen === "home") {
+    return (
+      <div
+        className="min-h-screen flex items-center justify-center px-4 py-8"
+        style={{ backgroundColor: "#0f172a" }}
+      >
+        <div
+          className="max-w-lg w-full rounded-3xl shadow-2xl p-6 sm:p-8 text-center space-y-5"
+          style={{
+            backgroundColor: "#1e293b",
+            border: "2px solid #facc15",
+          }}
+        >
+          <div
+            className="inline-block text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest"
+            style={{
+              backgroundColor: "#facc15",
+              color: "#0f172a",
+            }}
+          >
+            O Level M1-R5
+          </div>
+
+          <h1
+            className="text-3xl sm:text-4xl font-extrabold leading-tight"
+            style={{ color: "#facc15" }}
+          >
+            M1-R5 PYQ
+            <br />
+            <span style={{ color: "#ffffff" }}>
+              Jan 2025
+            </span>
+          </h1>
+
+          <p style={{ color: "#d1d5db", fontSize: "14px" }}>
+            {TOTAL} MCQ Questions • {TOTAL} Minutes •
+            Instant Result
+          </p>
+
+          <div className="grid grid-cols-2 gap-3 text-sm">
+            {[
+              { val: String(TOTAL), label: "Questions" },
+              {
+                val: `${TOTAL} min`,
+                label: "Duration",
+              },
+              { val: "+1", label: "Per Correct" },
+              { val: "0", label: "Negative Mark" },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="rounded-xl p-4"
+                style={{
+                  backgroundColor: "#0f172a",
+                  border: "1px solid #334155",
+                }}
+              >
+                <p
+                  className="font-bold text-xl"
+                  style={{ color: "#facc15" }}
+                >
+                  {item.val}
+                </p>
+                <p style={{ color: "#9ca3af" }}>
+                  {item.label}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <button
+            onClick={startQuiz}
+            className="w-full font-bold py-4 rounded-2xl text-lg transition-all duration-200 active:scale-95"
+            style={{
+              backgroundColor: "#facc15",
+              color: "#0f172a",
+              boxShadow: "0 8px 30px rgba(250,204,21,0.3)",
+            }}
+          >
+            🚀 Attempt Mock Test
+          </button>
+
+          <a
+            href="https://olevelstudy.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full font-bold py-3 rounded-2xl text-base transition-all duration-200"
+            style={{
+              border: "2px solid #facc15",
+              color: "#facc15",
+              backgroundColor: "transparent",
+            }}
+          >
+            📄 View PDF
+          </a>
+
+          <p
+            className="text-xs pt-2"
+            style={{ color: "#6b7280" }}
+          >
+            Powered by{" "}
+            <span
+              className="font-semibold"
+              style={{ color: "#facc15" }}
+            >
+              oLevelStudy.com
+            </span>
+          </p>
+        </div>
+      </div>
+    );
+    }
