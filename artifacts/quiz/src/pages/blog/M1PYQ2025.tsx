@@ -1211,3 +1211,51 @@ const M1PYQ2025: React.FC = () => {
           </div>
         </>
       )}
+            <div className="flex-1 flex items-start justify-center px-4 py-6">
+        <div className="max-w-3xl w-full space-y-6">
+          <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl border border-gray-700 p-6">
+            <span className="inline-block bg-yellow-400/10 text-yellow-400 text-xs font-bold px-3 py-1 rounded-full mb-4">
+              Question {current + 1} of {TOTAL}
+            </span>
+            <h2 className="text-white text-lg sm:text-xl font-semibold leading-relaxed">
+              {q.question}
+            </h2>
+          </div>
+          <div className="space-y-3">
+            {q.options.map((opt, idx) => {
+              const isSelected = selected[current] === opt;
+              const labels = ["A", "B", "C", "D"];
+              return (
+                <button
+                  key={idx}
+                  onClick={() => selectOption(opt)}
+                  className={`w-full text-left p-4 rounded-2xl border-2 transition-all duration-200 flex items-center gap-4 group ${
+                    isSelected
+                      ? "border-yellow-400 bg-yellow-400/10 shadow-lg shadow-yellow-400/10"
+                      : "border-gray-700 bg-gray-900 hover:border-gray-500 hover:bg-gray-800"
+                  }`}
+                >
+                  <span
+                    className={`w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold flex-shrink-0 transition-all ${
+                      isSelected
+                        ? "bg-yellow-400 text-black"
+                        : "bg-gray-800 text-gray-400 group-hover:bg-gray-700"
+                    }`}
+                  >
+                    {labels[idx]}
+                  </span>
+                  <span
+                    className={`text-sm sm:text-base ${
+                      isSelected
+                        ? "text-yellow-400 font-medium"
+                        : "text-gray-300"
+                    }`}
+                  >
+                    {opt}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
