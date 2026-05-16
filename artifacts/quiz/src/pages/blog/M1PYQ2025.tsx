@@ -1542,3 +1542,110 @@ const M1PYQ2025: React.FC = () => {
           }}
         />
       </div>
+            {showNav && (
+        <>
+          <div
+            className="fixed inset-0 z-40"
+            style={{ backgroundColor: "rgba(0,0,0,0.7)" }}
+            onClick={() => setShowNav(false)}
+          />
+          <div
+            className="fixed left-0 top-0 bottom-0 z-50 overflow-y-auto p-5 space-y-4"
+            style={{
+              width: "320px",
+              maxWidth: "85vw",
+              backgroundColor: "#1e293b",
+              borderRight: "2px solid #facc15",
+            }}
+          >
+            <div className="flex items-center justify-between">
+              <h3
+                className="font-bold text-lg"
+                style={{ color: "#facc15" }}
+              >
+                Question Navigator
+              </h3>
+              <button
+                onClick={() => setShowNav(false)}
+                className="text-2xl"
+                style={{ color: "#94a3b8" }}
+              >
+                ✕
+              </button>
+            </div>
+
+            <div
+              className="flex gap-4 text-xs"
+              style={{ color: "#d1d5db" }}
+            >
+              <span className="flex items-center gap-1">
+                <span
+                  className="inline-block w-3 h-3 rounded-full"
+                  style={{
+                    backgroundColor: "#facc15",
+                  }}
+                />
+                Current
+              </span>
+              <span className="flex items-center gap-1">
+                <span
+                  className="inline-block w-3 h-3 rounded-full"
+                  style={{
+                    backgroundColor: "#22c55e",
+                  }}
+                />
+                Answered
+              </span>
+              <span className="flex items-center gap-1">
+                <span
+                  className="inline-block w-3 h-3 rounded-full"
+                  style={{
+                    backgroundColor: "#475569",
+                  }}
+                />
+                Unanswered
+              </span>
+            </div>
+
+            <div className="grid grid-cols-6 gap-2">
+              {questions.map((_, i) => {
+                const isCurr = i === current;
+                const isAns = selected[i] !== null;
+                let bg = "#0f172a";
+                let col = "#94a3b8";
+                let bdr = "#475569";
+                if (isCurr) {
+                  bg = "#facc15";
+                  col = "#0f172a";
+                  bdr = "#facc15";
+                } else if (isAns) {
+                  bg = "rgba(34,197,94,0.15)";
+                  col = "#22c55e";
+                  bdr = "rgba(34,197,94,0.5)";
+                }
+                return (
+                  <button
+                    key={i}
+                    onClick={() => goTo(i)}
+                    className="w-10 h-10 rounded-lg text-sm font-bold transition-all"
+                    style={{
+                      backgroundColor: bg,
+                      color: col,
+                      border: `1.5px solid ${bdr}`,
+                    }}
+                  >
+                    {i + 1}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div
+              className="text-xs text-center pt-2"
+              style={{ color: "#94a3b8" }}
+            >
+              Answered: {attempted} / {TOTAL}
+            </div>
+          </div>
+        </>
+      )}
