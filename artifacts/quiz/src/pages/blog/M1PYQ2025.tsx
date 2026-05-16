@@ -966,3 +966,61 @@ const useTimer = (
     isRunning,
   };
 };
+type Screen = "home" | "quiz" | "result";
+
+const M1PYQ2025: React.FC = () => {
+  const TOTAL = questions.length;
+  const DURATION = TOTAL * 60;
+
+  const [screen, setScreen] = useState<Screen>("home");
+  const [current, setCurrent] = useState(0);
+  const [selected, setSelected] = useState<
+    (string | null)[]
+  >(Array(TOTAL).fill(null));
+  const [showNav, setShowNav] = useState(false);
+
+  const handleEnd = useCallback(() => {
+    setScreen("result");
+  }, []);
+
+  const timer = useTimer(DURATION, handleEnd);
+
+  const score = selected.reduce(
+    (acc, ans, i) =>
+      acc + (ans === questions[i].answer ? 1 : 0),
+    0
+  );
+  const attempted = selected.filter(
+    (a) => a !== null
+  ).length;
+  const percentage = Math.round(
+    (score / TOTAL) * 100
+  );
+
+  const startQuiz = () => {
+    setSelected(Array(TOTAL).fill(null));
+    setCurrent(0);
+    timer.reset(DURATION);
+    timer.start();
+    setScreen("quiz");
+  };
+
+  const selectOption = (opt: string) => {
+    const copy = [...selected];
+    copy[current] = opt;
+    setSelected(copy);
+  };
+
+  const next = () =>
+    setCurrent((c) => Math.min(c + 1, TOTAL - 1));
+  const prev = () =>
+    setCurrent((c) => Math.max(c - 1, 0));
+  const goTo = (i: number) => {
+    setCurrent(i);
+    setShowNav(false);
+  };
+
+  const submitQuiz = () => {
+    timer.pause();
+    setScreen("result");
+  };
