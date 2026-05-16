@@ -1136,3 +1136,154 @@ const M1PYQ2025: React.FC = () => {
       </div>
     );
     }
+    if (screen === "result") {
+    const getGrade = () => {
+      if (percentage >= 90)
+        return {
+          label: "Excellent! 🏆",
+          color: "#22c55e",
+        };
+      if (percentage >= 70)
+        return {
+          label: "Great Job! 🎯",
+          color: "#facc15",
+        };
+      if (percentage >= 50)
+        return {
+          label: "Good Effort! 💪",
+          color: "#f97316",
+        };
+      return {
+        label: "Keep Practicing! 📚",
+        color: "#ef4444",
+      };
+    };
+    const grade = getGrade();
+
+    return (
+      <div
+        className="min-h-screen px-4 py-6"
+        style={{ backgroundColor: "#0f172a" }}
+      >
+        <div className="max-w-2xl mx-auto space-y-5">
+          <div
+            className="rounded-2xl p-6 sm:p-8 text-center space-y-4"
+            style={{
+              backgroundColor: "#1e293b",
+              border: "2px solid #facc15",
+            }}
+          >
+            <h2
+              className="text-2xl font-bold"
+              style={{ color: "#ffffff" }}
+            >
+              Quiz Completed!
+            </h2>
+            <p
+              className="text-3xl font-extrabold"
+              style={{ color: grade.color }}
+            >
+              {grade.label}
+            </p>
+
+            <div className="relative w-36 h-36 mx-auto">
+              <svg
+                className="w-full h-full"
+                viewBox="0 0 120 120"
+                style={{
+                  transform: "rotate(-90deg)",
+                }}
+              >
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="52"
+                  fill="none"
+                  stroke="#334155"
+                  strokeWidth="10"
+                />
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="52"
+                  fill="none"
+                  stroke="#facc15"
+                  strokeWidth="10"
+                  strokeLinecap="round"
+                  strokeDasharray={`${
+                    (percentage / 100) * 327
+                  } 327`}
+                />
+              </svg>
+              <div
+                className="absolute inset-0 flex flex-col items-center justify-center"
+              >
+                <span
+                  className="text-3xl font-extrabold"
+                  style={{ color: "#facc15" }}
+                >
+                  {percentage}%
+                </span>
+                <span
+                  className="text-xs"
+                  style={{ color: "#d1d5db" }}
+                >
+                  Score
+                </span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-3 gap-3 text-sm">
+              <div
+                className="rounded-xl p-3"
+                style={{
+                  backgroundColor: "rgba(34,197,94,0.1)",
+                  border: "1px solid rgba(34,197,94,0.4)",
+                }}
+              >
+                <p
+                  className="font-bold text-xl"
+                  style={{ color: "#22c55e" }}
+                >
+                  {score}
+                </p>
+                <p style={{ color: "#d1d5db" }}>
+                  Correct
+                </p>
+              </div>
+              <div
+                className="rounded-xl p-3"
+                style={{
+                  backgroundColor: "rgba(239,68,68,0.1)",
+                  border: "1px solid rgba(239,68,68,0.4)",
+                }}
+              >
+                <p
+                  className="font-bold text-xl"
+                  style={{ color: "#ef4444" }}
+                >
+                  {attempted - score}
+                </p>
+                <p style={{ color: "#d1d5db" }}>
+                  Wrong
+                </p>
+              </div>
+              <div
+                className="rounded-xl p-3"
+                style={{
+                  backgroundColor: "rgba(148,163,184,0.1)",
+                  border: "1px solid rgba(148,163,184,0.3)",
+                }}
+              >
+                <p
+                  className="font-bold text-xl"
+                  style={{ color: "#e2e8f0" }}
+                >
+                  {TOTAL - attempted}
+                </p>
+                <p style={{ color: "#d1d5db" }}>
+                  Skipped
+                </p>
+              </div>
+            </div>
+          </div>
