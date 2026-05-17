@@ -34,105 +34,368 @@ export default function Home() {
       <Navbar />
 
       {/* HERO */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-14">
-        <div className="grid lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-7 animate-slide-up">
-            <div className="inline-flex items-center gap-2 bg-yellow-300 nb-border rounded-full px-4 py-1.5 nb-shadow-sm mb-6">
-              <Sparkles className="w-4 h-4" strokeWidth={2.5} />
-              <span className="font-heading font-bold text-sm">
-                NIELIT O Level Preparation
-              </span>
-            </div>
+      <div
+  style={{
+    background: "#0b1221",
+    padding: "40px 20px",
+    borderBottom: "1px solid #1e293b",
+    overflow: "hidden",
+    position: "relative",
+  }}
+>
+  <div
+    style={{
+      maxWidth: 1200,
+      margin: "0 auto",
+      display: "flex",
+      flexWrap: "wrap",
+      alignItems: "center",
+      justifyContent: "space-between",
+      gap: 40,
+    }}
+  >
 
-            <h1 className="font-heading font-black text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05]">
-              Crack O Level Exams
-              <br />
-              like a{" "}
-              <span className="bg-blue-500 text-white px-3 py-0.5 rounded-xl nb-border nb-shadow inline-block rotate-[-2deg]">
-                Pro
-              </span>
-              <span className="text-blue-600">.</span>
-            </h1>
-            <p className="mt-6 text-base sm:text-lg font-body text-zinc-700 max-w-xl leading-relaxed">
-              MCQs, timed quizzes, full mock tests aur instant explanations — sab
-              kuch free mein. Bas topic choose karo, timer start karo, aur apna
-              score dekho.{" "}
-              <span className="font-bold text-black">Easy aur fun!</span>
-            </p>
+    {/* LEFT CONTENT */}
+    <div style={{ flex: 1, minWidth: 280 }}>
+      <div
+        style={{
+          display: "inline-block",
+          background: "rgba(250,204,21,0.12)",
+          border: "1px solid rgba(250,204,21,0.35)",
+          color: "#facc15",
+          padding: "8px 14px",
+          borderRadius: 999,
+          fontSize: 12,
+          fontWeight: 700,
+          marginBottom: 18,
+        }}
+      >
+        🚀 NIELIT O Level Preparation
+      </div>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <button
-                data-testid="hero-start-mock-btn"
-                onClick={() => navigate("/quiz/MOCK")}
-                className="inline-flex items-center gap-2 bg-black text-white font-heading font-bold px-6 py-3 rounded-xl nb-border nb-shadow-lg nb-hover-lg"
-              >
-                Start Mock Test
-                <ArrowRight className="w-5 h-5" strokeWidth={2.5} />
-              </button>
-              <a
-                href="#subjects"
-                data-testid="hero-browse-subjects-btn"
-                className="inline-flex items-center gap-2 bg-white font-heading font-bold px-6 py-3 rounded-xl nb-border nb-shadow nb-hover"
-              >
-                Browse Subjects
-              </a>
-            </div>
+      <h1
+        style={{
+          color: "white",
+          fontSize: "clamp(34px,7vw,64px)",
+          fontWeight: 900,
+          lineHeight: 1.1,
+          marginBottom: 18,
+        }}
+      >
+        Crack O Level Exams <br />
+        like a <span style={{ color: "#facc15" }}>Pro</span>
+      </h1>
 
-            <div className="mt-10 grid grid-cols-3 gap-3 max-w-lg">
-              {[
-                { n: "400+", l: "Questions" },
-                { n: "4", l: "Subjects" },
-                { n: "Free", l: "Forever" },
-              ].map((s) => (
-                <div
-                  key={s.l}
-                  className="bg-white nb-border rounded-xl px-3 py-3 text-center nb-shadow-sm"
-                >
-                  <div className="font-heading font-black text-xl sm:text-2xl">
-                    {s.n}
-                  </div>
-                  <div className="text-xs font-semibold text-zinc-600 uppercase tracking-wide">
-                    {s.l}
-                  </div>
-                </div>
-              ))}
-            </div>
+      <p
+        style={{
+          color: "#cbd5e1",
+          fontSize: 16,
+          lineHeight: 1.7,
+          marginBottom: 30,
+          maxWidth: 540,
+        }}
+      >
+        MCQs, PYQs, mock tests and instant results — everything in one premium learning platform.
+      </p>
+
+      <div
+        style={{
+          display: "flex",
+          gap: 14,
+          flexWrap: "wrap",
+        }}
+      >
+        <button
+          style={{
+            background: "#facc15",
+            color: "#000",
+            border: "none",
+            padding: "14px 26px",
+            borderRadius: 14,
+            fontWeight: 800,
+            fontSize: 16,
+            cursor: "pointer",
+            boxShadow: "0 0 30px rgba(250,204,21,0.25)",
+          }}
+        >
+          Start Mock Test →
+        </button>
+
+        <button
+          style={{
+            background: "transparent",
+            color: "white",
+            border: "1px solid #334155",
+            padding: "14px 26px",
+            borderRadius: 14,
+            fontWeight: 700,
+            fontSize: 16,
+            cursor: "pointer",
+          }}
+        >
+          Browse Subjects
+        </button>
+      </div>
+    </div>
+
+
+    {/* RIGHT PHONE MOCKUP */}
+    <div
+      style={{
+        flex: 1,
+        minWidth: 280,
+        display: "flex",
+        justifyContent: "center",
+        position: "relative",
+      }}
+    >
+
+      {/* BIG GLOW */}
+<div
+  style={{
+    position: "absolute",
+    width: 420,
+    height: 420,
+    borderRadius: "50%",
+    background:
+      "radial-gradient(circle, rgba(250,204,21,0.22), transparent 68%)",
+    filter: "blur(55px)",
+    zIndex: 0,
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+  }}
+/>
+
+{/* ORBIT RING */}
+<div
+  style={{
+    position: "absolute",
+    width: 360,
+    height: 360,
+    borderRadius: "50%",
+    border: "2px solid rgba(250,204,21,0.18)",
+    borderTop: "2px solid rgba(250,204,21,0.75)",
+    borderBottom: "2px solid rgba(250,204,21,0.75)",
+    boxShadow: "0 0 60px rgba(250,204,21,0.18)",
+    zIndex: 1,
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%) rotate(20deg)",
+    animation: "spin 14s linear infinite",
+  }}
+/>
+
+{/* 3D FLOOR */}
+<div
+  style={{
+    position: "absolute",
+    bottom: -28,
+    left: "50%",
+    transform: "translateX(-50%)",
+    width: 260,
+    height: 38,
+    borderRadius: "50%",
+    background: "rgba(0,0,0,0.7)",
+    filter: "blur(18px)",
+    zIndex: 0,
+  }}
+/>
+
+      {/* Phone */}
+      <div
+        style={{
+          width: 270,
+          background: "#111827",
+          border: "2px solid #1e293b",
+          borderRadius: 36,
+          padding: 18,
+          position: "relative",
+          zIndex: 2,
+          boxShadow: "0 20px 60px rgba(0,0,0,0.6)",
+          transform: "perspective(1200px) rotateY(-8deg)",
+        }}
+      >
+        {/* 3D Bottom Plate */}
+<div
+  style={{
+    position: "absolute",
+    bottom: -30,
+    width: 260,
+    height: 40,
+    borderRadius: "50%",
+    background: "rgba(0,0,0,0.55)",
+    filter: "blur(18px)",
+    zIndex: 0,
+  }}
+/>
+
+        {/* Notch */}
+        <div
+          style={{
+            width: 100,
+            height: 18,
+            background: "#000",
+            borderRadius: 999,
+            margin: "0 auto 20px",
+          }}
+        />
+
+        {/* Screen */}
+        <div
+          style={{
+            background: "#0f172a",
+            borderRadius: 24,
+            padding: 20,
+            textAlign: "center",
+          }}
+        >
+          <div style={{ color: "#94a3b8", fontSize: 13 }}>
+            Your Progress
           </div>
 
-          <div className="lg:col-span-5 relative">
-            <div className="relative bg-white nb-border rounded-2xl overflow-hidden nb-shadow-lg aspect-[4/5] max-w-md mx-auto">
-              <img
-                src="https://images.unsplash.com/photo-1637589308599-3478cc55510d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2ODl8MHwxfHNlYXJjaHwyfHxpbmRpYW4lMjBzdHVkZW50JTIwc3R1ZHlpbmclMjB3aXRoJTIwbGFwdG9wJTIwYW5kJTIwc21pbGluZ3xlbnwwfHx8fDE3NzY3MTA0ODB8MA&ixlib=rb-4.1.0&q=85"
-                alt="Student studying"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute bottom-4 left-4 right-4 bg-white nb-border rounded-xl p-3 nb-shadow-sm flex items-center gap-3">
-                <div className="w-10 h-10 bg-green-300 nb-border rounded-lg flex items-center justify-center">
-                  <Trophy className="w-5 h-5" strokeWidth={2.5} />
-                </div>
-                <div>
-                  <div className="font-heading font-bold text-sm">
-                    Badhiya score laa!
-                  </div>
-                  <div className="text-xs text-zinc-600">
-                    Instant results + full review
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="hidden lg:block absolute -top-6 -right-2 bg-yellow-300 nb-border rounded-xl px-3 py-2 nb-shadow rotate-[6deg]">
-              <div className="font-heading font-black text-sm">20 min ⏱</div>
-            </div>
-            <div className="hidden lg:block absolute -bottom-4 -left-4 bg-pink-300 nb-border rounded-xl px-3 py-2 nb-shadow -rotate-[4deg]">
-              <div className="font-heading font-black text-sm">
-                Instant scoring
-              </div>
-            </div>
+          <div
+            style={{
+              width: 120,
+              height: 120,
+              borderRadius: "50%",
+              border: "10px solid rgba(250,204,21,0.2)",
+              borderTop: "10px solid #facc15",
+              margin: "22px auto",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
+          >
+            <span
+              style={{
+                color: "white",
+                fontSize: 28,
+                fontWeight: 900,
+              }}
+            >
+              85%
+            </span>
+            <span
+              style={{
+                color: "#94a3b8",
+                fontSize: 12,
+              }}
+            >
+              Score
+            </span>
           </div>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginBottom: 10,
+              color: "#cbd5e1",
+              fontSize: 14,
+            }}
+          >
+            <span>Correct</span>
+            <span style={{ color: "#22c55e", fontWeight: 700 }}>42</span>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginBottom: 10,
+              color: "#cbd5e1",
+              fontSize: 14,
+            }}
+          >
+            <span>Incorrect</span>
+            <span style={{ color: "#ef4444", fontWeight: 700 }}>8</span>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginBottom: 24,
+              color: "#cbd5e1",
+              fontSize: 14,
+            }}
+          >
+            <span>Skipped</span>
+            <span style={{ color: "#94a3b8", fontWeight: 700 }}>10</span>
+          </div>
+
+          <button
+            style={{
+              width: "100%",
+              background: "#facc15",
+              color: "#000",
+              border: "none",
+              borderRadius: 14,
+              padding: "14px",
+              fontWeight: 800,
+              cursor: "pointer",
+              fontSize: 15,
+            }}
+          >
+            View Result
+          </button>
         </div>
-      </section>
+      </div>
 
+
+      {/* Floating Cards */}
+      <div
+        style={{
+          position: "absolute",
+          top: 40,
+          left: 0,
+          background: "rgba(17,24,39,0.9)",
+          border: "1px solid #334155",
+          padding: 14,
+          borderRadius: 16,
+          color: "#facc15",
+          fontSize: 22,
+          zIndex: 3,
+          backdropFilter: "blur(10px)",
+        }}
+      >
+        🏆
+      </div>
+
+      <div
+        style={{
+          position: "absolute",
+          bottom: 40,
+          right: 10,
+          background: "rgba(17,24,39,0.9)",
+          border: "1px solid #334155",
+          padding: 14,
+          borderRadius: 16,
+          color: "#facc15",
+          fontSize: 22,
+          zIndex: 3,
+          backdropFilter: "blur(10px)",
+        }}
+      >
+        ⏱️
+      </div>
+    </div>
+  </div>
+</div>
+      <style>{`
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+`}</style>
+      
+            
       {/* SUBJECTS */}
       <section
         id="subjects"
