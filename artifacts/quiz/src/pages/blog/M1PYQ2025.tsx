@@ -1107,7 +1107,7 @@ const M1PYQ2025: React.FC = () => {
           </button>
 
           <button
-  onClick={() => alert("PDF Coming Soon")}
+  onClick={() => window.open("/pdfs/m1-100-question.pdf", "_blank")}
   className="block w-full font-bold py-3 rounded-2xl text-base transition-all duration-200"
   style={{
     border: "2px solid #facc15",
