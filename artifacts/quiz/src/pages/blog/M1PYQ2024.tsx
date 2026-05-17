@@ -202,3 +202,69 @@ export default function M1PYQ2025() {
       </div>
     );
   }
+    if (state === "result") {
+    const grade = pct >= 80 ? "Excellent!" : pct >= 60 ? "Good Job!" : pct >= 40 ? "Average" : "Needs Improvement";
+    const gradeColor = pct >= 80 ? S.correct : pct >= 60 ? S.yellow : pct >= 40 ? "#f97316" : S.wrong;
+    const wrongCount = questions.filter((q, i) => selected[i] !== null && selected[i] !== q.answer).length;
+    const skippedCount = selected.filter((s) => s === null).length;
+    return (
+      <div style={{ minHeight: "100vh", background: S.bg, padding: "24px 16px 48px" }}>
+        <div style={{ maxWidth: 720, margin: "0 auto" }}>
+          <div style={{ background: S.card, border: `1px solid ${S.cardBorder}`, borderRadius: 20, padding: "32px 24px", textAlign: "center", marginBottom: 20 }}>
+            <div style={{ color: S.yellow, fontSize: 64, fontWeight: 900, lineHeight: 1 }}>
+              {score}<span style={{ fontSize: 32, color: S.muted }}>/{questions.length}</span>
+            </div>
+            <div style={{ color: gradeColor, fontSize: 22, fontWeight: 700, marginTop: 10 }}>{grade}</div>
+            <div style={{ color: S.secondary, fontSize: 15, marginTop: 6 }}>You scored {pct}%</div>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12, marginTop: 24 }}>
+              {[
+                { label: "Correct", value: score, color: S.correct, bg: S.correctDim, border: S.correctBorder },
+                { label: "Wrong", value: wrongCount, color: S.wrong, bg: S.wrongDim, border: S.wrongBorder },
+                { label: "Skipped", value: skippedCount, color: S.muted, bg: "rgba(107,114,128,0.1)", border: "rgba(107,114,128,0.3)" },
+              ].map((s) => (
+                <div key={s.label} style={{ background: s.bg, border: `1px solid ${s.border}`, borderRadius: 12, padding: "14px 8px" }}>
+                  <div style={{ color: s.color, fontSize: 30, fontWeight: 800 }}>{s.value}</div>
+                  <div style={{ color: S.secondary, fontSize: 12, marginTop: 4, fontWeight: 600 }}>{s.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div style={{ display: "flex", gap: 12, marginBottom: 32, flexWrap: "wrap" }}>
+            <button onClick={startQuiz} style={{ flex: 1, background: S.yellow, color: "#000", fontWeight: 700, fontSize: 15, padding: "14px", borderRadius: 12, border: "none", cursor: "pointer", minWidth: 140 }}>
+              Retry Quiz
+            </button>
+            <button onClick={() => setState("home")} style={{ flex: 1, background: "transparent", color: S.yellow, fontWeight: 700, fontSize: 15, padding: "14px", borderRadius: 12, border: `2px solid ${S.yellowBorder}`, cursor: "pointer", minWidth: 140 }}>
+              Back to Home
+            </button>
+          </div>
+          <div style={{ color: S.yellow, fontSize: 18, fontWeight: 700, marginBottom: 16 }}>Answer Review</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            {questions.map((q, i) => {
+              const userAns = selected[i];
+              const correct = userAns === q.answer;
+              const skipped = userAns === null;
+              return (
+                <div key={i} style={{ background: skipped ? S.card : correct ? S.correctDim : S.wrongDim, border: `1px solid ${skipped ? S.cardBorder : correct ? S.correctBorder : S.wrongBorder}`, borderRadius: 14, padding: "16px" }}>
+                  <div style={{ display: "flex", gap: 12, marginBottom: 12, alignItems: "flex-start" }}>
+                    <span style={{ background: S.yellow, color: "#000", fontWeight: 800, fontSize: 12, width: 26, height: 26, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{i + 1}</span>
+                    <p style={{ color: S.white, fontSize: 14, fontWeight: 600, lineHeight: 1.5, margin: 0 }}>{q.question}</p>
+                  </div>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+                    {q.options.map((opt) => {
+                      const isCorrect = opt === q.answer;
+                      const isUser = opt === userAns;
+                      return (
+                        <div key={opt} style={{ background: isCorrect ? S.correctDim : isUser && !correct ? S.wrongDim : "transparent", border: `1px solid ${isCorrect ? S.correct : isUser && !correct ? S.wrong : S.optBorder}`, borderRadius: 8, padding: "8px 10px", fontSize: 13, color: isCorrect ? S.correct : isUser && !correct ? S.wrong : S.muted, fontWeight: isCorrect ? 700 : 400 }}>
+                          {isCorrect ? "✓ " : isUser && !correct ? "✗ " : ""}{opt}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    );
+    }
