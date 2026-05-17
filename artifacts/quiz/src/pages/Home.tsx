@@ -150,33 +150,7 @@ export default function Home() {
       }}
     >
 
-      {/* Glow */}
-      <div
-        style={{
-          position: "absolute",
-          width: 320,
-          height: 320,
-          background: "rgba(250,204,21,0.18)",
-          filter: "blur(80px)",
-          borderRadius: "50%",
-          top: 40,
-        }}
-      />
-      {/* Orbit Ring */}
-<div
-  style={{
-    position: "absolute",
-    width: 380,
-    height: 380,
-    borderRadius: "50%",
-    border: "2px solid rgba(250,204,21,0.22)",
-    boxShadow: "0 0 80px rgba(250,204,21,0.18)",
-    zIndex: 1,
-    animation: "spin 18s linear infinite",
-  }}
-/>
-
-{/* Ring Glow */}
+      {/* BIG GLOW */}
 <div
   style={{
     position: "absolute",
@@ -184,8 +158,46 @@ export default function Home() {
     height: 420,
     borderRadius: "50%",
     background:
-      "radial-gradient(circle, rgba(250,204,21,0.14), transparent 70%)",
-    filter: "blur(30px)",
+      "radial-gradient(circle, rgba(250,204,21,0.22), transparent 68%)",
+    filter: "blur(55px)",
+    zIndex: 0,
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+  }}
+/>
+
+{/* ORBIT RING */}
+<div
+  style={{
+    position: "absolute",
+    width: 360,
+    height: 360,
+    borderRadius: "50%",
+    border: "2px solid rgba(250,204,21,0.18)",
+    borderTop: "2px solid rgba(250,204,21,0.75)",
+    borderBottom: "2px solid rgba(250,204,21,0.75)",
+    boxShadow: "0 0 60px rgba(250,204,21,0.18)",
+    zIndex: 1,
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%) rotate(20deg)",
+    animation: "spin 14s linear infinite",
+  }}
+/>
+
+{/* 3D FLOOR */}
+<div
+  style={{
+    position: "absolute",
+    bottom: -28,
+    left: "50%",
+    transform: "translateX(-50%)",
+    width: 260,
+    height: 38,
+    borderRadius: "50%",
+    background: "rgba(0,0,0,0.7)",
+    filter: "blur(18px)",
     zIndex: 0,
   }}
 />
