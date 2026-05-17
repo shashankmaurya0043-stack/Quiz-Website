@@ -213,6 +213,7 @@ export default function Home() {
           position: "relative",
           zIndex: 2,
           boxShadow: "0 20px 60px rgba(0,0,0,0.6)",
+          transform: "perspective(1200px) rotateY(-8deg)",
         }}
       >
         {/* 3D Bottom Plate */}
