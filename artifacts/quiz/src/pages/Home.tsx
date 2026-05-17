@@ -162,6 +162,33 @@ export default function Home() {
           top: 40,
         }}
       />
+      {/* Orbit Ring */}
+<div
+  style={{
+    position: "absolute",
+    width: 380,
+    height: 380,
+    borderRadius: "50%",
+    border: "2px solid rgba(250,204,21,0.22)",
+    boxShadow: "0 0 80px rgba(250,204,21,0.18)",
+    zIndex: 1,
+    animation: "spin 18s linear infinite",
+  }}
+/>
+
+{/* Ring Glow */}
+<div
+  style={{
+    position: "absolute",
+    width: 420,
+    height: 420,
+    borderRadius: "50%",
+    background:
+      "radial-gradient(circle, rgba(250,204,21,0.14), transparent 70%)",
+    filter: "blur(30px)",
+    zIndex: 0,
+  }}
+/>
 
       {/* Phone */}
       <div
@@ -176,6 +203,19 @@ export default function Home() {
           boxShadow: "0 20px 60px rgba(0,0,0,0.6)",
         }}
       >
+        {/* 3D Bottom Plate */}
+<div
+  style={{
+    position: "absolute",
+    bottom: -30,
+    width: 260,
+    height: 40,
+    borderRadius: "50%",
+    background: "rgba(0,0,0,0.55)",
+    filter: "blur(18px)",
+    zIndex: 0,
+  }}
+/>
 
         {/* Notch */}
         <div
@@ -331,6 +371,16 @@ export default function Home() {
     </div>
   </div>
 </div>
+      <style>{`
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+`}</style>
       
             
       {/* SUBJECTS */}
