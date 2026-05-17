@@ -33,7 +33,7 @@ export default function Home() {
     <div data-testid="home-page" className="min-h-screen bg-[#FDFBF7]">
       <Navbar />
 
-      HERO */}
+      {/* HERO */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-14">
         <div className="grid lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7 animate-slide-up">
