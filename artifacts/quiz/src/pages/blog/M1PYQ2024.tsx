@@ -132,3 +132,73 @@ const S = {
   optHoverBg: "#1e293b",
   headerBg: "#0b1221",
 };
+export default function M1PYQ2025() {
+  const [state, setState] = useState<QuizState>("home");
+  const [current, setCurrent] = useState(0);
+  const [selected, setSelected] = useState<(string | null)[]>(Array(questions.length).fill(null));
+  const [timeLeft, setTimeLeft] = useState(TOTAL_TIME);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = useCallback(() => {
+    setSubmitted(true);
+    setState("result");
+  }, []);
+
+  useEffect(() => {
+    if (state !== "quiz" || submitted) return;
+    if (timeLeft <= 0) { handleSubmit(); return; }
+    const id = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
+    return () => clearTimeout(id);
+  }, [timeLeft, state, submitted, handleSubmit]);
+
+  function startQuiz() {
+    setSelected(Array(questions.length).fill(null));
+    setCurrent(0);
+    setTimeLeft(TOTAL_TIME);
+    setSubmitted(false);
+    setState("quiz");
+  }
+
+  function selectOption(opt: string) {
+    if (submitted) return;
+    setSelected((prev) => { const next = [...prev]; next[current] = opt; return next; });
+  }
+
+  const score = questions.filter((q, i) => selected[i] === q.answer).length;
+  const pct = Math.round((score / questions.length) * 100);
+  const timerPct = (timeLeft / TOTAL_TIME) * 100;
+  const timerColor = timerPct > 50 ? S.yellow : timerPct > 20 ? "#f97316" : S.wrong;
+
+  if (state === "home") {
+    return (
+      <div style={{ minHeight: "100vh", background: S.bg, display: "flex", alignItems: "center", justifyContent: "center", padding: "24px 16px" }}>
+        <div style={{ maxWidth: 560, width: "100%", textAlign: "center" }}>
+          <span style={{ display: "inline-block", background: S.yellow, color: "#000", fontSize: 11, fontWeight: 700, padding: "4px 14px", borderRadius: 999, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 20 }}>
+            O Level • M1 • 2024–25
+          </span>
+          <h1 style={{ color: S.white, fontSize: "clamp(28px,6vw,44px)", fontWeight: 800, lineHeight: 1.2, margin: "0 0 12px" }}>
+            M1 Previous Year <span style={{ color: S.yellow }}>Questions</span>
+          </h1>
+          <p style={{ color: S.secondary, fontSize: 16, margin: "0 0 32px", lineHeight: 1.6 }}>
+            100 MCQs from the O Level M1 syllabus. Test your preparation with a timed mock exam experience.
+          </p>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12, marginBottom: 32 }}>
+            {[{ label: "Questions", value: "100" }, { label: "Time", value: `${Math.floor(TOTAL_TIME / 60)} min` }, { label: "Marks", value: "100" }].map((s) => (
+              <div key={s.label} style={{ background: S.card, border: `1px solid ${S.cardBorder}`, borderRadius: 14, padding: "16px 8px" }}>
+                <div style={{ color: S.yellow, fontSize: 26, fontWeight: 800 }}>{s.value}</div>
+                <div style={{ color: S.secondary, fontSize: 13, marginTop: 4 }}>{s.label}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            <button onClick={startQuiz} style={{ background: S.yellow, color: "#000", fontWeight: 700, fontSize: 17, padding: "16px 32px", borderRadius: 14, border: "none", cursor: "pointer" }}>
+              Attempt Mock Test
+            </button>
+            <a href="#" style={{ border: `2px solid ${S.yellowBorder}`, color: S.yellow, fontWeight: 700, fontSize: 16, padding: "14px 32px", borderRadius: 14, textDecoration: "none", display: "block" }}>
+              View PDF
+            </a>
+          </div>
+        </div>
+      </div>
+    );
+  }
