@@ -335,3 +335,61 @@ export default function M1PYQ2025() {
             )}
           </div>
         </main>
+                <aside style={{ width: 210, flexShrink: 0, display: "none" }} className="quiz-nav-desktop">
+          <div style={{ position: "sticky", top: 80, background: S.card, border: `1px solid ${S.cardBorder}`, borderRadius: 16, padding: 16 }}>
+            <div style={{ color: S.secondary, fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 14 }}>Navigator</div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 6 }}>
+              {questions.map((_, i) => {
+                const isActive = i === current;
+                const isAnswered = selected[i] !== null;
+                return (
+                  <button key={i} onClick={() => setCurrent(i)} style={{ aspectRatio: "1", fontSize: 11, fontWeight: 700, borderRadius: 8, border: isActive ? `2px solid ${S.yellow}` : isAnswered ? `1px solid ${S.yellowBorder}` : `1px solid ${S.optBorder}`, background: isActive ? S.yellow : isAnswered ? S.yellowDim : "#1e293b", color: isActive ? "#000" : isAnswered ? S.yellow : S.muted, cursor: "pointer", padding: "6px 0" }}>
+                    {i + 1}
+                  </button>
+                );
+              })}
+            </div>
+            <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 8 }}>
+              {[
+                { color: S.yellow, bg: S.yellow, label: "Current" },
+                { color: S.yellow, bg: S.yellowDim, label: "Answered" },
+                { color: S.muted, bg: "#1e293b", label: "Not visited" },
+              ].map((l) => (
+                <div key={l.label} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <div style={{ width: 14, height: 14, borderRadius: 4, background: l.bg, border: `1px solid ${l.color}`, flexShrink: 0 }} />
+                  <span style={{ color: S.secondary, fontSize: 12 }}>{l.label}</span>
+                </div>
+              ))}
+            </div>
+            <button onClick={handleSubmit} style={{ marginTop: 16, width: "100%", padding: "12px", borderRadius: 12, border: "none", background: S.correct, color: "#000", fontWeight: 700, fontSize: 14, cursor: "pointer" }}>
+              Submit Quiz
+            </button>
+          </div>
+        </aside>
+      </div>
+
+      <div style={{ position: "sticky", bottom: 0, background: S.headerBg, borderTop: `1px solid ${S.cardBorder}`, padding: "10px 16px" }} className="quiz-nav-mobile">
+        <div style={{ overflowX: "auto" }}>
+          <div style={{ display: "flex", gap: 6, width: "max-content", margin: "0 auto" }}>
+            {questions.map((_, i) => {
+              const isActive = i === current;
+              const isAnswered = selected[i] !== null;
+              return (
+                <button key={i} onClick={() => setCurrent(i)} style={{ width: 32, height: 32, flexShrink: 0, fontSize: 11, fontWeight: 700, borderRadius: 8, border: isActive ? `2px solid ${S.yellow}` : isAnswered ? `1px solid ${S.yellowBorder}` : `1px solid ${S.optBorder}`, background: isActive ? S.yellow : isAnswered ? S.yellowDim : "#1e293b", color: isActive ? "#000" : isAnswered ? S.yellow : S.muted, cursor: "pointer" }}>
+                  {i + 1}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      <style>{`
+        @media (min-width: 768px) {
+          .quiz-nav-desktop { display: block !important; }
+          .quiz-nav-mobile { display: none !important; }
+        }
+      `}</style>
+    </div>
+  );
+}
