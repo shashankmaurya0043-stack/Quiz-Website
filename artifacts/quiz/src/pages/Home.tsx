@@ -39,7 +39,7 @@ export default function Home() {
     background: "#0b1221",
     padding: "40px 20px",
     borderBottom: "1px solid #1e293b",
-    overflow: "hidden",
+    
     position: "relative",
   }}
 >
@@ -171,8 +171,8 @@ export default function Home() {
 <div
   style={{
     position: "absolute",
-    width: 360,
-    height: 360,
+    width: 300,
+    height: 300,
     borderRadius: "50%",
     border: "2px solid rgba(250,204,21,0.18)",
     borderTop: "2px solid rgba(250,204,21,0.75)",
@@ -180,7 +180,7 @@ export default function Home() {
     boxShadow: "0 0 60px rgba(250,204,21,0.18)",
     zIndex: 1,
     top: "50%",
-    left: "50%",
+    left: "58%",
     transform: "translate(-50%, -50%) rotate(20deg)",
     animation: "spin 14s linear infinite",
   }}
@@ -190,15 +190,16 @@ export default function Home() {
 <div
   style={{
     position: "absolute",
-    bottom: -28,
+    bottom: -42,
     left: "50%",
     transform: "translateX(-50%)",
-    width: 260,
-    height: 38,
+    width: 240,
+    height: 34,
     borderRadius: "50%",
-    background: "rgba(0,0,0,0.7)",
-    filter: "blur(18px)",
-    zIndex: 0,
+    background:
+      "linear-gradient(to right, rgba(0,0,0,0.15), rgba(0,0,0,0.75), rgba(0,0,0,0.15))",
+    filter: "blur(10px)",
+    zIndex: 1,
   }}
 />
 
@@ -213,7 +214,7 @@ export default function Home() {
           position: "relative",
           zIndex: 2,
           boxShadow: "0 20px 60px rgba(0,0,0,0.6)",
-          transform: "perspective(1200px) rotateY(-8deg)",
+          transform: "perspective(1200px) rotateY(-3deg)",
         }}
       >
         {/* 3D Bottom Plate */}
