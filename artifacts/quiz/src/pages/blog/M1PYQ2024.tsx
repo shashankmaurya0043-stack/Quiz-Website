@@ -132,7 +132,7 @@ const S = {
   optHoverBg: "#1e293b",
   headerBg: "#0b1221",
 };
-export default function M1PYQ2025() {
+export default function M1PYQ2024() {
   const [state, setState] = useState<QuizState>("home");
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<(string | null)[]>(Array(questions.length).fill(null));
