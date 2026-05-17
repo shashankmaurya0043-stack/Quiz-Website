@@ -39,6 +39,7 @@ export default function Home() {
     background: "#0b1221",
     padding: "40px 20px",
     borderBottom: "1px solid #1e293b",
+    overflow: "hidden",
     
     position: "relative",
   }}
@@ -180,7 +181,7 @@ export default function Home() {
     boxShadow: "0 0 60px rgba(250,204,21,0.18)",
     zIndex: 1,
     top: "50%",
-    left: "58%",
+    left: "50%",
     transform: "translate(-50%, -50%) rotate(20deg)",
     animation: "spin 14s linear infinite",
   }}
