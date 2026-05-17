@@ -1,3 +1,28 @@
-export default function M1PYQ2024() {
-  return <div>M1 PYQ 2024 Page</div>;
-}
+import { useState, useEffect, useCallback } from "react";
+
+const questions = [
+  { question: "Which was the first electronic digital computer?", options: ["ENIAC", "UNIVAC", "EDVAC", "Harvard Mark I"], answer: "ENIAC" },
+  { question: "Which was the first microprocessor chip released commercially?", options: ["Intel 8080", "Intel 4004", "Motorola 6800", "Zilog Z80"], answer: "Intel 4004" },
+  { question: "In which generation of computers were vacuum tubes used?", options: ["First generation", "Second generation", "Third generation", "Fourth generation"], answer: "First generation" },
+  { question: "In which generation were integrated circuits used in computers?", options: ["First generation", "Second generation", "Third generation", "Fourth generation"], answer: "Third generation" },
+  { question: "Which computer generation first used microprocessors?", options: ["First generation", "Second generation", "Third generation", "Fourth generation"], answer: "Fourth generation" },
+  { question: "What was the first computer network in the world?", options: ["ARPANET", "Internet", "Ethernet", "World Wide Web"], answer: "ARPANET" },
+  { question: "Who is credited with inventing the computer mouse?", options: ["Douglas Engelbart", "Bill Gates", "Steve Jobs", "Tim Berners-Lee"], answer: "Douglas Engelbart" },
+  { question: "Which was the first computer programming language to be developed?", options: ["BASIC", "FORTRAN", "COBOL", "C"], answer: "FORTRAN" },
+  { question: "Which company introduced the first commercial personal computer?", options: ["IBM", "Apple", "Microsoft", "Dell"], answer: "IBM" },
+  { question: "Which was the first programming language created specifically for web development?", options: ["HTML", "JavaScript", "PHP", "Python"], answer: "HTML" },
+  { question: "Which operating system was originally developed by Linus Torvalds?", options: ["Windows", "MacOS", "Linux", "Unix"], answer: "Linux" },
+  { question: "In which year was the world's first smartphone launched?", options: ["1992", "1994", "1998", "1999"], answer: "1992" },
+  { question: "Who is known as the father of computer science?", options: ["Charles Babbage", "Alan Turing", "Ada Lovelace", "John von Neumann"], answer: "Alan Turing" },
+  { question: "Who is credited with the invention of the World Wide Web?", options: ["Tim Berners-Lee", "Al Gore", "Bill Gates", "Larry Page"], answer: "Tim Berners-Lee" },
+  { question: "In which computer generation were time sharing, real-time networking, and distributed operating systems used?", options: ["First", "Fourth", "Second", "Fifth"], answer: "Fifth" },
+  { question: "The Arithmetic and Logic Unit of a computer responds to instructions coming from:", options: ["Primary memory", "Control unit", "Cache memory", "External memory"], answer: "Control unit" },
+  { question: "Which of the following storage devices can store the highest amount of data?", options: ["Floppy Disk", "Compact Disk", "Hard Disk", "Magnetic Optical Disk"], answer: "Hard Disk" },
+  { question: "The function of saving data and instructions for future use is performed by the:", options: ["Cache unit", "Input unit", "Output unit", "Storage unit"], answer: "Storage unit" },
+  { question: "What is another name for application software?", options: ["End-user software", "Utility software", "Specific software", "All of these"], answer: "End-user software" },
+  { question: "In a computer, the operating system acts as a software interface between the user and which of the following?", options: ["Memory", "Hardware", "Peripheral", "Screen"], answer: "Hardware" },
+  { question: "What is the shortcut key to snap a window/app to the right side of the screen?", options: ["Windows key + Right Arrow", "Windows key + Up Arrow", "Windows key + Left Arrow", "Windows key + Down Arrow"], answer: "Windows key + Right Arrow" },
+  { question: "Which component allows access to all computer settings and enables installing or removing programs?", options: ["Start menu", "File explorer", "Control panel", "Default programs"], answer: "Control panel" },
+  { question: "Where can you find the option to add a printer or scanner?", options: ["Control panel", "Dynamic data exchange", "File manager", "None of the above"], answer: "Control panel" },
+  { question: "What is the shortcut key to take a screenshot of the full screen and save it automatically?", options: ["Windows key + PrtScr", "Windows key + L", "Windows key + D", "Windows key + M"], answer: "Windows key + PrtScr" },
+  { question: "Which option is used to send the same letter to multiple people?", options: ["Mail Merge", "Macros", "Multiple Letter", "Template"], answer: "Mail Merge" },
