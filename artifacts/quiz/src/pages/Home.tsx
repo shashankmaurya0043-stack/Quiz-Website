@@ -155,15 +155,15 @@ export default function Home() {
 <div
   style={{
     position: "absolute",
-    width: 420,
-    height: 420,
+    width: 380,
+    height: 380,
     borderRadius: "50%",
     background:
       "radial-gradient(circle, rgba(250,204,21,0.22), transparent 68%)",
-    filter: "blur(55px)",
+    filter: "blur(50px)",
     zIndex: 0,
     top: "50%",
-    left: "50%",
+    left: "70%",
     transform: "translate(-50%, -50%)",
   }}
 />
@@ -186,23 +186,23 @@ export default function Home() {
     animation: "spin 14s linear infinite",
   }}
 />
-
-{/* 3D FLOOR */}
+      {/* 3D FLOOR */}
 <div
   style={{
     position: "absolute",
-    bottom: -42,
-    left: "50%",
+    bottom: -40,
+    left: "70%",
     transform: "translateX(-50%)",
-    width: 240,
-    height: 34,
+    width: 220,
+    height: 30,
     borderRadius: "50%",
-    background:
-      "linear-gradient(to right, rgba(0,0,0,0.15), rgba(0,0,0,0.75), rgba(0,0,0,0.15))",
-    filter: "blur(10px)",
-    zIndex: 1,
+    background: "rgba(0,0,0,0.55)",
+    filter: "blur(12px)",
+    zIndex: 0,
   }}
 />
+
+
 
       {/* Phone */}
       <div
@@ -216,6 +216,7 @@ export default function Home() {
           zIndex: 2,
           boxShadow: "0 20px 60px rgba(0,0,0,0.6)",
           transform: "perspective(1200px) rotateY(-3deg)",
+          marginTop: 20,
         }}
       >
         {/* 3D Bottom Plate */}
