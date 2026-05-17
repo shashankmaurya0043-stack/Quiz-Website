@@ -76,3 +76,59 @@ const questions = [
   { question: "In which menu of LibreOffice can you find the option to add comments?", options: ["Style", "Format", "Insert", "View"], answer: "Insert" },
   { question: "Can you hide all rows at once in LibreOffice Calc?", options: ["Yes", "No", "Maybe", "Can't say"], answer: "Yes" },
   { question: "What is the maximum number of handouts that can be printed on a single page in LibreOffice Impress?", options: ["4", "9", "16", "32"], answer: "9" },
+    { question: "In which menu is the Find & Replace option found in LibreOffice?", options: ["File", "Edit", "View", "Window"], answer: "Edit" },
+  { question: "How do you change the column width to fit the contents?", options: ["Single-click the boundary to the left of the column heading", "Double click the boundary to the right of the column heading", "Press Alt and single click anywhere in the column", "Press CTRL and double click anywhere in the column"], answer: "Double click the boundary to the right of the column heading" },
+  { question: "In which generation of computers was batch processing mainly used?", options: ["1st", "2nd", "3rd", "4th"], answer: "1st" },
+  { question: "What does ULSI stand for?", options: ["Ultra Large Scale Integration", "Under Lower Scale Integration", "Ultra Lower Scale Integration", "Under Large Scale Integration"], answer: "Ultra Large Scale Integration" },
+  { question: "What was the first electronic spreadsheet program called?", options: ["Microsoft Excel", "Lotus 1-2-3", "VisiCalc", "Calc"], answer: "VisiCalc" },
+  { question: "What was the first microcomputer in the world?", options: ["ALTAIR 8800", "HP", "ENIAC", "UNIVAC"], answer: "ALTAIR 8800" },
+  { question: "Can handouts be printed for all slides in a presentation?", options: ["Yes", "No", "Never", "None"], answer: "Yes" },
+  { question: "Does a search engine use indexing to follow every link on the site?", options: ["Yes", "No", "Never", "None"], answer: "Yes" },
+  { question: "Which button is clicked to add up a series of numbers?", options: ["The total button", "The autosum button", "The quicktotal button", "The formula button"], answer: "The autosum button" },
+  { question: "Can a computer virus cause a motherboard crash?", options: ["Yes", "No", "Never", "None"], answer: "Yes" },
+  { question: "Is the storage capacity of a CD greater than that of a DVD?", options: ["Yes", "No", "Never", "None"], answer: "No" },
+  { question: "Which type of semiconductor memory allows changing contents of selected memory locations by applying suitable electrical signals?", options: ["CAM", "ROM", "EAROM", "ANACUS"], answer: "EAROM" },
+  { question: "What is true about the size of an icon?", options: ["It can be changed whenever required", "It can be changed only at the time of creation", "It is always fixed", "It cannot be changed"], answer: "It can be changed whenever required" },
+  { question: "Does EBCDIC (Extended Binary Coded Decimal Interchange Code) exist?", options: ["No", "Yes", "Never", "None"], answer: "Yes" },
+  { question: "Which option is used to hide a slide in a presentation?", options: ["Cut", "Hide slide", "Hide", "Slide"], answer: "Hide slide" },
+  { question: "What is the term for a function placed inside another function?", options: ["Sum", "Round", "Nested", "Text"], answer: "Nested" },
+  { question: "Does EBCDIC use 8 bits?", options: ["No", "Yes", "Never", "None"], answer: "No" },
+  { question: "Which font size option is NOT available in the font size drop-down menu in LibreOffice Writer?", options: ["10", "13", "19", "24"], answer: "19" },
+  { question: "What is Blockchain?", options: ["A digital global ledger where transactions are recorded chronologically and viewable by all with access", "A type of virus", "A programming language", "An operating system"], answer: "A digital global ledger where transactions are recorded chronologically and viewable by all with access" },
+  { question: "In which menu of LibreOffice Writer is the 'Restart in Safe Mode' option found?", options: ["Insert", "Edit", "File", "Help"], answer: "Help" },
+  { question: "Which of the following protocols is lightweight?", options: ["SPI", "HTTP", "MQTT", "COAP"], answer: "COAP" },
+  { question: "Which was the first graphical web browser?", options: ["Internet Explorer (IE)", "Mozilla", "Netscape", "Opera"], answer: "Netscape" },
+  { question: "Which of the following is NOT a valid zoom percentage in LibreOffice Calc?", options: ["400", "100", "300", "500"], answer: "500" },
+  { question: "What is cipher text?", options: ["Non-readable form of encrypted data", "Undecorated text", "Readable form of encrypted data", "Decorated text"], answer: "Non-readable form of encrypted data" },
+  { question: "Does File Explorer not provide an option to rename a file?", options: ["No", "Yes", "Never", "None"], answer: "No" },
+];
+
+const TOTAL_TIME = questions.length * 60;
+type QuizState = "home" | "quiz" | "result";
+
+function formatTime(secs: number) {
+  const m = Math.floor(secs / 60).toString().padStart(2, "0");
+  const s = (secs % 60).toString().padStart(2, "0");
+  return `${m}:${s}`;
+}
+
+const S = {
+  bg: "#0f172a",
+  card: "#111827",
+  cardBorder: "#1e293b",
+  yellow: "#facc15",
+  yellowDim: "rgba(250,204,21,0.12)",
+  yellowBorder: "rgba(250,204,21,0.35)",
+  white: "#ffffff",
+  secondary: "#d1d5db",
+  muted: "#6b7280",
+  correct: "#22c55e",
+  correctDim: "rgba(34,197,94,0.12)",
+  correctBorder: "rgba(34,197,94,0.4)",
+  wrong: "#ef4444",
+  wrongDim: "rgba(239,68,68,0.12)",
+  wrongBorder: "rgba(239,68,68,0.4)",
+  optBorder: "#334155",
+  optHoverBg: "#1e293b",
+  headerBg: "#0b1221",
+};
