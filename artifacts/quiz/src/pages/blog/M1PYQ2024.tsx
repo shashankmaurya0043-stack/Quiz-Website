@@ -194,9 +194,22 @@ export default function M1PYQ2025() {
             <button onClick={startQuiz} style={{ background: S.yellow, color: "#000", fontWeight: 700, fontSize: 17, padding: "16px 32px", borderRadius: 14, border: "none", cursor: "pointer" }}>
               Attempt Mock Test
             </button>
-            <a href="#" style={{ border: `2px solid ${S.yellowBorder}`, color: S.yellow, fontWeight: 700, fontSize: 16, padding: "14px 32px", borderRadius: 14, textDecoration: "none", display: "block" }}>
-              View PDF
-            </a>
+            <a
+  href="/pdfs/m1-2024.pdf"
+  target="_blank"
+  style={{
+    border: `2px solid ${S.yellowBorder}`,
+    color: S.yellow,
+    fontWeight: 700,
+    fontSize: 16,
+    padding: "14px 32px",
+    borderRadius: 14,
+    textDecoration: "none",
+    display: "block"
+  }}
+>
+  📄 View PDF
+</a>
           </div>
         </div>
       </div>
