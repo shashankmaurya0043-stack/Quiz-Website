@@ -268,3 +268,70 @@ export default function M1PYQ2025() {
       </div>
     );
     }
+    const q = questions[current];
+  const answered = selected.filter((s) => s !== null).length;
+
+  return (
+    <div style={{ minHeight: "100vh", background: S.bg, display: "flex", flexDirection: "column" }}>
+      <header style={{ position: "sticky", top: 0, zIndex: 50, background: S.headerBg, borderBottom: `1px solid ${S.cardBorder}`, padding: "12px 16px" }}>
+        <div style={{ maxWidth: 900, margin: "0 auto", display: "flex", alignItems: "center", gap: 12 }}>
+          <div style={{ color: S.secondary, fontSize: 13, fontWeight: 600, whiteSpace: "nowrap", flexShrink: 0 }}>
+            <span style={{ color: S.yellow, fontWeight: 800, fontSize: 15 }}>{current + 1}</span>
+            <span style={{ color: S.muted }}> / {questions.length}</span>
+          </div>
+          <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 10 }}>
+            <div style={{ flex: 1, height: 8, background: "#1e293b", borderRadius: 999, overflow: "hidden" }}>
+              <div style={{ height: 8, borderRadius: 999, background: timerColor, width: `${timerPct}%`, transition: "width 1s linear, background 0.5s" }} />
+            </div>
+            <span style={{ color: timerColor, fontFamily: "monospace", fontWeight: 800, fontSize: 15, whiteSpace: "nowrap", flexShrink: 0 }}>
+              {formatTime(timeLeft)}
+            </span>
+          </div>
+          <div style={{ color: S.secondary, fontSize: 13, fontWeight: 600, whiteSpace: "nowrap", flexShrink: 0 }}>
+            <span style={{ color: S.correct, fontWeight: 800 }}>{answered}</span>
+            <span style={{ color: S.muted }}> done</span>
+          </div>
+        </div>
+      </header>
+
+      <div style={{ flex: 1, maxWidth: 900, margin: "0 auto", width: "100%", display: "flex", gap: 20, padding: "20px 16px", boxSizing: "border-box" }}>
+        <main style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ background: S.card, border: `1px solid ${S.cardBorder}`, borderRadius: 16, padding: "20px", marginBottom: 16 }}>
+            <div style={{ color: S.yellow, fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 10 }}>
+              Question {current + 1} of {questions.length}
+            </div>
+            <p style={{ color: S.white, fontSize: "clamp(15px,3vw,17px)", fontWeight: 600, lineHeight: 1.6, margin: 0 }}>{q.question}</p>
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 20 }}>
+            {q.options.map((opt, idx) => {
+              const label = ["A", "B", "C", "D"][idx];
+              const isSelected = selected[current] === opt;
+              return (
+                <button key={opt} onClick={() => selectOption(opt)} style={{ display: "flex", alignItems: "center", gap: 14, padding: "14px 16px", borderRadius: 12, border: isSelected ? `2px solid ${S.yellow}` : `2px solid ${S.optBorder}`, background: isSelected ? S.yellowDim : S.card, cursor: "pointer", textAlign: "left", width: "100%" }}>
+                  <span style={{ flexShrink: 0, width: 32, height: 32, borderRadius: "50%", border: isSelected ? `2px solid ${S.yellow}` : `2px solid ${S.optBorder}`, background: isSelected ? S.yellow : "transparent", color: isSelected ? "#000" : S.secondary, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: 13 }}>
+                    {label}
+                  </span>
+                  <span style={{ color: isSelected ? S.yellow : S.white, fontWeight: isSelected ? 700 : 500, fontSize: "clamp(14px,2.5vw,15px)", lineHeight: 1.4 }}>
+                    {opt}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div style={{ display: "flex", gap: 10 }}>
+            <button onClick={() => setCurrent((c) => Math.max(0, c - 1))} disabled={current === 0} style={{ flex: 1, padding: "14px", borderRadius: 12, border: `2px solid ${current === 0 ? "#1e293b" : S.yellowBorder}`, background: "transparent", color: current === 0 ? S.muted : S.yellow, fontWeight: 700, fontSize: 15, cursor: current === 0 ? "not-allowed" : "pointer", opacity: current === 0 ? 0.5 : 1 }}>
+              ← Previous
+            </button>
+            {current < questions.length - 1 ? (
+              <button onClick={() => setCurrent((c) => Math.min(questions.length - 1, c + 1))} style={{ flex: 1, padding: "14px", borderRadius: 12, border: "none", background: S.yellow, color: "#000", fontWeight: 700, fontSize: 15, cursor: "pointer" }}>
+                Next →
+              </button>
+            ) : (
+              <button onClick={handleSubmit} style={{ flex: 1, padding: "14px", borderRadius: 12, border: "none", background: S.correct, color: "#000", fontWeight: 700, fontSize: 15, cursor: "pointer" }}>
+                Submit Quiz
+              </button>
+            )}
+          </div>
+        </main>
