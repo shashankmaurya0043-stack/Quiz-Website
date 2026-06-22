@@ -132,3 +132,178 @@ const questions: Question[] = [
     options: ["//", "/*", "#", "**"],
     answer: "#",
   },
+  {
+    question: "Which loop is generally used for fixed number of iterations?",
+    options: ["while", "do while", "for", "loop"],
+    answer: "for",
+  },
+  {
+    question: "Which keyword terminates the loop immediately?",
+    options: ["stop", "continue", "pass", "break"],
+    answer: "break",
+  },
+  {
+    question: "Which keyword skips current iteration and moves to the next iteration?",
+    options: ["break", "pass", "continue", "next"],
+    answer: "continue",
+  },
+  {
+    question: "Which operator is used for integer division in Python?",
+    options: ["/", "//", "%", "**"],
+    answer: "//",
+  },
+  {
+    question: "Which keyword is used to import a module in Python?",
+    options: ["include", "using", "import", "module"],
+    answer: "import",
+  },
+  {
+    question: "Which module is used to generate random numbers in Python?",
+    options: ["math", "random", "os", "sys"],
+    answer: "random",
+  },
+  {
+    question: "Which function is used to find square root in Python?",
+    options: ["root()", "sqrt()", "square()", "powroot()"],
+    answer: "sqrt()",
+  },
+  {
+    question: "Which function is used to check the data type of a value?",
+    options: ["datatype()", "checktype()", "type()", "typeof()"],
+    answer: "type()",
+  },
+  {
+    question: "List indexing in Python starts from:",
+    options: ["0", "1", "-1", "10"],
+    answer: "0",
+  },
+  {
+    question: "Which data type stores data in key-value pairs?",
+    options: ["List", "Tuple", "Dictionary", "Set"],
+    answer: "Dictionary",
+  },
+  {
+    question: "Which function is used to display output in Python?",
+    options: ["echo()", "print()", "display()", "output()"],
+    answer: "print()",
+  },
+  {
+    question: "Output of: print(10 % 3)?",
+    options: ["3", "1", "0", "10"],
+    answer: "1",
+  },
+  {
+    question: "What type of collection is a set in Python?",
+    options: ["Ordered and duplicate", "Unordered and unique", "Ordered and unique", "Mutable only"],
+    answer: "Unordered and unique",
+  },
+  {
+    question: "Which method is used to close a file in Python?",
+    options: ["end()", "stop()", "close()", "shutdown()"],
+    answer: "close()",
+  },
+  {
+    question: "Which keyword is used for exception handling in Python?",
+    options: ["error", "catch", "try", "excepted"],
+    answer: "try",
+  },
+  {
+    question: "Which block is used to handle exceptions in Python?",
+    options: ["final", "catch", "except", "error"],
+    answer: "except",
+  },
+  {
+    question: "Inheritance in Python is related to which concept?",
+    options: ["Database", "OOP", "Networking", "Looping"],
+    answer: "OOP",
+  },
+  {
+    question: "Which keyword is used to create a class in Python?",
+    options: ["define", "object", "class", "struct"],
+    answer: "class",
+  },
+  {
+    question: "The process of creating an object is called:",
+    options: ["Declaration", "Instantiation", "Compilation", "Execution"],
+    answer: "Instantiation",
+  },
+  {
+    question: "Which function sorts a sequence in ascending order?",
+    options: ["order()", "arrange()", "sorted()", "sequence()"],
+    answer: "sorted()",
+  },
+  {
+    question: "Which method is used to remove an element from a list in Python?",
+    options: ["delete()", "erase()", "remove()", "clearitem()"],
+    answer: "remove()",
+  },
+  {
+    question: "Which function returns the largest value in a sequence?",
+    options: ["maximum()", "top()", "high()", "max()"],
+    answer: "max()",
+  },
+  {
+    question: "Which function returns the smallest value in a sequence?",
+    options: ["low()", "min()", "small()", "minimum()"],
+    answer: "min()",
+  },
+  {
+    question: "Which method converts a string into uppercase?",
+    options: ["upper()", "uppercase()", "capital()", "up()"],
+    answer: "upper()",
+  },
+  {
+    question: "Which method converts a string into lowercase?",
+    options: ["lower()", "lowercase()", "down()", "small()"],
+    answer: "lower()",
+  },
+  {
+    question: "Output of: x = [2, 4, 6] print(sum(x))?",
+    options: ["10", "12", "14", "6"],
+    answer: "12",
+  },
+  {
+    question: "Which operator is used for membership checking in Python?",
+    options: ["in", "is", "==", "!="],
+    answer: "in",
+  },
+  {
+    question: "Which keyword is used to define an empty block in Python?",
+    options: ["break", "continue", "pass", "skip"],
+    answer: "pass",
+  },
+  {
+    question: "Which operator is used for identity checking in Python?",
+    options: ["==", "is", "in", "="],
+    answer: "is",
+  },
+  {
+    question: "Which of the following is an immutable data type in Python?",
+    options: ["List", "Dictionary", "Set", "Tuple"],
+    answer: "Tuple",
+  },
+  {
+    question: "Output of: import math print(math.floor(2.9))?",
+    options: ["2", "3", "2.0", "4.0"],
+    answer: "2",
+  },
+  {
+    question: "Output of: import math print(math.ceil(21.4))?",
+    options: ["22", "22.0", "21", "21.0"],
+    answer: "22",
+  },
+  {
+    question: "What does print(datetime.today().strftime('%B')) do?",
+    options: ["Displays the full weekday name", "Displays the full month name", "Displays abbreviated day", "Displays abbreviated month"],
+    answer: "Displays the full month name",
+  },
+  {
+    question: "Output of: import datetime print(datetime.datetime.today())?",
+    options: ["List of hours", "Random time", "Displays current date and time", "Weekday name"],
+    answer: "Displays current date and time",
+  },
+  {
+    question: "What does print(datetime.today().strftime('%d')) do?",
+    options: ["Displays the day of the month number (01 to 31)", "Displays hour number", "Displays locale date", "Displays microsecond"],
+    answer: "Displays the day of the month number (01 to 31)",
+  },
