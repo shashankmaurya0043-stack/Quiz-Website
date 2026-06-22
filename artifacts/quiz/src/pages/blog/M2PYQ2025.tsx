@@ -730,3 +730,247 @@ export const batch3 = [
     explanation: "Inline CSS is used to apply a unique style for a single HTML element."
   }
 ];
+// src/data/m1-r5-jan-2025.ts (Part 4: Q61-Q80)
+
+export const batch4 = [
+  {
+    id: 61,
+    question: "How do you add shadow to text in CSS? / CSS में टेक्स्ट में शैडो जोड़ने के लिए कौन-सी प्रॉपर्टी उपयोग होती है?",
+    options: {
+      A: "Text Shadow",
+      B: "Word Shadow",
+      C: "Text outline",
+      D: "Content Shadow"
+    },
+    correctAnswer: "A",
+    explanation: "The text-shadow property adds shadow to text."
+  },
+  {
+    id: 62,
+    question: "Which style sheet is used to add multiple styles for more than one document? / एक से अधिक दस्तावेज़ों में मल्टीपल स्टाइल्स जोड़ने के लिए किस स्टाइल शीट का उपयोग किया जाता है?",
+    options: {
+      A: "True",
+      B: "False",
+      C: "Can't say",
+      D: "None of these"
+    },
+    correctAnswer: "B",
+    explanation: "The question implies a Boolean check, but conceptually, an 'External Style Sheet' is used for multiple documents. Note: PDF indicates 'False' as the correct answer likely referring to a specific context or missing 'External' option."
+  },
+  {
+    id: 63,
+    question: "Which of the following is used to increase the row height? / CSS में पंक्ति की ऊँचाई बढ़ाने के लिए कौन-सा विकल्प सही है?",
+    options: {
+      A: "col span",
+      B: "cell spacing",
+      C: "row span",
+      D: "cell padding"
+    },
+    correctAnswer: "C",
+    explanation: "While 'line-height' is the CSS property for text, 'rowspan' is used in HTML tables to make a cell span multiple rows, effectively increasing the visual row height."
+  },
+  {
+    id: 64,
+    question: "To make your website mobile friendly, what type of website should you create? / मोबाइल फ्रेंडली वेबसाइट बनाने के लिए किस प्रकार की वेबसाइट बनानी चाहिए?",
+    options: {
+      A: "Responsive",
+      B: "Static",
+      C: "Dynamic",
+      D: "None"
+    },
+    correctAnswer: "A",
+    explanation: "Responsive Web Design makes your web page look good on all devices."
+  },
+  {
+    id: 65,
+    question: "What is the correct HTML for referring to an external style sheet? / एक्सटर्नल स्टाइल शीट को सही तरीके से रेफर करने वाला HTML कोड कौन-सा है?",
+    options: {
+      A: "<link rel=\"stylesheet\" type=\"text/css\" href=\"mystyle.css\">",
+      B: "<stylesheet>mystyle.css</stylesheet>",
+      C: "<style src=\"mystyle.css\">",
+      D: "<style link=\"mystyle.css\">"
+    },
+    correctAnswer: "A",
+    explanation: "The <link> tag is used to link to external style sheets."
+  },
+  {
+    id: 66,
+    question: "Where is the correct place to refer to an external style sheet in an HTML document? / HTML डॉक्यूमेंट में एक्सटर्नल स्टाइल शीट को रेफर करने का सही स्थान कहाँ है?",
+    options: {
+      A: "In the <head> section",
+      B: "In the <body> section",
+      C: "Anywhere in the document",
+      D: "At the end of the document"
+    },
+    correctAnswer: "A",
+    explanation: "External style sheets should always be linked inside the <head> section."
+  },
+  {
+    id: 67,
+    question: "What does HSL stand for in CSS? / CSS में HSL का मतलब क्या होता है?",
+    options: {
+      A: "hue, saturation, lightness",
+      B: "hue, standard, lightning",
+      C: "height, standard, line-break",
+      D: "hue, standard, line-width"
+    },
+    correctAnswer: "A",
+    explanation: "HSL stands for Hue, Saturation, and Lightness."
+  },
+  {
+    id: 68,
+    question: "Is the padding property allowed to have negative values? / padding प्रॉपर्टी में क्या negative values दी जा सकती हैं?",
+    options: {
+      A: "True",
+      B: "False",
+      C: "Can't say",
+      D: "None of these"
+    },
+    correctAnswer: "B",
+    explanation: "Padding values cannot be negative. However, margin values can be negative."
+  },
+  {
+    id: 69,
+    question: "In CSS, which property sets the difference between two lines of your content? / CSS में दो लाइनों के बीच की दूरी कौन-सी प्रॉपर्टी सेट करती है?",
+    options: {
+      A: "max-height property",
+      B: "line-height property",
+      C: "min-height property",
+      D: "none of these"
+    },
+    correctAnswer: "B",
+    explanation: "The line-height property is used to set the space between lines."
+  },
+  {
+    id: 70,
+    question: "What does the # symbol represent in the CSS code? / CSS कोड में # का क्या मतलब होता है?",
+    options: {
+      A: "an id tag",
+      B: "class name",
+      C: "a universal tag",
+      D: "horizontal frame"
+    },
+    correctAnswer: "A",
+    explanation: "The # symbol is used to select an element with a specific id."
+  },
+  {
+    id: 71,
+    question: "Which HTML tag is used to declare internal CSS? / इंटरनल CSS घोषित करने के लिए कौन-सा HTML टैग उपयोग किया जाता है?",
+    options: {
+      A: "<style>",
+      B: "<Head>",
+      C: "<link>",
+      D: "<script>"
+    },
+    correctAnswer: "A",
+    explanation: "The <style> element is used to define internal CSS."
+  },
+  {
+    id: 72,
+    question: "The universal selector is never used as a wildcard character. / यूनिवर्सल सेलेक्टर को क्या कहा जाता है?",
+    options: {
+      A: "True",
+      B: "False",
+      C: "Can't say",
+      D: "None of these"
+    },
+    correctAnswer: "B",
+    explanation: "This is false; the universal selector (*) is precisely used as a wildcard to select all elements."
+  },
+  {
+    id: 73,
+    question: "Which attribute is used to change the background color of an element in CSS? / CSS में किसी एलीमेंट की बैकग्राउंड रंग बदलने के लिए कौन-सी प्रॉपर्टी है?",
+    options: {
+      A: "bgcolor",
+      B: "background-color",
+      C: "bg-color",
+      D: "color-bg"
+    },
+    correctAnswer: "B",
+    explanation: "The background-color property sets the background color of an element."
+  },
+  {
+    id: 74,
+    question: "Which selector is used to select elements whose attribute value ends with a specified value? / CSS सेलेक्टर में उन एलीमेंट्स का चयन कौन-सा करता है जिनकी एट्रिब्यूट वैल्यू किसी स्पेसिफिक वैल्यू के साथ समाप्त होती है?",
+    options: {
+      A: "[attribute=\"value\"]",
+      B: "[attribute$=\"value\"]",
+      C: "[attribute^=\"value\"]",
+      D: "[$attribute=\"value\"]"
+    },
+    correctAnswer: "B",
+    explanation: "The [attribute$=\"value\"] selector matches elements whose attribute ends with 'value'."
+  },
+  {
+    id: 75,
+    question: "Which function is used to insert values of a CSS variable? / CSS वेरिएबल में वैल्यू डालने के लिए कौन-सा फंक्शन उपयोग किया जाता है?",
+    options: {
+      A: "var()",
+      B: "rand()",
+      C: "varchar()",
+      D: "calc()"
+    },
+    correctAnswer: "A",
+    explanation: "The var() function is used to insert the value of a CSS variable."
+  },
+  {
+    id: 76,
+    question: "A type of combinator in CSS is: / CSS में कॉम्बिनेटर के रूप में निम्न में से कौन-सा उपयोग होता है?",
+    options: {
+      A: ">",
+      B: "+",
+      C: "~",
+      D: "All of the above"
+    },
+    correctAnswer: "D",
+    explanation: "CSS combinators include child selector (>), adjacent sibling (+), and general sibling (~)."
+  },
+  {
+    id: 77,
+    question: "Id selector is denoted by: / आईडी सेलेक्टर को किस सिंबल से denote किया जाता है?",
+    options: {
+      A: "#",
+      B: "1#",
+      C: "*",
+      D: "None of the above"
+    },
+    correctAnswer: "A",
+    explanation: "The ID selector uses the hash (#) character."
+  },
+  {
+    id: 78,
+    question: "In the CSS code, what does * represent? / CSS कोड में * का क्या मतलब होता है?",
+    options: {
+      A: "class selector",
+      B: "universal selector",
+      C: "id selector",
+      D: "None of the above"
+    },
+    correctAnswer: "B",
+    explanation: "The asterisk (*) is the universal selector in CSS."
+  },
+  {
+    id: 79,
+    question: "Which type of CSS is popularly used for designing pages for websites? / वेबसाइट के पेज डिज़ाइन के लिए सबसे लोकप्रिय प्रकार का CSS कौन-सा है?",
+    options: {
+      A: "External",
+      B: "Inline",
+      C: "Internal",
+      D: "None of the above"
+    },
+    correctAnswer: "A",
+    explanation: "External CSS is the most popular because it allows you to change the look of an entire website with one file."
+  },
+  {
+    id: 80,
+    question: "The external style sheet facilitates changing the look of the entire website by changing just one file. / एक्सटर्नल स्टाइल शीट केवल एक फ़ाइल बदलकर पूरी वेबसाइट के रूप को बदलने की सुविधा देती है।",
+    options: {
+      A: "True",
+      B: "False",
+      C: "Can't say",
+      D: "None of these"
+    },
+    correctAnswer: "A",
+    explanation: "True, this is the main advantage of using an external CSS file."
+  }
+];
