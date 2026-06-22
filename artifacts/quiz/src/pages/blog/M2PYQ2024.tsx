@@ -447,3 +447,32 @@ const M2PYQ2025: React.FC = () => {
       </div>
     );
   }
+  const q = questions[current];
+  return (
+    <div className="min-h-screen flex flex-col bg-[#0f172a]">
+      <div className="sticky top-0 z-30 px-4 py-3 bg-[#1e293b] border-b border-[#334155] flex justify-between items-center">
+          <button onClick={() => setShowNav(!showNav)} className="bg-[#facc15]/20 text-[#facc15] px-3 py-2 rounded-xl text-sm font-bold">Q{current + 1}/{TOTAL}</button>
+          <div className="font-mono font-bold text-[#facc15] text-lg">⏳ {timer.formatTime}</div>
+          <button onClick={submitQuiz} className="bg-red-500 text-white px-4 py-2 rounded-xl text-sm font-bold">Finish</button>
+      </div>
+      <div className="flex-1 flex items-start justify-center px-4 py-6">
+        <div className="max-w-3xl w-full space-y-6">
+          <div className="rounded-2xl p-5 bg-[#1e293b] border border-[#334155] text-white text-lg">{q.question}</div>
+          <div className="grid gap-3">
+            {q.options.map((opt, idx) => (
+              <button key={idx} onClick={() => selectOption(opt)} className={`w-full text-left p-4 rounded-xl border-2 transition-all flex items-center gap-3 ${selected[current] === opt ? "border-[#facc15] bg-[#facc15]/10 text-[#facc15]" : "border-[#334155] bg-[#111827] text-gray-300"}`}>
+                <span className="w-8 h-8 rounded-lg bg-gray-800 text-center leading-8 font-bold">{String.fromCharCode(65 + idx)}</span>{opt}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="sticky bottom-0 p-4 bg-[#1e293b] border-t border-[#334155] flex justify-between">
+          <button onClick={prev} disabled={current === 0} className="px-6 py-3 bg-gray-700 text-white rounded-xl">Prev</button>
+          <button onClick={next} disabled={current === TOTAL - 1} className="px-6 py-3 bg-[#facc15] text-[#0f172a] font-bold rounded-xl">Next</button>
+      </div>
+    </div>
+  );
+};
+
+export default M2PYQ2024;
