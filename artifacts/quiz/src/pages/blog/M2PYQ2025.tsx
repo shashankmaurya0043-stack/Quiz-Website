@@ -1972,3 +1972,20 @@ const handleSubmit = () => {
     transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   }
 }
+// src/App.tsx
+import React from 'react';
+import QuizPage from './pages/QuizPage';
+
+function App() {
+  return (
+    <div className="App">
+      {/* 
+         In a real app, you would wrap this in a Router 
+         e.g., <Route path="/quiz/m1-r5-jan-2025" element={<QuizPage />} />
+      */}
+      <QuizPage />
+    </div>
+  );
+}
+
+export default App;
