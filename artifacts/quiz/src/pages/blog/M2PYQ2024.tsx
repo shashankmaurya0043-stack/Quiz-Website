@@ -380,3 +380,70 @@ const M2PYQ2025: React.FC = () => {
     timer.pause();
     setScreen("result");
   };
+  if (screen === "home") {
+    return (
+      <div className="min-h-screen flex items-center justify-center px-4 py-8" style={{ backgroundColor: "#0f172a" }}>
+        <div className="max-w-lg w-full rounded-3xl shadow-2xl p-6 sm:p-8 text-center space-y-5" style={{ backgroundColor: "#1e293b", border: "2px solid #facc15" }}>
+          <div className="inline-block text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest" style={{ backgroundColor: "#facc15", color: "#0f172a" }}>O Level M2-R5</div>
+          <h1 className="text-3xl sm:text-4xl font-extrabold" style={{ color: "#facc15" }}>M2-R5 PYQ<br /><span style={{ color: "#ffffff" }}>Jan 2025</span></h1>
+          <p style={{ color: "#d1d5db", fontSize: "14px" }}>{TOTAL} Questions • 60 Minutes • Instant Result</p>
+          <div className="grid grid-cols-2 gap-3 text-sm">
+            {[{ val: String(TOTAL), label: "Questions" }, { val: "60 min", label: "Duration" }, { val: "+1", label: "Correct" }, { val: "0", label: "Negative" }].map((item, idx) => (
+              <div key={idx} className="rounded-xl p-4 bg-[#0f172a] border border-[#334155]">
+                <p className="font-bold text-xl text-[#facc15]">{item.val}</p>
+                <p style={{ color: "#9ca3af" }}>{item.label}</p>
+              </div>
+            ))}
+          </div>
+          <button onClick={startQuiz} className="w-full font-bold py-4 rounded-2xl text-lg bg-[#facc15] text-[#0f172a]">🚀 Attempt Mock Test</button>
+          <button onClick={() => window.open("/pdfs/m2-jan-2025.pdf", "_blank")} className="block w-full font-bold py-3 rounded-2xl border-2 border-[#facc15] text-[#facc15] bg-transparent">📄 View PDF</button>
+        </div>
+      </div>
+    );
+  }
+
+  if (screen === "result") {
+    const getGrade = () => {
+      if (percentage >= 90) return { label: "Excellent! 🏆", color: "#22c55e" };
+      if (percentage >= 70) return { label: "Great Job! 🎯", color: "#facc15" };
+      if (percentage >= 50) return { label: "Good Effort! 💪", color: "#f97316" };
+      return { label: "Keep Practicing! 📚", color: "#ef4444" };
+    };
+    const grade = getGrade();
+    return (
+      <div className="min-h-screen px-4 py-6 bg-[#0f172a]">
+        <div className="max-w-2xl mx-auto space-y-5">
+          <div className="rounded-2xl p-6 sm:p-8 text-center space-y-4 bg-[#1e293b] border-2 border-[#facc15]">
+            <h2 className="text-2xl font-bold text-white">Quiz Completed!</h2>
+            <p className="text-3xl font-extrabold" style={{ color: grade.color }}>{grade.label}</p>
+            <div className="relative w-36 h-36 mx-auto">
+              <svg className="w-full h-full" viewBox="0 0 120 120" style={{ transform: "rotate(-90deg)" }}>
+                <circle cx="60" cy="60" r="52" fill="none" stroke="#334155" strokeWidth="10" />
+                <circle cx="60" cy="60" r="52" fill="none" stroke="#facc15" strokeWidth="10" strokeLinecap="round" strokeDasharray={`${(percentage / 100) * 327} 327`} />
+              </svg>
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <span className="text-3xl font-extrabold text-[#facc15]">{percentage}%</span>
+              </div>
+            </div>
+            <div className="grid grid-cols-3 gap-3 text-sm">
+                <div className="p-3 bg-green-500/10 border border-green-500/40 rounded-xl text-green-500"><b>{score}</b><br/>Correct</div>
+                <div className="p-3 bg-red-500/10 border border-red-500/40 rounded-xl text-red-500"><b>{attempted-score}</b><br/>Wrong</div>
+                <div className="p-3 bg-gray-500/10 border border-gray-500/40 rounded-xl text-gray-400"><b>{TOTAL-attempted}</b><br/>Skip</div>
+            </div>
+          </div>
+          <div className="rounded-2xl p-5 space-y-4 bg-[#1e293b] border border-[#334155]">
+            <h3 className="text-lg font-bold text-[#facc15]">📋 Answer Review</h3>
+            <div className="space-y-3 overflow-y-auto" style={{ maxHeight: "40vh" }}>
+              {questions.map((q, i) => (
+                <div key={i} className="p-3 rounded-xl bg-gray-800/30 border border-gray-700">
+                  <p className="text-sm text-white"><span className="text-[#facc15]">Q{i+1}.</span> {q.question}</p>
+                  <p className="text-xs text-green-500 mt-1">Ans: {q.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <button onClick={() => setScreen("home")} className="w-full font-bold py-4 rounded-2xl bg-[#facc15] text-[#0f172a]">🏠 Home</button>
+        </div>
+      </div>
+    );
+  }
