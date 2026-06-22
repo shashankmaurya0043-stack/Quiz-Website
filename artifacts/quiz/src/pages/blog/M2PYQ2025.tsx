@@ -1810,3 +1810,33 @@ export const getEfficiency = (timeTakenMs: number, attemptedCount: number): stri
   const seconds = timeTakenMs / 1000;
   return (seconds / attemptedCount).toFixed(1);
 };
+// Inside src/pages/QuizPage.tsx
+
+// 1. Mark for Review State
+const [markedForReview, setMarkedForReview] = useState<Record<number, boolean>>({});
+
+const toggleMarkForReview = (id: number) => {
+  setMarkedForReview(prev => ({
+    ...prev,
+    [id]: !prev[id]
+  }));
+};
+
+// 2. Keyboard Shortcuts Handler
+useEffect(() => {
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'ArrowRight') handleNext();
+    if (e.key === 'ArrowLeft') handlePrevious();
+    // Mark for review shortcut (optional)
+    if (e.key.toLowerCase() === 'm') toggleMarkForReview(questions[currentIndex].id);
+  };
+
+  window.addEventListener('keydown', handleKeyDown);
+  return () => window.removeEventListener('keydown', handleKeyDown);
+}, [currentIndex]); // Re-bind when index changes
+
+// 3. Jump to Question Helper
+const jumpToQuestion = (index: number) => {
+  setCurrentIndex(index);
+  if (showProgress) setShowProgress(false); // Close mobile sidebar on jump
+};
