@@ -1,1 +1,259 @@
+import React, { useState, useEffect, useCallback } from "react";
 
+interface Question {
+  question: string;
+  options: string[];
+  answer: string;
+}
+
+const questions: Question[] = [
+  {
+    question: "HTML tags are surrounded by which type of brackets? / HTML टैग्स को किन ब्रैकेट्स में लिखा जाता है?",
+    options: ["Angle / कोणीय", "Square / वर्गाकार", "Curly / घुंघराले", "Round / गोलाकार"],
+    answer: "Angle / कोणीय",
+  },
+  {
+    question: "HTML web pages can be read and rendered by: / HTML वेब पेजों को पढ़ने और प्रदर्शित करने का कार्य कौन करता है?",
+    options: ["Web Browser / वेब ब्राउज़र", "Interpreter / इंटरप्रेटर", "Server / सर्वर", "Compiler / कम्पाइलर"],
+    answer: "Web Browser / वेब ब्राउज़र",
+  },
+  {
+    question: "How to insert a background image in HTML? / HTML में बैकग्राउंड इमेज जोड़ने के लिए सही कोड क्या है?",
+    options: ["<body background=\"img.png\">", "<img background=\"img.png\">", "<bg-image=\"img.png\">", "None of the above"],
+    answer: "<body background=\"img.png\">",
+  },
+  {
+    question: "HTML is what type of language? / HTML किस प्रकार की भाषा है?",
+    options: ["Network Protocol / नेटवर्क प्रोटोकॉल", "Programming Language / प्रोग्रामिंग भाषा", "Markup Language / मार्कअप भाषा", "Scripting Language / स्क्रिप्टिंग भाषा"],
+    answer: "Markup Language / मार्कअप भाषा",
+  },
+  {
+    question: "Tags and texts that are not directly displayed on the page are written in which section? / HTML टैग्स जो सीधे पेज पर प्रदर्शित नहीं होते, वे किस सेक्शन में लिखे जाते हैं?",
+    options: ["<title>", "<html>", "<head>", "<body>"],
+    answer: "<head>",
+  },
+  {
+    question: "Which HTML tag produces the biggest heading? / कौन सा HTML टैग सबसे बड़ा हेडिंग बनाता है?",
+    options: ["<h4>", "<h>", "<h1>", "<h9>"],
+    answer: "<h1>",
+  },
+  {
+    question: "Fundamental HTML Block is known as: / HTML के बेसिक ब्लॉक एलीमेंट को क्या कहा जाता है?",
+    options: ["HTML Entity / एचटीएमएल एंटिटी", "HTML Attribute / एचटीएमएल एट्रिब्यूट", "HTML Tag / एचटीएमएल टैग", "HTML Body / एचटीएमएल बॉडी"],
+    answer: "HTML Tag / एचटीएमएल टैग",
+  },
+  {
+    question: "What tag is used to display a picture in an HTML page? / HTML पेज में इमेज प्रदर्शित करने के लिए कौन सा टैग उपयोग किया जाता है?",
+    options: ["<image>", "<picture>", "<img>", "<src>"],
+    answer: "<img>",
+  },
+  {
+    question: "The page title is inside the ________ tag? / पेज का टाइटल किस टैग के अंदर लिखा जाता है?",
+    options: ["Table / टेबल", "Division / डिवीजन", "Head / हेड", "Body / बॉडी"],
+    answer: "Head / हेड",
+  },
+  {
+    question: "Which tag is used for inline frame? / HTML के कौन से टैग इनलाइन फ्रेम बनाने के लिए प्रयोग होता है?",
+    options: ["<Inframe>", "<iframe>", "<inlineframe>", "<frame>"],
+    answer: "<iframe>",
+  },
+  {
+    question: "What are the types of unordered or bulleted lists in HTML? / HTML में unordered list (bulleted) के प्रकार क्या हैं?",
+    options: ["Disc, square, triangle", "Polygon, triangle, circle", "Disc, circle, square", "All of the above"],
+    answer: "Disc, circle, square",
+  },
+  {
+    question: "__________ are the HTML codes that control the appearance of the document contents. / HTML टैग्स क्या होते हैं?",
+    options: ["Tags / टैग्स", "Codas / कोडास", "Slashes / स्लैशोज", "Properties / प्रॉपटीज"],
+    answer: "Tags / टैग्स",
+  },
+  {
+    question: "There are _________ color names recognized by all versions of HTML? / HTML के द्वारा कितने रंग नाम सभी संस्करणों में पहचाने जाते हैं?",
+    options: ["6", "256", "8", "16"],
+    answer: "16",
+  },
+  {
+    question: "What should be the first tag in any HTML document? / HTML का पहला टैग दस्तावेज़ में क्या होना चाहिए?",
+    options: ["<html>", "<title>", "<head>", "<document>"],
+    answer: "<html>",
+  },
+  {
+    question: "Which of the following is the correct way to create a list using lowercase letters? / HTML में सूची (list) को छोटे अक्षरों में प्रदर्शित करने का सही तरीका क्या है?",
+    options: ["<ol letter=\"a\">", "<ol type=\"a\">", "<ol alpha=\"a\">", "None of the above"],
+    answer: "<ol type=\"a\">",
+  },
+  {
+    question: "The year in which HTML was first proposed? / HTML को पहली बार कब प्रस्तावित किया गया था?",
+    options: ["2000", "1987", "1990", "1995"],
+    answer: "1990",
+  },
+  {
+    question: "HTML uses: / HTML का उपयोग किस प्रकार के टैग्स से होता है?",
+    options: ["User defined Tags", "Pre-Specified Tags", "Predefined Tags", "All of the Above"],
+    answer: "Predefined Tags",
+  },
+  {
+    question: "Which of the following is the correct way to start an ordered list with the count of numeric value 4? / किसी ऑर्डर्ड लिस्ट को 4 से शुरू करने का सही तरीका क्या है?",
+    options: ["<ol type=\"1\" initial=\"4\">", "<ol type=\"1\" begin=\"4\">", "<ol type=\"1\" num=\"4\">", "<ol type=\"1\" start=\"4\">"],
+    answer: "<ol type=\"1\" start=\"4\">",
+  },
+  {
+    question: "How can you make a list with numbers? / आप संख्या वाली सूची कैसे बना सकते हैं?",
+    options: ["<ul>", "<list>", "<dl>", "<ol>"],
+    answer: "<ol>",
+  },
+  {
+    question: "The entire web document is contained within _________? / संपूर्ण HTML वेब दस्तावेज़ किसके अंदर रखा जाता है?",
+    options: ["Comments / टिप्पणियाँ", "HTML element / एचटीएमएल एलीमेंट", "Tags / टैग्स", "Web page / वेब पेज"],
+    answer: "HTML element / एचटीएमएल एलीमेंट",
+  },
+  {
+    question: "What is the work of <address> element in HTML5? / HTML5 में <address> एलीमेंट का क्या कार्य है?",
+    options: ["Contains home address / घर का पता शामिल करता है", "Contains contact details for author / लेखक की संपर्क जानकारी शामिल करता है", "Contains IP address / आईपी पता शामिल करता है", "Contains URL / यूआरएल शामिल करता है"],
+    answer: "Contains contact details for author / लेखक की संपर्क जानकारी शामिल करता है",
+  },
+  {
+    question: "Which HTML element is used for short quote? / छोटा कोटेशन दर्शाने के लिए कौन सा HTML एलीमेंट प्रयोग किया जाता है?",
+    options: ["<q>", "<blockquote>", "<em>", "<abbr>"],
+    answer: "<q>",
+  },
+  {
+    question: "Which of the following is not an HTML5 tag? / निम्न में से कौन सा HTML5 टैग नहीं है?",
+    options: ["<slider>", "<video>", "<track>", "<source>"],
+    answer: "<slider>",
+  },
+  {
+    question: "What is the use of <hr/> tag in HTML? / HTML में <hr/> टैग का क्या उपयोग है?",
+    options: ["To create a horizontal rule between sections", "To create vertical rule", "To create a line break", "For making italics"],
+    answer: "To create a horizontal rule between sections",
+  },
+  {
+    question: "Which of the following tag is used to create a text area in HTML Form? / HTML फॉर्म में टेक्स्ट एरिया बनाने के लिए किस टैग का उपयोग किया जाता है?",
+    options: ["<input type=\"text\" />", "<textarea></textarea>", "<text></text>", "<input type=\"textarea\" />"],
+    answer: "<textarea></textarea>",
+  },
+  {
+    question: "What is the latest HTML standard? / HTML का नवीनतम संस्करण कौन सा है?",
+    options: ["HTML 5.0", "HTML 4.0", "XML", "SGML"],
+    answer: "HTML 5.0",
+  },
+  {
+    question: "Which attribute is not essential under <iframe>? / <iframe> टैग में से कौन-सा एट्रिब्यूट अनिवार्य नहीं है?",
+    options: ["frameborder", "width", "height", "src"],
+    answer: "frameborder",
+  },
+  {
+    question: "How to write a hyperlink to open in a new page in HTML? / किस टैग का उपयोग एक नए पेज में लिंक खोलने के लिए होता है?",
+    options: ["<a href=\"url\" target=\"Blank\">", "<a href=\"url\" target=\"_blank\">", "<a href=\"url\" target=\"#Blank\">", "<a href=\"url\" target=\"New\">"],
+    answer: "<a href=\"url\" target=\"_blank\">",
+  },
+  {
+    question: "Choose the correct HTML tag for the largest heading. / HTML में सबसे बड़े शीर्षक के लिए सही टैग क्या है?",
+    options: ["<h1>", "<h6>", "<head>", "<heading>"],
+    answer: "<h1>",
+  },
+  {
+    question: "Which tag tells the browser where the HTML page starts and stops? / HTML पेज की शुरुआत और अंत बताने वाला टैग कौन सा है?",
+    options: ["<html>", "<body>", "<head>", "<title>"],
+    answer: "<html>",
+  },
+  {
+    question: "Which works similar to <b> element? / किस HTML टैग से टेक्स्ट बोल्ड दिखता है और इसका विकल्प कौन सा टैग है?",
+    options: ["<strong>", "<i>", "<blockquote>", "<em>"],
+    answer: "<strong>",
+  },
+  {
+    question: "What is the correct HTML for adding a background color? / HTML में बैकग्राउंड कलर जोड़ने के लिए सही सिंटैक्स क्या है?",
+    options: ["<body bgcolor=\"yellow\">", "<body color=\"yellow\">", "<background>yellow</background>", "<body background=\"yellow\">"],
+    answer: "<body bgcolor=\"yellow\">",
+  },
+  {
+    question: "Which HTML element is used for abbreviation or acronym? / HTML में किस एलीमेंट का उपयोग संक्षिप्त नाम के लिए होता है?",
+    options: ["<abbr>", "<q>", "<em>", "<blockquote>"],
+    answer: "<abbr>",
+  },
+  {
+    question: "Which is correct? / सही HTML सिंटैक्स क्या है?",
+    options: ["<b>Click Here<b>", "<strong>Click Here<strong>", "<b>Click Here</b>", "</strong>Click Here</strong>"],
+    answer: "<b>Click Here</b>",
+  },
+  {
+    question: "Which of the following elements in HTML5 defines video or movie content? / HTML5 में वीडियो या मूवी कंटेंट को परिभाषित करने वाला एलीमेंट कौन सा है?",
+    options: ["<movie>", "<audio>", "<video>", "<media>"],
+    answer: "<video>",
+  },
+  {
+    question: "What is text with hyperlinks called? / हाइपरलिंक्स वाला टेक्स्ट क्या कहलाता है?",
+    options: ["Hypertext", "Toggle Text", "Lower Text", "Upper Text"],
+    answer: "Hypertext",
+  },
+  {
+    question: "The 'Multiple' property is used in which tag? / <select> टैग में 'multiple' प्रॉपर्टी का उपयोग क्यों किया जाता है?",
+    options: ["Label Tag", "Select Tag", "Frame Tag", "TextBox Tag"],
+    answer: "Select Tag",
+  },
+  {
+    question: "Choose the correct HTML tag for the largest heading. / सबसे बड़े हेडिंग टैग को चुनें।",
+    options: ["H6 tag", "HEAD tag", "H10 tag", "H1 tag"],
+    answer: "H1 tag",
+  },
+  {
+    question: "Which of the following HTML element is used for canvas graphics? / HTML में कैनवास ग्राफिक्स के लिए कौन सा एलीमेंट उपयोग किया जाता है?",
+    options: ["<canvas>", "<css>", "<graphic>", "<paint>"],
+    answer: "<canvas>",
+  },
+  {
+    question: "Which of the following is an attribute of the Table tag? / निम्नलिखित में से कौन-सा table टैग का एट्रिब्यूट है?",
+    options: ["BOLD", "CELLPADDING", "LINK", "SRC"],
+    answer: "CELLPADDING",
+  },
+  {
+    question: "Which property is used to change the text size in CSS? / CSS में टेक्स्ट का आकार बदलने के लिए कौन-सी प्रॉपर्टी उपयोग में आती है?",
+    options: ["font-size", "font-family", "Both A and C", "font"],
+    answer: "font-size",
+  },
+  {
+    question: "Which symbol is used to write comments in CSS? / CSS में कमेंट लिखने के लिए कौन-सा सिंबल उपयोग किया जाता है?",
+    options: ["/* */", "//", "##", "#"],
+    answer: "/* */",
+  },
+  {
+    question: "Which HTML element is used for embedding YouTube videos? / HTML में YouTube वीडियो को दिखाने के लिए कौन-सा एलीमेंट उपयोग होता है?",
+    options: ["<samp>", "<iframe>", "<small>", "<frame>"],
+    answer: "<iframe>",
+  },
+  {
+    question: "What does CSS stand for? / CSS का पूरा नाम क्या है?",
+    options: ["Cascading Style Sheets", "Creative Style Sheets", "Computer Style Sheets", "Colorful Style Sheets"],
+    answer: "Cascading Style Sheets",
+  },
+  {
+    question: "Which tag represents each cell in an HTML table? / HTML में टेबल के प्रत्येक सेल को दर्शाने के लिए किस टैग का उपयोग होता है?",
+    options: ["<thead>", "<td>", "<tr>", "<th>"],
+    answer: "<td>",
+  },
+  {
+    question: "Which tag defines a caption for a figure element? / HTML में एक फ़िगर एलीमेंट के लिए कैप्शन कौन-सा टैग परिभाषित करता है?",
+    options: ["<caption>", "<dialog>", "<figure>", "<figcaption>"],
+    answer: "<figcaption>",
+  },
+  {
+    question: "In CSS syntax, what is \"color: black\" called? / CSS में \"color: black\" को क्या कहा जाता है?",
+    options: ["Selector", "Value", "Declaration", "Rule"],
+    answer: "Declaration",
+  },
+  {
+    question: "Which tag defines content aside from the main content, like a sidebar? / HTML में साइडबार या मुख्य सामग्री से अलग कुछ सामग्री परिभाषित करने के लिए कौन-सा टैग प्रयोग होता है?",
+    options: ["<aside>", "<header>", "<sidebar>", "<nav>"],
+    answer: "<aside>",
+  },
+  {
+    question: "What is the default value of the CSS position property? / CSS में position प्रॉपर्टी का डिफ़ॉल्ट मान क्या है?",
+    options: ["Absolute", "Relative", "Static", "Fixed"],
+    answer: "Static",
+  },
+  {
+    question: "Which element is used to show inserted content? / HTML में सम्मिलित (inserted) सामग्री दिखाने के लिए कौन-सा टैग उपयोग किया जाता है?",
+    options: ["<del>", "<em>", "<ins>", "<strong>"],
+    answer: "<ins>",
+  },
