@@ -307,3 +307,204 @@ const questions: Question[] = [
     options: ["Displays the day of the month number (01 to 31)", "Displays hour number", "Displays locale date", "Displays microsecond"],
     answer: "Displays the day of the month number (01 to 31)",
   },
+  {
+    question: "Output of: x = 27; if x < 25: print(x) else: pass?",
+    options: ["No output", "25", "27", "None"],
+    answer: "No output",
+  },
+  {
+    question: "What does print(getattr(datetime.today(),'year')) do?",
+    options: ["Current date and year", "Number of days", "Number of months", "Displays current year"],
+    answer: "Displays current year",
+  },
+  {
+    question: "Output of: import math print(math.floor(67.3))?",
+    options: ["67", "67.0", "68.0", "68"],
+    answer: "67",
+  },
+  {
+    question: "Output of: import math print(math.pow(3,2))?",
+    options: ["6.0", "9", "6", "9.0"],
+    answer: "9.0",
+  },
+  {
+    question: "Output of: x = 'Python' print(x[4])?",
+    options: ["h", "O", "t", "Python..."],
+    answer: "o",
+  },
+  {
+    question: "Output of: x = 'Python' print('y' in x)?",
+    options: ["y", "Python", "True", "False"],
+    answer: "True",
+  },
+  {
+    question: "Output: x = '%s MCQ %s' %('Python', 'Test') print(x)?",
+    options: ["Python MCQ", "Test MCQ Python", "Python MCQ Test", "MCQ Test"],
+    answer: "Python MCQ Test",
+  },
+  {
+    question: "Output of: x = 'Python' print(x[:])?",
+    options: ["yth", "Python", "PythonPython", "Pn"],
+    answer: "Python",
+  },
+  {
+    question: "Output: x = '{} 3 {}'.format('Python', 'Test') print(x)?",
+    options: ["Test 3 Python", "Python 3 Test", "Python Test", "Test Python"],
+    answer: "Python 3 Test",
+  },
+  {
+    question: "Output of: x = 'Python' print('p' not in x)?",
+    options: ["P", "True", "p", "False"],
+    answer: "True",
+  },
+  {
+    question: "Output: '{1} for {0}'.format('Python', 'Questions') print(x)?",
+    options: ["Python for Questions", "Questions for Python", "1 for 0", "Python 1 for 0"],
+    answer: "Questions for Python",
+  },
+  {
+    question: "Output of: x = 'Python' print(x[2:4])?",
+    options: ["thon", "Pyth", "tho", "th"],
+    answer: "th",
+  },
+  {
+    question: "Output of: x = 'Python' print(x*3)?",
+    options: ["PythonPythonPython", "t", "Pyt Pyt Pyt", "None"],
+    answer: "PythonPythonPython",
+  },
+  {
+    question: "Output of: x = 'Python %d Version' %(3) print(x)?",
+    options: ["Python Version 3", "Python 3 Version", "Python 3", "3 Version"],
+    answer: "Python 3 Version",
+  },
+  {
+    question: "Output: x = 'Python %c or Python %c' %('2', '3') print(x)?",
+    options: ["Python 3 or Python 2", "Python 2 or Python 3", "Python 2 or Python 2", "Python 23"],
+    answer: "Python 2 or Python 3",
+  },
+  {
+    question: "Output: x = 'Python %.1f or Python %.2f' %(2.7, 3.51) print(x)?",
+    options: ["Python 3.51 or 2.7", "Python 2.7 or 3.51", "Python 2 or 3", "Python 2.7 or 3.5"],
+    answer: "Python 2.7 or 3.51",
+  },
+  {
+    question: "Output of: x = 'Python' print(x.capitalize())?",
+    options: ["Python.capitalize", "Python", "python", "PYTHON"],
+    answer: "Python",
+  },
+  {
+    question: "Output: x = 'python job interview' print(x.title())?",
+    options: ["python job interview", "Python Job Interview", "python Job interview", "None"],
+    answer: "Python Job Interview",
+  },
+  {
+    question: "Output of: x = 'python jobs' print(x.upper())?",
+    options: ["Python Jobs", "python jobs", "PYTHON JOBS", "Python jobs"],
+    answer: "PYTHON JOBS",
+  },
+  {
+    question: "Output of: x = 'python jobs' print(x.lower())?",
+    options: ["Python Jobs", "python jobs", "PYTHON JOBS", "Python jobs"],
+    answer: "python jobs",
+  },
+  {
+    question: "Output of: x = 'Python Jobs' print(x.swapcase())?",
+    options: ["Python Jobs", "python jobs", "PYTHON JOBS", "pYTHON jOBS"],
+    answer: "pYTHON jOBS",
+  },
+  {
+    question: "Output of: x = 'Python' print(x.join('33'))?",
+    options: ["3Python3", "Python33", "Python 33", "Python3"],
+    answer: "3Python3",
+  },
+  {
+    question: "Output of: x = 'Python Test' print(x.join('33'))?",
+    options: ["3Python Test3", "3Python3Test3", "Python3Test3", "Python Test33"],
+    answer: "3Python Test3",
+  },
+  {
+    question: "Output: x = 'Python' y = '3' print(x.rstrip()+y.rstrip())?",
+    options: ["Python3", "Python+3", "Python 3", "3Python3"],
+    answer: "Python3",
+  },
+  {
+    question: "Output of: x = open('python.csv', 'w') print(x.mode)?",
+    options: ["r", "w", "python.txt", "python write"],
+    answer: "w",
+  },
+  {
+    question: "Output: import math print(math.floor(67.3))?",
+    options: ["67", "67.0", "68.0", "68"],
+    answer: "67",
+  },
+  {
+    question: "Output: import math print(math.pow(3,2))?",
+    options: ["6.0", "9", "6", "9.0"],
+    answer: "9.0",
+  },
+  {
+    question: "Output of: x = 'Python' print(x[4])?",
+    options: ["h", "O", "t", "Python..."],
+    answer: "o",
+  },
+  {
+    question: "Output of: x = 'Python' print('y' in x)?",
+    options: ["y", "Python", "True", "False"],
+    answer: "True",
+  },
+  {
+    question: "Output: x = '%s MCQ %s' %('Python', 'Test') print(x)?",
+    options: ["Python MCQ", "Test MCQ Python", "Python MCQ Test", "MCQ Test"],
+    answer: "Python MCQ Test",
+  },
+  {
+    question: "Output of: x = 'Python' print(x[:])?",
+    options: ["yth", "Python", "PythonPython", "Pn"],
+    answer: "Python",
+  },
+  {
+    question: "Output: x = '{} 3 {}'.format('Python', 'Test') print(x)?",
+    options: ["Test 3 Python", "Python 3 Test", "Python Test", "Test Python"],
+    answer: "Python 3 Test",
+  },
+  {
+    question: "Output of: x = 'Python' print('p' not in x)?",
+    options: ["P", "True", "p", "False"],
+    answer: "True",
+  },
+  {
+    question: "Output of: x = 'Python' print(x[2:4])?",
+    options: ["thon", "Pyth", "tho", "th"],
+    answer: "th",
+  },
+  {
+    question: "Output of: x = 'Python' print(x*3)?",
+    options: ["PythonPythonPython", "t", "Pyt Pyt Pyt", "None"],
+    answer: "PythonPythonPython",
+  },
+  {
+    question: "Output: x = 'Python %d Version' %(3) print(x)?",
+    options: ["Python Version 3", "Python 3 Version", "Python 3", "3 Version"],
+    answer: "Python 3 Version",
+  },
+  {
+    question: "Output: x = 'Python %c or Python %c' %('2', '3') print(x)?",
+    options: ["Python 3 or Python 2", "Python 2 or Python 3", "Python 2 or Python 2", "Python 23"],
+    answer: "Python 2 or Python 3",
+  },
+  {
+    question: "Output: x = 'Python %.1f or Python %.2f' %(2.7, 3.51) print(x)?",
+    options: ["Python 3.51 or 2.7", "Python 2.7 or 3.51", "Python 2 or 3", "None"],
+    answer: "Python 2.7 or 3.51",
+  },
+  {
+    question: "Output of: x = 'Python' print(x.capitalize())?",
+    options: ["Python", "python", "PYTHON", "Python.capitalize"],
+    answer: "Python",
+  },
+  {
+    question: "Output of: x = 'python jobs' print(x.upper())?",
+    options: ["Python Jobs", "python jobs", "PYTHON JOBS", "Python jobs"],
+    answer: "PYTHON JOBS",
+  }
+];
