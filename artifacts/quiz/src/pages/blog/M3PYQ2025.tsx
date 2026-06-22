@@ -553,6 +553,7 @@ const M3PYQ2025: React.FC = () => {
       </div>
     </div>
   );
+}
 
   if (screen === "result") return (
     <div className="min-h-screen bg-[#0f172a] p-4 flex flex-col items-center">
@@ -569,6 +570,7 @@ const M3PYQ2025: React.FC = () => {
       </div>
     </div>
   );
+}
 
   const q = questions[current];
   return (
