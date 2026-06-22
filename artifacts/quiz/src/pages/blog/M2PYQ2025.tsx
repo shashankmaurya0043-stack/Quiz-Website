@@ -1883,3 +1883,33 @@ const jumpToQuestion = (index: number) => {
     )}
   </div>
 </div>
+// src/utils/storage.ts
+import { QuizState } from '../types/quiz';
+
+const STORAGE_KEY = 'nielit_m1_r5_jan2025_state';
+
+export const saveQuizProgress = (state: Partial<QuizState>) => {
+  try {
+    const existing = localStorage.getItem(STORAGE_KEY);
+    const prevState = existing ? JSON.parse(existing) : {};
+    const newState = { ...prevState, ...state, lastUpdated: Date.now() };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(newState));
+  } catch (error) {
+    console.error("Error saving progress:", error);
+  }
+};
+
+export const loadQuizProgress = (): Partial<QuizState> | null => {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) return null;
+    return JSON.parse(saved);
+  } catch (error) {
+    console.error("Error loading progress:", error);
+    return null;
+  }
+};
+
+export const clearQuizProgress = () => {
+  localStorage.removeItem(STORAGE_KEY);
+};
