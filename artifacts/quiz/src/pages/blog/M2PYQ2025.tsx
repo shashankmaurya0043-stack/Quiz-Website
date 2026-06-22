@@ -508,3 +508,151 @@ const questions: Question[] = [
     answer: ".test",
   }
 ];
+const useTimer = (initialTime: number, onEnd: () => void) => {
+  const [time, setTime] = useState(initialTime);
+  const [isRunning, setIsRunning] = useState(false);
+
+  useEffect(() => {
+    let interval: ReturnType<typeof setInterval>;
+    if (isRunning && time > 0) {
+      interval = setInterval(() => setTime((t) => t - 1), 1000);
+    } else if (time === 0 && isRunning) {
+      setIsRunning(false);
+      onEnd();
+    }
+    return () => clearInterval(interval);
+  }, [isRunning, time, onEnd]);
+
+  const start = () => setIsRunning(true);
+  const pause = () => setIsRunning(false);
+  const reset = (t: number) => {
+    setTime(t);
+    setIsRunning(false);
+  };
+
+  const formatTime = (s: number) => {
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return `${m.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`;
+  };
+
+  return { time, formatTime: formatTime(time), start, pause, reset, isRunning };
+};
+
+type Screen = "home" | "quiz" | "result";
+
+const M2PYQ2025: React.FC = () => {
+  const TOTAL = questions.length;
+  const DURATION = TOTAL * 60;
+
+  const [screen, setScreen] = useState<Screen>("home");
+  const [current, setCurrent] = useState(0);
+  const [selected, setSelected] = useState<(string | null)[]>(Array(TOTAL).fill(null));
+  const [showNav, setShowNav] = useState(false);
+
+  const handleEnd = useCallback(() => {
+    setScreen("result");
+  }, []);
+
+  const timer = useTimer(DURATION, handleEnd);
+
+  const score = selected.reduce((acc, ans, i) => acc + (ans === questions[i].answer ? 1 : 0), 0);
+  const attempted = selected.filter((a) => a !== null).length;
+  const percentage = Math.round((score / TOTAL) * 100);
+
+  const startQuiz = () => {
+    setSelected(Array(TOTAL).fill(null));
+    setCurrent(0);
+    timer.reset(DURATION);
+    timer.start();
+    setScreen("quiz");
+  };
+
+  const selectOption = (opt: string) => {
+    const copy = [...selected];
+    copy[current] = opt;
+    setSelected(copy);
+  };
+
+  const next = () => setCurrent((c) => Math.min(c + 1, TOTAL - 1));
+  const prev = () => setCurrent((c) => Math.max(c - 1, 0));
+  const goTo = (i: number) => {
+    setCurrent(i);
+    setShowNav(false);
+  };
+
+  const submitQuiz = () => {
+    timer.pause();
+    setScreen("result");
+  };
+
+  if (screen === "home") {
+    return (
+      <div className="min-h-screen flex items-center justify-center px-4 py-8" style={{ backgroundColor: "#0f172a" }}>
+        <div className="max-w-lg w-full rounded-3xl shadow-2xl p-6 sm:p-8 text-center space-y-5" style={{ backgroundColor: "#1e293b", border: "2px solid #facc15" }}>
+          <div className="inline-block text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest" style={{ backgroundColor: "#facc15", color: "#0f172a" }}>O Level M2-R5</div>
+          <h1 className="text-3xl sm:text-4xl font-extrabold" style={{ color: "#facc15" }}>M2-R5 PYQ<br /><span style={{ color: "#ffffff" }}>Jan 2025</span></h1>
+          <p style={{ color: "#d1d5db" }}>{TOTAL} Questions • {TOTAL} Minutes • Web Designing</p>
+          <div className="grid grid-cols-2 gap-3">
+             <div className="rounded-xl p-4 bg-[#0f172a] border border-[#334155]"><p className="font-bold text-xl text-[#facc15]">{TOTAL}</p><p className="text-gray-400">Questions</p></div>
+             <div className="rounded-xl p-4 bg-[#0f172a] border border-[#334155]"><p className="font-bold text-xl text-[#facc15]">{TOTAL} min</p><p className="text-gray-400">Duration</p></div>
+          </div>
+          <button onClick={startQuiz} className="w-full font-bold py-4 rounded-2xl text-lg bg-[#facc15] text-[#0f172a]">🚀 Start M2 Test</button>
+        </div>
+      </div>
+    );
+  }
+
+  if (screen === "result") {
+    return (
+      <div className="min-h-screen px-4 py-6 bg-[#0f172a]">
+        <div className="max-w-2xl mx-auto space-y-5">
+          <div className="rounded-2xl p-8 text-center space-y-4 bg-[#1e293b] border-2 border-[#facc15]">
+            <h2 className="text-2xl font-bold text-white">Quiz Completed!</h2>
+            <p className="text-5xl font-black text-[#facc15]">{percentage}%</p>
+            <div className="grid grid-cols-3 gap-3">
+                <div className="p-3 bg-green-900/20 border border-green-500 rounded-xl text-green-500 font-bold">Correct: {score}</div>
+                <div className="p-3 bg-red-900/20 border border-red-500 rounded-xl text-red-500 font-bold">Wrong: {attempted - score}</div>
+                <div className="p-3 bg-gray-900/20 border border-gray-500 rounded-xl text-gray-400 font-bold">Skip: {TOTAL - attempted}</div>
+            </div>
+          </div>
+          <button onClick={() => setScreen("home")} className="w-full font-bold py-4 rounded-2xl bg-[#facc15] text-[#0f172a]">Home</button>
+        </div>
+      </div>
+    );
+  }
+
+  const q = questions[current];
+
+  return (
+    <div className="min-h-screen flex flex-col bg-[#0f172a]">
+      <div className="sticky top-0 z-30 px-4 py-3 bg-[#1e293b] border-b border-[#334155] flex justify-between items-center">
+          <button onClick={() => setShowNav(!showNav)} className="px-3 py-2 bg-[#facc15] text-[#0f172a] rounded-lg font-bold">Q{current + 1}/{TOTAL}</button>
+          <div className="font-mono font-bold text-[#facc15] text-xl">{timer.formatTime}</div>
+          <button onClick={submitQuiz} className="bg-red-500 px-4 py-2 rounded-lg text-white font-bold">Finish</button>
+      </div>
+
+      <div className="flex-1 flex items-start justify-center px-4 py-10">
+        <div className="max-w-3xl w-full space-y-6">
+          <div className="rounded-2xl p-6 bg-[#1e293b] border border-[#334155]">
+            <h2 className="text-xl font-semibold text-white leading-relaxed">{q.question}</h2>
+          </div>
+          <div className="space-y-3">
+            {q.options.map((opt, idx) => (
+              <button key={idx} onClick={() => selectOption(opt)} className={`w-full text-left p-4 rounded-xl border-2 transition-all ${selected[current] === opt ? "border-[#facc15] bg-[#facc15]/10 text-[#facc15]" : "border-[#334155] bg-[#111827] text-gray-300"}`}>
+                {opt}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="sticky bottom-0 p-4 bg-[#1e293b] border-t border-[#334155] flex justify-between">
+          <button onClick={prev} disabled={current === 0} className="px-6 py-3 bg-gray-700 text-white rounded-xl">Prev</button>
+          <button onClick={next} disabled={current === TOTAL - 1} className="px-6 py-3 bg-[#facc15] text-[#0f172a] font-bold rounded-xl">Next</button>
+      </div>
+    </div>
+  );
+};
+
+export default M2PYQ2025;
