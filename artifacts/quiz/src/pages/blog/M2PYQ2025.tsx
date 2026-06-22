@@ -1738,3 +1738,75 @@ const StatItem = ({ icon, label, value }: { icon: React.ReactNode, label: string
 );
 
 export default ResultPage;
+// src/utils/quizHelpers.ts
+import { Question, QuizResult } from '../types/quiz';
+
+/**
+ * Mapping percentages to NIELIT standard grades
+ * S: 85% or more
+ * A: 75% to 84%
+ * B: 65% to 74%
+ * C: 55% to 64%
+ * D: 50% to 54%
+ * F: Less than 50% (Fail)
+ */
+export const getNielitGrade = (percentage: number): { grade: string; color: string } => {
+  if (percentage >= 85) return { grade: 'S', color: '#FFD700' }; // Gold
+  if (percentage >= 75) return { grade: 'A', color: '#4ADE80' }; // Green
+  if (percentage >= 65) return { grade: 'B', color: '#60A5FA' }; // Blue
+  if (percentage >= 55) return { grade: 'C', color: '#A78BFA' }; // Purple
+  if (percentage >= 50) return { grade: 'D', color: '#FBBF24' }; // Amber
+  return { grade: 'F', color: '#EF4444' }; // Red
+};
+
+/**
+ * Deep Analysis of User Performance
+ */
+export const calculateDetailedResults = (
+  questions: Question[],
+  userAnswers: Record<number, string>,
+  timeTakenMs: number
+): QuizResult => {
+  const totalQuestions = questions.length;
+  let correct = 0;
+  let attempted = 0;
+
+  questions.forEach((q) => {
+    const selected = userAnswers[q.id];
+    if (selected) {
+      attempted++;
+      if (selected === q.correctAnswer) {
+        correct++;
+      }
+    }
+  });
+
+  const score = correct; // Assuming +1 per correct answer
+  const wrong = attempted - correct;
+  const percentage = Number(((correct / totalQuestions) * 100).toFixed(2));
+
+  // Time formatting
+  const totalSeconds = Math.floor(timeTakenMs / 1000);
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  const timeString = `${minutes}m ${seconds}s`;
+
+  return {
+    totalQuestions,
+    attempted,
+    correct,
+    wrong,
+    score,
+    percentage,
+    timeTaken: timeString,
+  };
+};
+
+/**
+ * Calculates time efficiency (seconds per question)
+ */
+export const getEfficiency = (timeTakenMs: number, attemptedCount: number): string => {
+  if (attemptedCount === 0) return "0";
+  const seconds = timeTakenMs / 1000;
+  return (seconds / attemptedCount).toFixed(1);
+};
