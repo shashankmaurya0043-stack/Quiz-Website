@@ -621,5 +621,88 @@ const M2PYQ2025: React.FC = () => {
         </div>
       </div>
     );
+    if (screen === "result") {
+    const getGrade = () => {
+      if (percentage >= 90) return { label: "Excellent! 🏆", color: "#22c55e" };
+      if (percentage >= 70) return { label: "Great Job! 🎯", color: "#facc15" };
+      if (percentage >= 50) return { label: "Good Effort! 💪", color: "#f97316" };
+      return { label: "Keep Practicing! 📚", color: "#ef4444" };
+    };
+    const grade = getGrade();
+
+    return (
+      <div className="min-h-screen px-4 py-6 bg-[#0f172a]">
+        <div className="max-w-2xl mx-auto space-y-5">
+          <div className="rounded-2xl p-6 sm:p-8 text-center space-y-4 bg-[#1e293b] border-2 border-[#facc15]">
+            <h2 className="text-2xl font-bold text-white">Quiz Completed!</h2>
+            <p className="text-3xl font-extrabold" style={{ color: grade.color }}>{grade.label}</p>
+            <div className="relative w-36 h-36 mx-auto">
+              <svg className="w-full h-full" viewBox="0 0 120 120" style={{ transform: "rotate(-90deg)" }}>
+                <circle cx="60" cy="60" r="52" fill="none" stroke="#334155" strokeWidth="10" />
+                <circle cx="60" cy="60" r="52" fill="none" stroke="#facc15" strokeWidth="10" strokeLinecap="round" strokeDasharray={`${(percentage / 100) * 327} 327`} />
+              </svg>
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <span className="text-3xl font-extrabold text-[#facc15]">{percentage}%</span>
+                <span className="text-xs text-[#d1d5db]">Score</span>
+              </div>
+            </div>
+            <div className="grid grid-cols-3 gap-3 text-sm">
+                <div className="p-3 bg-green-900/10 border border-green-500/40 rounded-xl text-green-500 font-bold">{score}<br/>Correct</div>
+                <div className="p-3 bg-red-900/10 border border-red-500/40 rounded-xl text-red-500 font-bold">{attempted - score}<br/>Wrong</div>
+                <div className="p-3 bg-gray-800/10 border border-gray-500/30 rounded-xl text-gray-400 font-bold">{TOTAL - attempted}<br/>Skip</div>
+            </div>
+          </div>
+          <div className="rounded-2xl p-5 space-y-4 bg-[#1e293b] border border-[#334155]">
+            <h3 className="text-lg font-bold text-[#facc15]">📋 Answer Review</h3>
+            <div className="space-y-3 overflow-y-auto pr-1" style={{ maxHeight: "40vh" }}>
+              {questions.map((q, i) => (
+                <div key={i} className="p-4 rounded-xl border border-gray-700 bg-gray-800/30">
+                  <p className="text-sm text-white"><span className="text-[#facc15] font-bold">Q{i+1}.</span> {q.question}</p>
+                  <p className="text-xs mt-1 text-green-500">Ans: {q.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <button onClick={() => setScreen("home")} className="w-full font-bold py-4 rounded-2xl bg-[#facc15] text-[#0f172a]">🏠 Back to Home</button>
+        </div>
+      </div>
+    );
+  }
+
+  const q = questions[current];
+
+  return (
+    <div className="min-h-screen flex flex-col bg-[#0f172a]">
+      <div className="sticky top-0 z-30 px-4 py-3 bg-[#1e293b] border-b border-[#334155] flex justify-between items-center">
+          <button onClick={() => setShowNav(!showNav)} className="bg-[#facc15]/20 text-[#facc15] border border-[#facc15]/30 px-3 py-2 rounded-xl text-sm font-bold">Q{current + 1}/{TOTAL}</button>
+          <div className="font-mono font-bold text-[#facc15] text-lg">⏳ {timer.formatTime}</div>
+          <button onClick={submitQuiz} className="bg-red-500 text-white px-4 py-2 rounded-xl text-sm font-bold">Submit</button>
+      </div>
+      <div className="w-full h-1 bg-[#1e293b]"><div className="h-full bg-[#facc15] transition-all" style={{ width: `${((current + 1) / TOTAL) * 100}%` }} /></div>
+
+      <div className="flex-1 flex items-start justify-center px-4 py-6">
+        <div className="max-w-3xl w-full space-y-5">
+          <div className="rounded-2xl p-5 bg-[#1e293b] border border-[#334155]">
+            <h2 className="text-lg text-white font-medium">{q.question}</h2>
+          </div>
+          <div className="grid gap-3">
+            {q.options.map((opt, idx) => (
+              <button key={idx} onClick={() => selectOption(opt)} className={`w-full text-left p-4 rounded-2xl border-2 transition-all ${selected[current] === opt ? "border-[#facc15] bg-[#facc15]/10 text-[#facc15]" : "border-[#334155] bg-[#111827] text-gray-300"}`}>
+                <span className="inline-block w-8 h-8 rounded-lg bg-gray-800 text-center leading-8 mr-3 font-bold">{String.fromCharCode(65 + idx)}</span>{opt}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="sticky bottom-0 p-4 bg-[#1e293b] border-t border-[#334155] flex justify-between">
+          <button onClick={prev} disabled={current === 0} className="px-6 py-3 bg-gray-700 text-white rounded-xl disabled:opacity-30">Prev</button>
+          <button onClick={next} disabled={current === TOTAL - 1} className="px-6 py-3 bg-[#facc15] text-[#0f172a] font-bold rounded-xl disabled:opacity-30">Next</button>
+      </div>
+    </div>
+  );
+};
+
+export default M2PYQ2025;
                                                                                                                      }
     
