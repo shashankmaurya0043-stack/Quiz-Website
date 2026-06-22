@@ -1913,3 +1913,33 @@ export const loadQuizProgress = (): Partial<QuizState> | null => {
 export const clearQuizProgress = () => {
   localStorage.removeItem(STORAGE_KEY);
 };
+// Inside src/pages/QuizPage.tsx
+import { saveQuizProgress, loadQuizProgress, clearQuizProgress } from '../utils/storage';
+
+// 1. Initialize state with saved data if available
+const [userAnswers, setUserAnswers] = useState<Record<number, string>>(() => {
+  const saved = loadQuizProgress();
+  return saved?.answers || {};
+});
+
+const [currentIndex, setCurrentIndex] = useState(() => {
+  const saved = loadQuizProgress();
+  return saved?.currentQuestionIndex || 0;
+});
+
+// 2. Auto-save Effect
+useEffect(() => {
+  saveQuizProgress({
+    answers: userAnswers,
+    currentQuestionIndex: currentIndex,
+    // Note: Timer value can also be passed here if handled in QuizPage
+  });
+}, [userAnswers, currentIndex]);
+
+// 3. Clear storage on final submission
+const handleSubmit = () => {
+  if (window.confirm("Submit your final answers? / क्या आप उत्तर सबमिट करना चाहते हैं?")) {
+    clearQuizProgress(); // Wipe data so user can't "Resume" a finished test
+    setIsFinished(true);
+  }
+};
