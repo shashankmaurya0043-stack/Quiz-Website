@@ -1483,3 +1483,76 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
 };
 
 export default QuestionCard;
+// src/components/quiz/OptionButton.tsx
+import React from 'react';
+
+interface OptionButtonProps {
+  optionKey: string; // 'A', 'B', 'C', or 'D'
+  value: string;     // The option text (Bilingual)
+  isSelected: boolean;
+  onClick: () => void;
+}
+
+const OptionButton: React.FC<OptionButtonProps> = ({
+  optionKey,
+  value,
+  isSelected,
+  onClick,
+}) => {
+  // Logic to split English and Hindi text for distinct styling
+  const parts = value.split('/');
+  const englishText = parts[0]?.trim();
+  const hindiText = parts[1]?.trim();
+
+  return (
+    <button
+      onClick={onClick}
+      className={`
+        w-full group relative flex items-center gap-4 p-4 rounded-xl border-2 transition-all duration-300 text-left
+        ${isSelected 
+          ? 'bg-[#FFD700]/10 border-[#FFD700] shadow-[0_0_15px_rgba(255,215,0,0.1)]' 
+          : 'bg-[#0B1D39] border-white/5 hover:border-white/20 hover:bg-white/5'
+        }
+      `}
+    >
+      {/* Letter Indicator Circle */}
+      <div className={`
+        flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300
+        ${isSelected 
+          ? 'bg-[#FFD700] text-[#0B1D39] scale-110 shadow-lg shadow-yellow-500/20' 
+          : 'bg-[#152a4a] text-gray-400 group-hover:text-white'
+        }
+      `}>
+        {optionKey}
+      </div>
+
+      {/* Option Text Content */}
+      <div className="flex flex-col flex-grow">
+        <span className={`
+          text-sm md:text-base font-medium transition-colors
+          ${isSelected ? 'text-white' : 'text-gray-300 group-hover:text-white'}
+        `}>
+          {englishText}
+        </span>
+        
+        {hindiText && (
+          <span className={`
+            text-xs md:text-sm mt-0.5 transition-colors
+            ${isSelected ? 'text-[#FFD700]/80' : 'text-gray-500 group-hover:text-gray-400'}
+          `}>
+            {hindiText}
+          </span>
+        )}
+      </div>
+
+      {/* Selected checkmark indicator (Visual only) */}
+      {isSelected && (
+        <div className="absolute right-4 top-1/2 -translate-y-1/2">
+          <div className="w-2 h-2 rounded-full bg-[#FFD700] animate-pulse shadow-[0_0_8px_#FFD700]"></div>
+        </div>
+      )}
+    </button>
+  );
+};
+
+export default OptionButton;
