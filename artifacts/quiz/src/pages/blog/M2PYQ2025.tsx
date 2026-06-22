@@ -1625,3 +1625,116 @@ const Timer: React.FC<TimerProps> = ({ durationMinutes, onTimeUp }) => {
 };
 
 export default Timer;
+// src/pages/ResultPage.tsx
+import React from 'react';
+import { questions } from '../data/index';
+import { Trophy, XCircle, CheckCircle2, HelpCircle, RotateCcw, Home, Eye } from 'lucide-react';
+
+interface ResultPageProps {
+  userAnswers: Record<number, string>;
+  startTime: number;
+}
+
+const ResultPage: React.FC<ResultPageProps> = ({ userAnswers, startTime }) => {
+  const total = questions.length;
+  const attempted = Object.keys(userAnswers).length;
+  const timeTakenMs = Date.now() - startTime;
+  
+  // Scoring Logic
+  let correct = 0;
+  questions.forEach((q) => {
+    if (userAnswers[q.id] === q.correctAnswer) {
+      correct++;
+    }
+  });
+
+  const wrong = attempted - correct;
+  const skipped = total - attempted;
+  const percentage = (correct / total) * 100;
+  const isPassed = percentage >= 50;
+
+  // Time Formatter
+  const formatTimeTaken = (ms: number) => {
+    const totalSeconds = Math.floor(ms / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    return `${minutes}m ${seconds}s`;
+  };
+
+  return (
+    <div className="min-h-screen bg-[#0B1D39] text-white py-12 px-4">
+      <div className="max-w-3xl mx-auto space-y-8 animate-in fade-in zoom-in duration-500">
+        
+        {/* Main Result Card */}
+        <div className="bg-[#152a4a] rounded-3xl p-8 border border-white/5 text-center relative overflow-hidden">
+          {/* Result Background Glow */}
+          <div className={`absolute -top-24 left-1/2 -translate-x-1/2 w-64 h-64 blur-[100px] opacity-20 rounded-full ${isPassed ? 'bg-green-500' : 'bg-red-500'}`}></div>
+
+          <div className="relative z-10">
+            <div className={`inline-flex p-4 rounded-full mb-6 ${isPassed ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}`}>
+              <Trophy size={48} />
+            </div>
+
+            <h1 className="text-3xl md:text-4xl font-bold mb-2">
+              {isPassed ? 'Congratulations! / बधाई हो!' : 'Keep Practicing! / अभ्यास जारी रखें!'}
+            </h1>
+            <p className={`text-lg font-medium mb-8 ${isPassed ? 'text-green-400' : 'text-red-400'}`}>
+              You {isPassed ? 'Passed' : 'Failed'} with {percentage}% Marks
+            </p>
+
+            {/* Score Ring / Large Display */}
+            <div className="flex justify-center items-baseline gap-2 mb-8">
+              <span className="text-7xl font-black text-[#FFD700]">{correct}</span>
+              <span className="text-2xl text-gray-400 font-bold">/ {total}</span>
+            </div>
+
+            {/* Detailed Stats Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+              <StatItem icon={<CheckCircle2 className="text-green-500" />} label="Correct" value={correct} />
+              <StatItem icon={<XCircle className="text-red-500" />} label="Wrong" value={wrong} />
+              <StatItem icon={<HelpCircle className="text-gray-400" />} label="Skipped" value={skipped} />
+              <StatItem icon={<RotateCcw className="text-blue-400" />} label="Time" value={formatTimeTaken(timeTakenMs)} />
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button 
+                onClick={() => window.location.reload()}
+                className="flex items-center justify-center gap-2 px-8 py-4 bg-[#FFD700] text-[#0B1D39] font-bold rounded-xl hover:bg-[#e6c200] transition-all"
+              >
+                <RotateCcw size={20} /> Restart Quiz
+              </button>
+              <button 
+                className="flex items-center justify-center gap-2 px-8 py-4 bg-white/5 border border-white/10 font-bold rounded-xl hover:bg-white/10 transition-all"
+              >
+                <Eye size={20} /> Review Answers
+              </button>
+              <button 
+                onClick={() => window.location.href = '/'}
+                className="flex items-center justify-center gap-2 px-8 py-4 bg-transparent font-bold text-gray-400 hover:text-white transition-all"
+              >
+                <Home size={20} /> Home
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <p className="text-center text-gray-500 text-xs uppercase tracking-widest font-bold">
+          Powered by OLevelQuiz.in
+        </p>
+      </div>
+    </div>
+  );
+};
+
+// Helper Component for Stats
+const StatItem = ({ icon, label, value }: { icon: React.ReactNode, label: string, value: string | number }) => (
+  <div className="bg-[#0B1D39]/50 p-4 rounded-2xl border border-white/5">
+    <div className="flex justify-center mb-2">{icon}</div>
+    <div className="text-gray-400 text-[10px] uppercase font-bold tracking-tighter">{label}</div>
+    <div className="text-lg font-bold">{value}</div>
+  </div>
+);
+
+export default ResultPage;
