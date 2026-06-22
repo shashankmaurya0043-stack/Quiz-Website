@@ -486,3 +486,247 @@ export const batch2 = [
     explanation: "cellpadding specifies the space between the cell wall and the cell content."
   }
 ];
+// src/data/m1-r5-jan-2025.ts (Part 3: Q41-Q60)
+
+export const batch3 = [
+  {
+    id: 41,
+    question: "Which property is used to change the text size in CSS? / CSS में टेक्स्ट का आकार बदलने के लिए कौन-सी प्रॉपर्टी उपयोग में आती है?",
+    options: {
+      A: "font-size",
+      B: "font-family",
+      C: "Both A and C",
+      D: "font"
+    },
+    correctAnswer: "A",
+    explanation: "The font-size property sets the size of the font."
+  },
+  {
+    id: 42,
+    question: "Which tag tells the browser where the page starts and stops? / HTML पेज के शुरू और अंत को ब्राउज़र को बताने वाला टैग कौन-सा है?",
+    options: {
+      A: "<html>",
+      B: "<head>",
+      C: "<title>",
+      D: "<body>"
+    },
+    correctAnswer: "A",
+    explanation: "The <html> tag is the container for all other HTML elements (except for the <!DOCTYPE> tag)."
+  },
+  {
+    id: 43,
+    question: "Which symbol is used to write comments in CSS? / CSS में कमेंट लिखने के लिए कौन-सा सिंबल उपयोग किया जाता है?",
+    options: {
+      A: "/* */",
+      B: "//",
+      C: "##",
+      D: "#"
+    },
+    correctAnswer: "A",
+    explanation: "CSS comments start with /* and end with */."
+  },
+  {
+    id: 44,
+    question: "Which HTML element is used for embedding YouTube videos? / HTML में YouTube वीडियो को दिखाने के लिए कौन-सा एलीमेंट उपयोग होता है?",
+    options: {
+      A: "<samp>",
+      B: "<iframe>",
+      C: "<small>",
+      D: "<frame>"
+    },
+    correctAnswer: "B",
+    explanation: "YouTube uses the <iframe> tag to embed videos into external websites."
+  },
+  {
+    id: 45,
+    question: "What does CSS stand for? / CSS का पूरा नाम क्या है?",
+    options: {
+      A: "Cascading Style Sheets",
+      B: "Creative Style Sheets",
+      C: "Computer Style Sheets",
+      D: "Colorful Style Sheets"
+    },
+    correctAnswer: "A",
+    explanation: "CSS stands for Cascading Style Sheets."
+  },
+  {
+    id: 46,
+    question: "Which tag represents each cell in an HTML table? / HTML में टेबल के प्रत्येक सेल को दर्शाने के लिए किस टैग का उपयोग होता है?",
+    options: {
+      A: "<thead>",
+      B: "<td>",
+      C: "<tr>",
+      D: "<th>"
+    },
+    correctAnswer: "B",
+    explanation: "<td> stands for 'table data', which defines a standard cell in an HTML table."
+  },
+  {
+    id: 47,
+    question: "A CSS rule set contains which of the following? / CSS नियम सेट में कौन-कौन से तत्व शामिल होते हैं?",
+    options: {
+      A: "True",
+      B: "False",
+      C: "Can't say",
+      D: "None of these"
+    },
+    correctAnswer: "A",
+    explanation: "A CSS rule-set consists of a selector and a declaration block."
+  },
+  {
+    id: 48,
+    question: "Which tag defines a caption for a figure element? / HTML में एक फ़िगर एलीमेंट के लिए कैप्शन कौन-सा टैग परिभाषित करता है?",
+    options: {
+      A: "<caption>",
+      B: "<dialog>",
+      C: "<figure>",
+      D: "<figcaption>"
+    },
+    correctAnswer: "D",
+    explanation: "The <figcaption> element is used to provide a caption for the <figure> element."
+  },
+  {
+    id: 49,
+    question: "In CSS syntax, what is \"color: black\" called? / CSS में \"color: black\" को क्या कहा जाता है?",
+    options: {
+      A: "Selector",
+      B: "Value",
+      C: "Declaration",
+      D: "Rule"
+    },
+    correctAnswer: "C",
+    explanation: "A CSS declaration always includes a property name and a value, separated by a colon."
+  },
+  {
+    id: 50,
+    question: "Which tag defines content aside from the main content, like a sidebar? / HTML में साइडबार या मुख्य सामग्री से अलग कुछ सामग्री परिभाषित करने के लिए कौन-सा टैग प्रयोग होता है?",
+    options: {
+      A: "<aside>",
+      B: "<header>",
+      C: "<sidebar>",
+      D: "<nav>"
+    },
+    correctAnswer: "A",
+    explanation: "The <aside> element is intended for content that is indirectly related to the main content."
+  },
+  {
+    id: 51,
+    question: "What is the default value of the CSS position property? / CSS में position प्रॉपर्टी का डिफ़ॉल्ट मान क्या है?",
+    options: {
+      A: "Absolute",
+      B: "Relative",
+      C: "Static",
+      D: "Fixed"
+    },
+    correctAnswer: "C",
+    explanation: "HTML elements are positioned static by default."
+  },
+  {
+    id: 52,
+    question: "Which element is used to show inserted content? / HTML में सम्मिलित (inserted) सामग्री दिखाने के लिए कौन-सा टैग उपयोग किया जाता है?",
+    options: {
+      A: "<del>",
+      B: "<em>",
+      C: "<ins>",
+      D: "<strong>"
+    },
+    correctAnswer: "C",
+    explanation: "The <ins> tag defines a text that has been inserted into a document."
+  },
+  {
+    id: 53,
+    question: "Which tag is used to add a caption to a table? / टेबल में कैप्शन जोड़ने के लिए कौन-सा टैग उपयोग किया जाता है?",
+    options: {
+      A: "<caption>",
+      B: "<thead>",
+      C: "<tr>",
+      D: "<th>"
+    },
+    correctAnswer: "A",
+    explanation: "The <caption> tag must be inserted immediately after the <table> tag."
+  },
+  {
+    id: 54,
+    question: "Which element works similar to the `<i>` tag? / HTML में `<i>` टैग जैसा काम कौन-सा टैग करता है?",
+    options: {
+      A: "<strong>",
+      B: "<em>",
+      C: "<b>",
+      D: "<blockquote>"
+    },
+    correctAnswer: "B",
+    explanation: "The <em> tag is used to define emphasized text, which is typically displayed in italic."
+  },
+  {
+    id: 55,
+    question: "What is the default value of the border attribute? / बॉर्डर एट्रिब्यूट का डिफ़ॉल्ट मान क्या होता है?",
+    options: {
+      A: "2px",
+      B: "5px",
+      C: "3px",
+      D: "1px"
+    },
+    correctAnswer: "D",
+    explanation: "When the border attribute is used in HTML (e.g., in a table), the default thickness is usually 1px."
+  },
+  {
+    id: 56,
+    question: "Which tag marks the beginning and end of an HTML page? / HTML में एक पेज की शुरुआत और अंत बताने वाला टैग कौन-सा है?",
+    options: {
+      A: "<html>",
+      B: "<head>",
+      C: "<title>",
+      D: "<body>"
+    },
+    correctAnswer: "A",
+    explanation: "The <html> tag wraps all page content."
+  },
+  {
+    id: 57,
+    question: "Id selector selects the id attribute of an HTML element to select a specific element. / आईडी सेलेक्टर क्या करता है?",
+    options: {
+      A: "True",
+      B: "False",
+      C: "Can't say",
+      D: "None of these"
+    },
+    correctAnswer: "A",
+    explanation: "The #id selector styles the element with the specified id."
+  },
+  {
+    id: 58,
+    question: "CSS can also be used with any kind of XML documents. / CSS का उपयोग XML दस्तावेज़ों के साथ भी किया जा सकता है।",
+    options: {
+      A: "True",
+      B: "False",
+      C: "Can't say",
+      D: "None of these"
+    },
+    correctAnswer: "A",
+    explanation: "CSS is a language for describing the rendering of structured documents like HTML and XML."
+  },
+  {
+    id: 59,
+    question: "The grouping selector is used to select all the elements with the different style definitions. / ग्रुपिंग सेलेक्टर क्या करता है?",
+    options: {
+      A: "True",
+      B: "False",
+      C: "Can't say",
+      D: "None of these"
+    },
+    correctAnswer: "B",
+    explanation: "The grouping selector is used to select elements with the SAME style definitions to minimize code."
+  },
+  {
+    id: 60,
+    question: "Inline CSS is used to apply CSS on multiple lines or elements. / इनलाइन CSS का उपयोग कई लाइनों या एलीमेंट्स पर लागू करने के लिए किया जाता है।",
+    options: {
+      A: "True",
+      B: "False",
+      C: "Can't say",
+      D: "None of these"
+    },
+    correctAnswer: "B",
+    explanation: "Inline CSS is used to apply a unique style for a single HTML element."
+  }
+];
