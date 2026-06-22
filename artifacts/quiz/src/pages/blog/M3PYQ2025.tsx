@@ -182,3 +182,178 @@ const questions: Question[] = [
     options: ["List", "Tuple", "Dictionary", "Set"],
     answer: "Dictionary",
   },
+  {
+    question: "Which function is used to display output in Python?",
+    options: ["echo()", "print()", "display()", "output()"],
+    answer: "print()",
+  },
+  {
+    question: "Output of: print(10 % 3)?",
+    options: ["3", "1", "0", "10"],
+    answer: "1",
+  },
+  {
+    question: "What type of collection is a set in Python?",
+    options: ["Ordered and duplicate", "Unordered and unique", "Ordered and unique", "Mutable only"],
+    answer: "Unordered and unique",
+  },
+  {
+    question: "Which method is used to close a file in Python?",
+    options: ["end()", "stop()", "close()", "shutdown()"],
+    answer: "close()",
+  },
+  {
+    question: "Which keyword is used to handle exception in Python?",
+    options: ["error", "catch", "try", "excepted"],
+    answer: "try",
+  },
+  {
+    question: "Which block is used to handle exceptions in Python?",
+    options: ["final", "catch", "except", "error"],
+    answer: "except",
+  },
+  {
+    question: "Inheritance in Python is related to which concept?",
+    options: ["Database", "OOP", "Networking", "Looping"],
+    answer: "OOP",
+  },
+  {
+    question: "Which keyword is used to create a class in Python?",
+    options: ["define", "object", "class", "struct"],
+    answer: "class",
+  },
+  {
+    question: "The process of creating an object is called:",
+    options: ["Declaration", "Instantiation", "Compilation", "Execution"],
+    answer: "Instantiation",
+  },
+  {
+    question: "Which function sorts a sequence in ascending order?",
+    options: ["order()", "arrange()", "sorted()", "sequence()"],
+    answer: "sorted()",
+  },
+  {
+    question: "Which method is used to remove an element from a list?",
+    options: ["delete()", "erase()", "remove()", "clearitem()"],
+    answer: "remove()",
+  },
+  {
+    question: "Which function returns the largest value in a sequence?",
+    options: ["maximum()", "top()", "high()", "max()"],
+    answer: "max()",
+  },
+  {
+    question: "Which function returns the smallest value in a sequence?",
+    options: ["low()", "min()", "small()", "minimum()"],
+    answer: "min()",
+  },
+  {
+    question: "Which method converts a string into uppercase?",
+    options: ["upper()", "uppercase()", "capital()", "up()"],
+    answer: "upper()",
+  },
+  {
+    question: "Which method converts a string into lowercase?",
+    options: ["lower()", "lowercase()", "down()", "small()"],
+    answer: "lower()",
+  },
+  {
+    question: "Output of: x = [2, 4, 6] print(sum(x))?",
+    options: ["10", "12", "14", "6"],
+    answer: "12",
+  },
+  {
+    question: "Which operator is used for membership check?",
+    options: ["in", "is", "==", "!="],
+    answer: "in",
+  },
+  {
+    question: "Which keyword is used to define an empty block?",
+    options: ["break", "continue", "pass", "skip"],
+    answer: "pass",
+  },
+  {
+    question: "Which operator is used for identity check?",
+    options: ["==", "is", "in", "="],
+    answer: "is",
+  },
+  {
+    question: "Which of the following is an immutable data type?",
+    options: ["List", "Dictionary", "Set", "Tuple"],
+    answer: "Tuple",
+  },
+  {
+    question: "Output: import math print(math.floor(2.9))?",
+    options: ["2", "3", "2.0", "4.0"],
+    answer: "2",
+  },
+  {
+    question: "Output: import math print(math.ceil(21.4))?",
+    options: ["22", "22.0", "21", "21.0"],
+    answer: "22",
+  },
+  {
+    question: "What does strftime('%B') display?",
+    options: ["Full weekday name", "Full month name", "Abbreviated day", "None"],
+    answer: "Full month name",
+  },
+  {
+    question: "Output: import datetime print(datetime.datetime.today())?",
+    options: ["Time remaining", "Random time", "Current date and time", "None"],
+    answer: "Current date and time",
+  },
+  {
+    question: "What does strftime('%d') display?",
+    options: ["Day number (01-31)", "Hour number", "Locale date", "None"],
+    answer: "Day of month (01-31)",
+  },
+  {
+    question: "Output: x = 27; if x < 25: print(x) else: pass?",
+    options: ["No output", "25", "27", "None"],
+    answer: "No output",
+  },
+  {
+    question: "What does getattr(today, 'year') display?",
+    options: ["Date", "Year", "Days", "Current year"],
+    answer: "Current year",
+  },
+  {
+    question: "Output of math.floor(67.3)?",
+    options: ["67", "67.0", "68.0", "68"],
+    answer: "67",
+  },
+  {
+    question: "Output of math.pow(3,2)?",
+    options: ["6.0", "9", "6", "9.0"],
+    answer: "9.0",
+  },
+  {
+    question: "Output: x = 'Python' print(x[4])?",
+    options: ["h", "O", "t", "o"],
+    answer: "o",
+  },
+  {
+    question: "Output: x = 'Python' print('y' in x)?",
+    options: ["y", "Python", "True", "False"],
+    answer: "True",
+  },
+  {
+    question: "Output: x = '%s MCQ %s' %('Python', 'Test') print(x)?",
+    options: ["Python MCQ", "Test MCQ Python", "Python MCQ Test", "MCQ Test"],
+    answer: "Python MCQ Test",
+  },
+  {
+    question: "Output: x = 'Python' print(x[:])?",
+    options: ["yth", "Python", "PythonPython", "None"],
+    answer: "Python",
+  },
+  {
+    question: "Output: x = '{} 3 {}'.format('Python', 'Test') print(x)?",
+    options: ["Test 3 Python", "Python 3 Test", "Python Test", "None"],
+    answer: "Python 3 Test",
+  },
+  {
+    question: "Output: x = 'Python' print('p' not in x)?",
+    options: ["P", "True", "p", "False"],
+    answer: "True",
+  },
