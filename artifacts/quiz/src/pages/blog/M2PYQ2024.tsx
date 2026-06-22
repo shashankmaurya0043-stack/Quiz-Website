@@ -157,3 +157,149 @@ const questions: Question[] = [
     options: ["w3-ol", "w3-border", "w3-center", "all of the above"],
     answer: "w3-ol",
   },
+  {
+    question: "Identify the wrong statement about 'Cookies'. / 'कुकीज़' के बारे में गलत कथन पहचानें।",
+    options: ["Programs in background", "Helpful in portals", "Violate privacy", "Max 4 KB"],
+    answer: "Cookies are programs which run in background",
+  },
+  {
+    question: "Which statement is true about the <iframe> tag?",
+    options: ["Embed another document", "None", "Its inline frame", "Both (A) and (C) are true"],
+    answer: "Both (A) and (C) are true",
+  },
+  {
+    question: "What is not correct about the Style class? / Style class के बारे में क्या गलत है?",
+    options: ["Preceded by period", "Applied to any element", "Specific types only", "Preceded by an underscore"],
+    answer: "Style-class declarations are preceded by an underscore",
+  },
+  {
+    question: "Identify the default font used in W3.Font. / W3.Font का डिफॉल्ट फॉन्ट क्या है?",
+    options: ["Times New Roman", "Arial", "Verdana", "None"],
+    answer: "Verdana",
+  },
+  {
+    question: "An element can be accessed in JavaScript using: / JS में एलिमेंट एक्सेस करने के तरीके:",
+    options: ["getElementsById", "getElementsByClassName", "getElementsByName", "All of the above"],
+    answer: "All of the above",
+  },
+  {
+    question: "Which attribute binds value of HTML controls to application data?",
+    options: ["ng-app", "ng-init", "ng-controller", "ng-model"],
+    answer: "ng-model",
+  },
+  {
+    question: "Which encoding standards is not present in Notepad++?",
+    options: ["UTF-8 BOM", "ANSI", "UTF-8", "UTF-16"],
+    answer: "UTF-16",
+  },
+  {
+    question: "Directive to initialize an Angular JS application: / Angular JS को शुरू करने वाला निर्देश:",
+    options: ["ng-init", "none", "ng-model", "ng-app"],
+    answer: "ng-app",
+  },
+  {
+    question: "Browsers usually underline inserted text in which tag? / रेखांकित करने वाला टैग:",
+    options: ["<u>", "<ins>", "<ul>", "Both A and B"],
+    answer: "<ins>",
+  },
+  {
+    question: "Which can be used to call a JavaScript Code Snippet? / JS कोड को कॉल करने का तरीका:",
+    options: ["Triggering Event", "Preprocessor", "RMI", "Function/Method"],
+    answer: "Function/Method",
+  },
+  {
+    question: "Which object is the main entry point to all client-side JavaScript features?",
+    options: ["Location", "Standard", "Position", "Window"],
+    answer: "Window",
+  },
+  {
+    question: "What is the basic difference between JavaScript and Java? / JS और Java में क्या अंतर है?",
+    options: ["Variables specific", "No difference", "Functions as fields", "No hard distinction between methods and fields"],
+    answer: "No hard distinction between methods and fields",
+  },
+  {
+    question: "Where is Client-side JavaScript code embedded within HTML?",
+    options: ["javascript:code", "javascript:stack", "javascript:encoding", "javascript:protocol"],
+    answer: "javascript:protocol",
+  },
+  {
+    question: "JS program developed on Unix will work on Windows? / Unix पर बना JS विंडोज पर चलेगा?",
+    options: ["Errors only", "Restricted to Unix", "Text only", "Will work perfectly well on Windows Machine"],
+    answer: "Will work perfectly well on Windows Machine",
+  },
+  {
+    question: "Which scoping type does JavaScript use? / JS किस प्रकार के स्कोपिंग का उपयोग करता है?",
+    options: ["Segmental", "Lexical", "Sequential", "Literal"],
+    answer: "Lexical",
+  },
+  {
+    question: "Why event handlers is needed in JS? / JS में इवेंट हैंडलर क्यों चाहिए?",
+    options: ["inner HTML", "Handling exceptions", "Alter behaviour of windows", "Server location"],
+    answer: "Allows JS code to alter behaviour of windows",
+  },
+  {
+    question: "Why JavaScript Engine is needed? / JS इंजन क्यों चाहिए?",
+    options: ["Compiling", "Parsing", "Interpreting", "Both"],
+    answer: "Interpreting",
+  },
+  {
+    question: "Which of the following is not a framework? / कौन सा फ्रेमवर्क नहीं है?",
+    options: ["JavaScript", "Cocoa JS", "JavaScript .NET", "jQuery"],
+    answer: "JavaScript",
+  },
+  {
+    question: "Which property is triggered in response to JSErrors?",
+    options: ["onerror", "onmessage", "onexception", "onclick"],
+    answer: "onerror",
+  },
+  {
+    question: "<del> element browser display them as: / <del> टैग कैसा दिखता है?",
+    options: ["Black", "Strikethrough", "Bold", "Red"],
+    answer: "Strikethrough",
+  },
+  {
+    question: "What is the task of DNS Name server? / DNS सर्वर का कार्य क्या है?",
+    options: ["FTP address", "UDP address", "TCP address", "Translating domain names into a specific IP address"],
+    answer: "Translating domain names into a specific IP address",
+  },
+  {
+    question: "How to specify individual items in an ordered list? / OL में आइटम कैसे दर्शाते हैं?",
+    options: ["LI", "None", "UL", "OL"],
+    answer: "LI",
+  },
+  {
+    question: "w3-container class adds how much padding? / w3-container कितनी पैडिंग जोड़ता है?",
+    options: ["32px L/R", "16px L only", "32px R only", "16px left and right"],
+    answer: "16px left and right",
+  },
+  {
+    question: "Which is not a valid CSS type? / कौन सा CSS प्रकार मान्य नहीं है?",
+    options: ["Outline", "Embedded", "Inline", "External"],
+    answer: "Outline",
+  },
+  {
+    question: "Which is not a main built-in search mechanism? / कौन सा सर्च मैकेनिज्म नहीं है?",
+    options: ["Incremental", "Decremental Search", "dialog-free", "dialog-based"],
+    answer: "Decremental Search",
+  },
+  {
+    question: "Identify where a <section> element can be used. / <section> कहाँ उपयोग होता है?",
+    options: ["Chapters", "Introduction", "News Item", "All the above"],
+    answer: "All the above",
+  },
+  {
+    question: "Shortcut keys for rotating canvas 90 Degree clockwise is _______",
+    options: ["CTRL+Alt+Shift+10", "CTRL+Alt+Shift+F10", "CTRL+Shift+0", "CTRL+Alt+Shift+0"],
+    answer: "CTRL+Alt+Shift+F10",
+  },
+  {
+    question: "Identify the invalid image filter. / गलत इमेज फ़िल्टर पहचानें।",
+    options: ["Plastic Wrap", "Liquify", "Solidify", "Motion Blur"],
+    answer: "Solidify",
+  },
+  {
+    question: "Which of the following statement is true for AngularJS?",
+    options: ["Closed-source back-end", "Open-source backend", "Closed front-end", "Open-source front-end web framework"],
+    answer: "Open-source front-end web framework",
+  },
+];
