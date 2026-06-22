@@ -1390,3 +1390,96 @@ const QuizPage: React.FC = () => {
 };
 
 export default QuizPage;
+// src/components/quiz/QuestionCard.tsx
+import React from 'react';
+import { Question } from '../../types/quiz';
+import OptionButton from './OptionButton'; // We will build this in Part 9
+import { HelpCircle } from 'lucide-react';
+
+interface QuestionCardProps {
+  question: Question;
+  selectedOption: string | undefined;
+  onSelect: (option: string) => void;
+  totalQuestions: number;
+  currentIndex: number;
+}
+
+const QuestionCard: React.FC<QuestionCardProps> = ({
+  question,
+  selectedOption,
+  onSelect,
+  totalQuestions,
+  currentIndex,
+}) => {
+  const progressPercentage = ((currentIndex + 1) / totalQuestions) * 100;
+
+  return (
+    <div className="w-full animate-in fade-in slide-in-from-bottom-4 duration-500">
+      {/* Top Progress Info */}
+      <div className="flex justify-between items-end mb-2 px-1">
+        <span className="text-[#FFD700] text-sm font-bold flex items-center gap-2">
+          <HelpCircle size={16} />
+          Question {currentIndex + 1} of {totalQuestions}
+        </span>
+        <span className="text-gray-400 text-xs font-medium">
+          {Math.round(progressPercentage)}% Completed
+        </span>
+      </div>
+
+      {/* Progress Bar */}
+      <div className="w-full h-1.5 bg-white/5 rounded-full mb-6 overflow-hidden">
+        <div 
+          className="h-full bg-[#FFD700] transition-all duration-500 ease-out shadow-[0_0_10px_rgba(255,215,0,0.3)]"
+          style={{ width: `${progressPercentage}%` }}
+        />
+      </div>
+
+      {/* Main Question Card */}
+      <div className="bg-[#152a4a] rounded-2xl p-6 md:p-8 border border-white/5 shadow-xl relative overflow-hidden group">
+        {/* Subtle Background Icon */}
+        <div className="absolute -top-6 -right-6 text-white/5 rotate-12 pointer-events-none group-hover:text-white/10 transition-colors">
+          <HelpCircle size={120} />
+        </div>
+
+        {/* Question Text */}
+        <div className="relative z-10">
+          <h2 className="text-lg md:text-xl font-medium leading-relaxed text-gray-100 mb-8">
+            {/* Split English and Hindi text if needed for different styling */}
+            {question.question.split('/').map((text, i) => (
+              <span key={i} className={i === 1 ? "block mt-2 text-gray-400 text-base md:text-lg italic" : "block"}>
+                {text.trim()}
+              </span>
+            ))}
+          </h2>
+
+          {/* Options Grid */}
+          <div className="grid grid-cols-1 gap-4">
+            {Object.entries(question.options).map(([key, value]) => (
+              <OptionButton
+                key={key}
+                optionKey={key}
+                value={value}
+                isSelected={selectedOption === key}
+                onClick={() => onSelect(key)}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Card Footer Hint */}
+        <div className="mt-8 pt-6 border-t border-white/5 flex items-center justify-between">
+          <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">
+            O LEVEL M1-R5 • IT TOOLS
+          </p>
+          <div className="flex gap-1">
+             <div className="w-1 h-1 rounded-full bg-yellow-500/20"></div>
+             <div className="w-1 h-1 rounded-full bg-yellow-500/40"></div>
+             <div className="w-1 h-1 rounded-full bg-yellow-500/60"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default QuestionCard;
