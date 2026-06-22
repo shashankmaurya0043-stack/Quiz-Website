@@ -128,17 +128,6 @@ const questions: Question[] = [
     answer: "input()",
   },
   {
-    question: "Which symbol is used for comments in Python?",
-    options: ["//", "/*", "#", "**"],
-    answer: "#",
-  },
-  
-  {
-    question: "Which loop is generally used for fixed number of iterations?",
-    options: ["while", "do while", "for", "loop"],
-    answer: "for",
-  },
-  {
     question: "Which keyword terminates the loop immediately?",
     options: ["stop", "continue", "pass", "break"],
     answer: "break",
