@@ -336,7 +336,7 @@ const useTimer = (initialTime: number, onEnd: () => void) => {
 
 type Screen = "home" | "quiz" | "result";
 
-const M2PYQ2025: React.FC = () => {
+const M2PYQ2024: React.FC = () => {
   const TOTAL = questions.length;
   const DURATION = 60 * 60; // 60 Minutes
 
