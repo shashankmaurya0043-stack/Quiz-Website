@@ -508,3 +508,38 @@ const questions: Question[] = [
     answer: "PYTHON JOBS",
   }
 ];
+const useTimer = (initialTime: number, onEnd: () => void) => {
+  const [time, setTime] = useState(initialTime);
+  const [isRunning, setIsRunning] = useState(false);
+  useEffect(() => {
+    let interval: ReturnType<typeof setInterval>;
+    if (isRunning && time > 0) {
+      interval = setInterval(() => setTime((t) => t - 1), 1000);
+    } else if (time === 0 && isRunning) {
+      setIsRunning(false);
+      onEnd();
+    }
+    return () => clearInterval(interval);
+  }, [isRunning, time, onEnd]);
+  const formatTime = (s: number) => {
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return `${m.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`;
+  };
+  return { time, formatTime: formatTime(time), start: () => setIsRunning(true), pause: () => setIsRunning(false), reset: (t: number) => { setTime(t); setIsRunning(false); } };
+};
+
+const M3PYQ2025: React.FC = () => {
+  const TOTAL = questions.length;
+  const [screen, setScreen] = useState<"home" | "quiz" | "result">("home");
+  const [current, setCurrent] = useState(0);
+  const [selected, setSelected] = useState<(string | null)[]>(Array(TOTAL).fill(null));
+  const [showNav, setShowNav] = useState(false);
+  const handleEnd = useCallback(() => setScreen("result"), []);
+  const timer = useTimer(3600, handleEnd);
+  const score = selected.reduce((acc, ans, i) => acc + (ans === questions[i].answer ? 1 : 0), 0);
+  const attempted = selected.filter(a => a !== null).length;
+  const percentage = Math.round((score / TOTAL) * 100);
+
+  const startQuiz = () => { setSelected(Array(TOTAL).fill(null)); setCurrent(0); timer.reset(3600); timer.start(); setScreen("quiz"); };
+  const submitQuiz = () => { timer.pause(); setScreen("result"); };
