@@ -508,4 +508,118 @@ const questions: Question[] = [
     answer: ".test",
   }
 ];
+const useTimer = (initialTime: number, onEnd: () => void) => {
+  const [time, setTime] = useState(initialTime);
+  const [isRunning, setIsRunning] = useState(false);
+
+  useEffect(() => {
+    let interval: ReturnType<typeof setInterval>;
+    if (isRunning && time > 0) {
+      interval = setInterval(() => setTime((t) => t - 1), 1000);
+    } else if (time === 0 && isRunning) {
+      setIsRunning(false);
+      onEnd();
+    }
+    return () => clearInterval(interval);
+  }, [isRunning, time, onEnd]);
+
+  const start = () => setIsRunning(true);
+  const pause = () => setIsRunning(false);
+  const reset = (t: number) => {
+    setTime(t);
+    setIsRunning(false);
+  };
+
+  const formatTime = (s: number) => {
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return `${m.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`;
+  };
+
+  return { time, formatTime: formatTime(time), start, pause, reset, isRunning };
+};
+
+type Screen = "home" | "quiz" | "result";
+
+const M2PYQ2025: React.FC = () => {
+  const TOTAL = questions.length;
+  const DURATION = TOTAL * 60;
+
+  const [screen, setScreen] = useState<Screen>("home");
+  const [current, setCurrent] = useState(0);
+  const [selected, setSelected] = useState<(string | null)[]>(Array(TOTAL).fill(null));
+  const [showNav, setShowNav] = useState(false);
+
+  const handleEnd = useCallback(() => {
+    setScreen("result");
+  }, []);
+
+  const timer = useTimer(DURATION, handleEnd);
+
+  const score = selected.reduce((acc, ans, i) => acc + (ans === questions[i].answer ? 1 : 0), 0);
+  const attempted = selected.filter((a) => a !== null).length;
+  const percentage = Math.round((score / TOTAL) * 100);
+
+  const startQuiz = () => {
+    setSelected(Array(TOTAL).fill(null));
+    setCurrent(0);
+    timer.reset(DURATION);
+    timer.start();
+    setScreen("quiz");
+  };
+
+  const selectOption = (opt: string) => {
+    const copy = [...selected];
+    copy[current] = opt;
+    setSelected(copy);
+  };
+
+  const next = () => setCurrent((c) => Math.min(c + 1, TOTAL - 1));
+  const prev = () => setCurrent((c) => Math.max(c - 1, 0));
+  const goTo = (i: number) => {
+    setCurrent(i);
+    setShowNav(false);
+  };
+
+  const submitQuiz = () => {
+    timer.pause();
+    setScreen("result");
+  };
+
+  if (screen === "home") {
+    return (
+      <div className="min-h-screen flex items-center justify-center px-4 py-8" style={{ backgroundColor: "#0f172a" }}>
+        <div className="max-w-lg w-full rounded-3xl shadow-2xl p-6 sm:p-8 text-center space-y-5" style={{ backgroundColor: "#1e293b", border: "2px solid #facc15" }}>
+          <div className="inline-block text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest" style={{ backgroundColor: "#facc15", color: "#0f172a" }}>O Level M2-R5</div>
+          <h1 className="text-3xl sm:text-4xl font-extrabold" style={{ color: "#facc15" }}>M2-R5 PYQ<br /><span style={{ color: "#ffffff" }}>Jan 2025</span></h1>
+          <p style={{ color: "#d1d5db", fontSize: "14px" }}>{TOTAL} Questions • {TOTAL} Minutes • Instant Result</p>
+          <div className="grid grid-cols-2 gap-3 text-sm">
+            {[
+              { val: String(TOTAL), label: "Questions" },
+              { val: `${TOTAL} min`, label: "Duration" },
+              { val: "+1", label: "Per Correct" },
+              { val: "0", label: "Negative" },
+            ].map((item, idx) => (
+              <div key={idx} className="rounded-xl p-4 bg-[#0f172a] border border-[#334155]">
+                <p className="font-bold text-xl text-[#facc15]">{item.val}</p>
+                <p style={{ color: "#9ca3af" }}>{item.label}</p>
+              </div>
+            ))}
+          </div>
+          <button onClick={startQuiz} className="w-full font-bold py-4 rounded-2xl text-lg transition-all active:scale-95 bg-[#facc15] text-[#0f172a]">🚀 Attempt Mock Test</button>
+          
+          {/* PDF VIEW BUTTON ADDED HERE */}
+          <button
+            onClick={() => window.open("/pdfs/m2-100-question.pdf", "_blank")}
+            className="block w-full font-bold py-3 rounded-2xl text-base transition-all duration-200"
+            style={{ border: "2px solid #facc15", color: "#facc15", backgroundColor: "transparent" }}
+          >
+            📄 View PDF
+          </button>
+          
+          <p className="text-xs pt-2 text-[#6b7280]">Powered by <span className="font-semibold text-[#facc15]">OLevelQuiz.in</span></p>
+        </div>
+      </div>
+    );
+                                                                                                                     }
     
