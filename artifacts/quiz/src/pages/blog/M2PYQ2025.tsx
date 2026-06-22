@@ -621,6 +621,7 @@ const M2PYQ2025: React.FC = () => {
         </div>
       </div>
     );
+  }
     if (screen === "result") {
     const getGrade = () => {
       if (percentage >= 90) return { label: "Excellent! 🏆", color: "#22c55e" };
