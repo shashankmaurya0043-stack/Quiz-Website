@@ -1556,3 +1556,72 @@ const OptionButton: React.FC<OptionButtonProps> = ({
 };
 
 export default OptionButton;
+// src/components/quiz/Timer.tsx
+import React, { useState, useEffect, useRef } from 'react';
+import { Clock, AlertTriangle } from 'lucide-react';
+
+interface TimerProps {
+  durationMinutes: number;
+  onTimeUp: () => void;
+}
+
+const Timer: React.FC<TimerProps> = ({ durationMinutes, onTimeUp }) => {
+  const [secondsLeft, setSecondsLeft] = useState(durationMinutes * 60);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    timerRef.current = setInterval(() => {
+      setSecondsLeft((prev) => {
+        if (prev <= 1) {
+          if (timerRef.current) clearInterval(timerRef.current);
+          onTimeUp();
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [onTimeUp]);
+
+  // Format seconds into MM:SS
+  const formatTime = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds
+      .toString()
+      .padStart(2, '0')}`;
+  };
+
+  const isLowTime = secondsLeft < 600; // Less than 10 minutes
+
+  return (
+    <div 
+      className={`
+        flex items-center gap-2 px-3 py-1.5 rounded-lg border transition-all duration-500
+        ${isLowTime 
+          ? 'bg-red-500/10 border-red-500 text-red-500 animate-pulse' 
+          : 'bg-[#FFD700]/10 border-[#FFD700]/30 text-[#FFD700]'
+        }
+      `}
+    >
+      {isLowTime ? (
+        <AlertTriangle size={16} className="shrink-0" />
+      ) : (
+        <Clock size={16} className="shrink-0" />
+      )}
+      
+      <span className="font-mono font-bold text-sm md:text-base tracking-wider">
+        {formatTime(secondsLeft)}
+      </span>
+      
+      <span className="hidden md:inline text-[10px] uppercase font-bold opacity-70 ml-1">
+        Remaining
+      </span>
+    </div>
+  );
+};
+
+export default Timer;
