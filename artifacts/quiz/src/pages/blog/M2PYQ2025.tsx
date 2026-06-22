@@ -974,3 +974,247 @@ export const batch4 = [
     explanation: "True, this is the main advantage of using an external CSS file."
   }
 ];
+// src/data/m1-r5-jan-2025.ts (Part 5: Q81-Q100)
+
+export const batch5 = [
+  {
+    id: 81,
+    question: "Which of the following is the correct CSS syntax? / निम्नलिखित में से कौन सा सही CSS सिंटैक्स है?",
+    options: {
+      A: "<h1 \"color:Tomato;\">...</h1>;",
+      B: "<h1 style:\"color=Tomato;\">...</h1>;",
+      C: "<h1 style=\"color:Tomato;\">...</h1>;",
+      D: "<h1 \"color=Tomato;\">...</h1>;"
+    },
+    correctAnswer: "C",
+    explanation: "Inline CSS uses the 'style' attribute followed by property:value pairs."
+  },
+  {
+    id: 82,
+    question: "Which of the following is used to specify the transparency of an element in CSS? / CSS में एलीमेंट की पारदर्शिता को specify करने के लिए निम्न में से किसका उपयोग किया जाता है?",
+    options: {
+      A: "opacity",
+      B: "filter",
+      C: "visibility",
+      D: "vague"
+    },
+    correctAnswer: "A",
+    explanation: "The opacity property sets the transparency level for an element."
+  },
+  {
+    id: 83,
+    question: "In CSS which of the following are different types of gradients? / CSS में निम्नलिखित में से कौन से विभिन्न प्रकार के gradients हैं?",
+    options: {
+      A: "Linear",
+      B: "conic",
+      C: "Radial",
+      D: "All of the above"
+    },
+    correctAnswer: "D",
+    explanation: "CSS supports linear, radial, and conic gradients to create smooth transitions between colors."
+  },
+  {
+    id: 84,
+    question: "CSS Element Selector is a type of selector in CSS. / CSS एलीमेंट सेलेक्टर CSS में सेलेक्टर्स का प्रकार है।",
+    options: {
+      A: "True",
+      B: "False",
+      C: "Can't say",
+      D: "None of these"
+    },
+    correctAnswer: "A",
+    explanation: "True. Element selectors target HTML elements directly by their tag name (e.g., p, div, h1)."
+  },
+  {
+    id: 85,
+    question: "The attribute used to make rounded corners around an element in CSS is: / CSS में एक तत्व के चारों ओर गोल कोनों को बनाने के लिए उपयोग की जाने वाली विशेषता है:",
+    options: {
+      A: "border-radius",
+      B: "border-round",
+      C: "border-spacing",
+      D: "none of the above"
+    },
+    correctAnswer: "A",
+    explanation: "The border-radius property allows you to add rounded corners to an element's outer border edge."
+  },
+  {
+    id: 86,
+    question: "Different ways in which CSS can be added to HTML: / HTML में CSS को जोड़ने के विभिन्न तरीके:",
+    options: {
+      A: "Inline",
+      B: "Internal",
+      C: "External",
+      D: "All of the above"
+    },
+    correctAnswer: "D",
+    explanation: "CSS can be added to HTML via inline styles, internal style tags, or external .css files."
+  },
+  {
+    id: 87,
+    question: "Which of the following is a correct CSS Syntax? / निम्नलिखित में से कौन सा एक सही CSS सिंटैक्स है?",
+    options: {
+      A: "{body; color:orange;}",
+      B: "{body: color=orange;}",
+      C: "body:color=orange;",
+      D: "body{color:orange;}"
+    },
+    correctAnswer: "D",
+    explanation: "The correct syntax consists of a selector followed by a declaration block inside curly braces."
+  },
+  {
+    id: 88,
+    question: "Which of the following properties of an anchor element indicates that the user is currently clicking on an element? / एक एंकर एलीमेंट का निम्न में से कौन सा प्रॉपर्टी इंगित करता है कि उपयोगकर्ता वर्तमान में एक एलीमेंट पर क्लिक कर रहा है?",
+    options: {
+      A: ":link",
+      B: ":visited",
+      C: ":hover",
+      D: ":active"
+    },
+    correctAnswer: "D",
+    explanation: "The :active pseudo-class represents an element that is being activated by the user (like a mouse click)."
+  },
+  {
+    id: 89,
+    question: "How will you make all paragraph elements 'GREY' in color? / आप सभी पैराग्राफ एलीमेंट को 'GREY' रंग में कैसे बनाएंगे?",
+    options: {
+      A: "p.all {color: grey;}",
+      B: "p.all {color: #990000;}",
+      C: "all.p {color: #998877;}",
+      D: "p {color: grey;}"
+    },
+    correctAnswer: "D",
+    explanation: "Using the element selector 'p' applies the style to all <p> tags in the document."
+  },
+  {
+    id: 90,
+    question: "Which CSS property should one use to encircle an image with text? / इमेज को टेक्स्ट से घेरने के लिए किस CSS प्रॉपर्टी का इस्तेमाल करना चाहिए?",
+    options: {
+      A: "Float",
+      B: "Push",
+      C: "Align",
+      D: "wrap"
+    },
+    correctAnswer: "A",
+    explanation: "The float property is used for positioning and formatting content, allowing text to wrap around images."
+  },
+  {
+    id: 91,
+    question: "Which type of CSS is used in the code below? / दिए गए कोड में किस प्रकार का CSS प्रयोग किया जाता है? (`<p style=\"border:2px solid red;\">`)",
+    options: {
+      A: "External CSS",
+      B: "Internal CSS",
+      C: "Inline CSS",
+      D: "None of these"
+    },
+    correctAnswer: "C",
+    explanation: "Styles defined within an HTML element's 'style' attribute are called Inline CSS."
+  },
+  {
+    id: 92,
+    question: "Which of the following properties is used to set the face of a font? / निम्नलिखित में से किस प्रॉपर्टी का उपयोग फॉन्ट के फेस को सेट करने के लिए किया जाता है?",
+    options: {
+      A: "font-family",
+      B: "font-face",
+      C: "font-variant",
+      D: "font-style"
+    },
+    correctAnswer: "A",
+    explanation: "The font-family property is used to specify a list of fonts for an element."
+  },
+  {
+    id: 93,
+    question: "By using CSS style or code, how can one remove the underline from all hyperlinks? / सीएसएस स्टाइल या कोड का उपयोग करके, सभी हाइपरलिंक्स से अंडरलाइन को कैसे हटाया जा सकता है?",
+    options: {
+      A: "a { text-decoration: no-underline; }",
+      B: "a { text: no-underline; }",
+      C: "a { text-decoration: none; }",
+      D: "a { text-style:no-underline; }"
+    },
+    correctAnswer: "C",
+    explanation: "The text-decoration property set to 'none' removes the default underline from links."
+  },
+  {
+    id: 94,
+    question: "For what purpose is the CSS padding property used? / CSS padding प्रॉपर्टी किस उद्देश्य के लिए उपयोग किया जाता है?",
+    options: {
+      A: "Border",
+      B: "Space",
+      C: "Background Color",
+      D: "Margin"
+    },
+    correctAnswer: "B",
+    explanation: "Padding is used to generate space around an element's content, inside of any defined borders."
+  },
+  {
+    id: 95,
+    question: "To control image repetition in CSS, the correct option is: / CSS में इमेज पुनरावृत्ति को नियंत्रित करने के लिए सही विकल्प है:",
+    options: {
+      A: "h1 { background-loop: none; }",
+      B: "h1 { background-repeat: none; }",
+      C: "h1 { background-iterate: none; }",
+      D: "None of the above"
+    },
+    correctAnswer: "D",
+    explanation: "The correct property is 'background-repeat' and the value to stop repetition is 'no-repeat'."
+  },
+  {
+    id: 96,
+    question: "Which of the following is correct? / निम्न में से कौन सा सही है?",
+    options: {
+      A: "Style sheets allow content to be optimized for more than one type of device.",
+      B: "CSS can store web applications locally with the help of an offline cache.",
+      C: "Using CSS, we can view offline websites.",
+      D: "All of the above."
+    },
+    correctAnswer: "A",
+    explanation: "CSS media queries allow developers to create responsive designs that work on mobile, tablet, and desktop."
+  },
+  {
+    id: 97,
+    question: "CSS syntax is divided into _________ parts. / CSS सिंटैक्स को भागों में विभाजित किया गया है।",
+    options: {
+      A: "Selector and Declaration",
+      B: "Property name and value",
+      C: "Color and style",
+      D: "None of these"
+    },
+    correctAnswer: "A",
+    explanation: "A CSS rule-set consists of a selector and a declaration block."
+  },
+  {
+    id: 98,
+    question: "Which CSS property helps one to decide whether the text should be clipped, show some dots (ellipsis), or display a custom string? / कौन सी CSS प्रॉपर्टी किसी को यह तय करने में मदद करती है कि टेक्स्ट को क्लिप किया जाना चाहिए, कुछ डॉट्स (ellipsis) दिखाएं, या एक कस्टम स्ट्रिंग प्रदर्शित करें?",
+    options: {
+      A: "Text-decoration",
+      B: "Text-stroke",
+      C: "Text-shadow",
+      D: "Text-overflow"
+    },
+    correctAnswer: "D",
+    explanation: "The text-overflow property specifies how overflowed content that is not displayed should be signaled to users."
+  },
+  {
+    id: 99,
+    question: "From the below mentioned CSS properties, which of the following is used to make the text bold? / नीचे दी गई CSS प्रॉपर्टीज में से टेक्स्ट को बोल्ड करने के लिए निम्न में से किसका प्रयोग किया जाता है?",
+    options: {
+      A: "Text-align: bold",
+      B: "Font-style: bold",
+      C: "Font-weight: bold",
+      D: "Text-decoration: bold"
+    },
+    correctAnswer: "C",
+    explanation: "The font-weight property sets how thick or thin characters in text should be displayed."
+  },
+  {
+    id: 100,
+    question: "Which selector selects elements based on a certain state? / कौन सा सेलेक्टर एक निश्चित अवस्था के आधार पर एलीमेंट्स का चयन करता है?",
+    options: {
+      A: "Combinator selector",
+      B: "Pseudo Class selector",
+      C: "Pseudo elements selector",
+      D: "Attribute selector"
+    },
+    correctAnswer: "B",
+    explanation: "A pseudo-class is used to define a special state of an element (e.g., :hover, :active)."
+  }
+];
