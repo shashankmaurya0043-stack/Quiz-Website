@@ -543,3 +543,58 @@ const M3PYQ2025: React.FC = () => {
 
   const startQuiz = () => { setSelected(Array(TOTAL).fill(null)); setCurrent(0); timer.reset(3600); timer.start(); setScreen("quiz"); };
   const submitQuiz = () => { timer.pause(); setScreen("result"); };
+  if (screen === "home") return (
+    <div className="min-h-screen flex items-center justify-center bg-[#0f172a] p-4">
+      <div className="max-w-lg w-full bg-[#1e293b] border-2 border-[#facc15] rounded-3xl p-8 text-center space-y-6">
+        <h1 className="text-4xl font-black text-[#facc15]">M3-R5 Python<br /><span className="text-white">Jan 2025</span></h1>
+        <p className="text-gray-300">100 MCQ • 60 Minutes • Instant Result</p>
+        <button onClick={startQuiz} className="w-full py-4 bg-[#facc15] text-[#0f172a] font-bold rounded-2xl text-xl transition-all active:scale-95">🚀 Attempt Mock Test</button>
+        <button onClick={() => window.open("/pdfs/m3-jan-2025.pdf", "_blank")} className="block w-full py-3 border-2 border-[#facc15] text-[#facc15] rounded-2xl font-bold bg-transparent">📄 View PDF</button>
+      </div>
+    </div>
+  );
+
+  if (screen === "result") return (
+    <div className="min-h-screen bg-[#0f172a] p-4 flex flex-col items-center">
+      <div className="max-w-2xl w-full bg-[#1e293b] border-2 border-[#facc15] rounded-3xl p-8 text-center mb-6">
+        <h2 className="text-2xl font-bold text-white mb-4">Quiz Completed!</h2>
+        <div className="relative w-32 h-32 mx-auto mb-6">
+           <svg className="w-full h-full" viewBox="0 0 120 120" style={{ transform: "rotate(-90deg)" }}>
+              <circle cx="60" cy="60" r="52" fill="none" stroke="#334155" strokeWidth="10" />
+              <circle cx="60" cy="60" r="52" fill="none" stroke="#facc15" strokeWidth="10" strokeDasharray={`${(percentage / 100) * 327} 327`} />
+           </svg>
+           <div className="absolute inset-0 flex items-center justify-center text-2xl font-black text-[#facc15]">{percentage}%</div>
+        </div>
+        <button onClick={() => setScreen("home")} className="w-full py-4 bg-[#facc15] text-[#0f172a] font-bold rounded-2xl text-lg">🏠 Back to Home</button>
+      </div>
+    </div>
+  );
+
+  const q = questions[current];
+  return (
+    <div className="min-h-screen bg-[#0f172a] flex flex-col">
+      <div className="p-4 bg-[#1e293b] border-b border-[#334155] flex justify-between items-center sticky top-0 z-50">
+        <button onClick={() => setShowNav(!showNav)} className="text-[#facc15] font-bold border border-[#facc15]/30 px-3 py-1 rounded-lg">Q{current+1}/{TOTAL} ☰</button>
+        <div className="text-[#facc15] font-mono font-bold text-xl">⏳ {timer.formatTime}</div>
+        <button onClick={submitQuiz} className="bg-red-500 text-white px-4 py-2 rounded-xl font-bold text-sm">Finish</button>
+      </div>
+      <div className="flex-1 flex flex-col p-4 max-w-3xl mx-auto w-full">
+        <div className="bg-[#1e293b] p-6 rounded-2xl border border-[#334155] text-white text-lg font-medium mt-6 mb-6 leading-relaxed shadow-xl">{q.question}</div>
+        <div className="grid gap-3">
+          {q.options.map((opt, idx) => (
+            <button key={idx} onClick={() => {const c=[...selected]; c[current]=opt; setSelected(c);}} className={`w-full text-left p-4 rounded-2xl border-2 flex items-center gap-4 transition-all ${selected[current] === opt ? "border-[#facc15] bg-[#facc15]/10 text-[#facc15]" : "border-[#334155] bg-[#111827] text-gray-300"}`}>
+              <span className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold shrink-0 ${selected[current] === opt ? "bg-[#facc15] text-[#0f172a]" : "bg-gray-800 text-gray-400"}`}>{String.fromCharCode(65+idx)}</span>
+              {opt}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div className="p-4 bg-[#1e293b] border-t border-[#334155] flex justify-between gap-3 sticky bottom-0">
+        <button onClick={() => setCurrent(Math.max(0, current-1))} disabled={current === 0} className="flex-1 py-4 bg-slate-800 text-white rounded-2xl font-bold disabled:opacity-20">← Prev</button>
+        {current === TOTAL - 1 ? <button onClick={submitQuiz} className="flex-[2] py-4 bg-green-600 text-white rounded-2xl font-bold">Submit</button> : <button onClick={() => setCurrent(Math.min(TOTAL-1, current+1))} className="flex-[2] py-4 bg-[#facc15] text-[#0f172a] rounded-2xl font-bold">Next →</button>}
+      </div>
+    </div>
+  );
+};
+
+export default M3PYQ2025;
