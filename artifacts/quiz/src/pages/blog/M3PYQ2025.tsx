@@ -132,6 +132,7 @@ const questions: Question[] = [
     options: ["//", "/*", "#", "**"],
     answer: "#",
   },
+  
   {
     question: "Which loop is generally used for fixed number of iterations?",
     options: ["while", "do while", "for", "loop"],
