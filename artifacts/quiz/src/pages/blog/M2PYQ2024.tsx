@@ -385,7 +385,7 @@ const M2PYQ2025: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center px-4 py-8" style={{ backgroundColor: "#0f172a" }}>
         <div className="max-w-lg w-full rounded-3xl shadow-2xl p-6 sm:p-8 text-center space-y-5" style={{ backgroundColor: "#1e293b", border: "2px solid #facc15" }}>
           <div className="inline-block text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest" style={{ backgroundColor: "#facc15", color: "#0f172a" }}>O Level M2-R5</div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold" style={{ color: "#facc15" }}>M2-R5 PYQ<br /><span style={{ color: "#ffffff" }}>Jan 2025</span></h1>
+          <h1 className="text-3xl sm:text-4xl font-extrabold" style={{ color: "#facc15" }}>M2-R5 PYQ<br /><span style={{ color: "#ffffff" }}>Jan 2024</span></h1>
           <p style={{ color: "#d1d5db", fontSize: "14px" }}>{TOTAL} Questions • 60 Minutes • Instant Result</p>
           <div className="grid grid-cols-2 gap-3 text-sm">
             {[{ val: String(TOTAL), label: "Questions" }, { val: "60 min", label: "Duration" }, { val: "+1", label: "Correct" }, { val: "0", label: "Negative" }].map((item, idx) => (
