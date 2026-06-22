@@ -1840,3 +1840,46 @@ const jumpToQuestion = (index: number) => {
   setCurrentIndex(index);
   if (showProgress) setShowProgress(false); // Close mobile sidebar on jump
 };
+{/* Navigation Controls */}
+<div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-white/5">
+  <div className="flex gap-2 w-full sm:w-auto">
+    <button
+      onClick={handlePrevious}
+      disabled={currentIndex === 0}
+      className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold transition-all border border-white/10 disabled:opacity-30 enabled:hover:bg-white/5"
+    >
+      <ChevronLeft size={20} /> <span className="hidden md:inline">Previous</span>
+    </button>
+    
+    {/* Mark for Review Button */}
+    <button
+      onClick={() => toggleMarkForReview(questions[currentIndex].id)}
+      className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-bold transition-all border 
+        ${markedForReview[questions[currentIndex].id] 
+          ? 'bg-purple-500/20 border-purple-500 text-purple-400' 
+          : 'border-white/10 text-gray-400 hover:bg-white/5'
+        }`}
+    {/* Question indicator for mobile */}
+    <span className="md:hidden text-xs text-gray-500 font-bold px-2">
+      {currentIndex + 1} / {questions.length}
+    </span>
+  </div>
+
+  <div className="flex gap-2 w-full sm:w-auto">
+    {currentIndex === questions.length - 1 ? (
+      <button
+        onClick={handleSubmit}
+        className="w-full sm:w-auto flex items-center justify-center gap-2 px-10 py-3 rounded-xl font-bold bg-green-600 hover:bg-green-500 transition-all shadow-lg shadow-green-900/20"
+      >
+        Submit Test <Send size={18} />
+      </button>
+    ) : (
+      <button
+        onClick={handleNext}
+        className="w-full sm:w-auto flex items-center justify-center gap-2 px-10 py-3 rounded-xl font-bold bg-[#FFD700] text-[#0B1D39] hover:bg-[#e6c200] transition-all shadow-lg shadow-yellow-500/20"
+      >
+        Next Question <ChevronRight size={20} />
+      </button>
+    )}
+  </div>
+</div>
