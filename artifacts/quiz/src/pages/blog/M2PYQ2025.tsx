@@ -1218,3 +1218,40 @@ export const batch5 = [
     explanation: "A pseudo-class is used to define a special state of an element (e.g., :hover, :active)."
   }
 ];
+// src/types/quiz.ts
+
+export interface Question {
+  id: number;
+  question: string;
+  options: {
+    A: string;
+    B: string;
+    C: string;
+    D: string;
+  };
+  correctAnswer: string;
+  explanation: string;
+}
+
+export interface UserAnswer {
+  questionId: number;
+  selectedOption: string;
+  isCorrect: boolean;
+}
+
+export interface QuizState {
+  currentQuestionIndex: number;
+  answers: Record<number, string>; // questionId -> selectedOption
+  isFinished: boolean;
+  timeLeft: number; // in seconds
+}
+
+export interface QuizResult {
+  totalQuestions: number;
+  attempted: number;
+  correct: number;
+  wrong: number;
+  score: number;
+  percentage: number;
+  timeTaken: string;
+}
