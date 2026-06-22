@@ -1255,3 +1255,138 @@ export interface QuizResult {
   percentage: number;
   timeTaken: string;
 }
+// src/pages/QuizPage.tsx
+import React, { useState, useEffect } from 'react';
+import { questions, QUIZ_METADATA } from '../data/index';
+import { QuizState, QuizResult } from '../types/quiz';
+import QuestionCard from '../components/quiz/QuestionCard';
+import Timer from '../components/quiz/Timer';
+import ResultPage from './ResultPage';
+import { ChevronLeft, ChevronRight, Send, LayoutGrid } from 'lucide-react';
+
+const QuizPage: React.FC = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [userAnswers, setUserAnswers] = useState<Record<number, string>>({});
+  const [isFinished, setIsFinished] = useState(false);
+  const [showProgress, setShowProgress] = useState(false);
+  const [startTime] = useState(Date.now());
+
+  // Navigation Handlers
+  const handleNext = () => {
+    if (currentIndex < questions.length - 1) setCurrentIndex(prev => prev + 1);
+  };
+
+  const handlePrevious = () => {
+    if (currentIndex > 0) setCurrentIndex(prev => prev - 1);
+  };
+
+  const handleSelectOption = (option: string) => {
+    setUserAnswers(prev => ({
+      ...prev,
+      [questions[currentIndex].id]: option
+    }));
+  };
+
+  const handleSubmit = () => {
+    if (window.confirm("Are you sure you want to submit the test?")) {
+      setIsFinished(true);
+    }
+  };
+
+  if (isFinished) {
+    return <ResultPage userAnswers={userAnswers} startTime={startTime} />;
+  }
+
+  return (
+    <div className="min-h-screen bg-[#0B1D39] text-white font-sans selection:bg-[#FFD700] selection:text-[#0B1D39]">
+      {/* Header */}
+      <header className="sticky top-0 z-20 bg-[#0B1D39]/80 backdrop-blur-md border-b border-white/10 px-4 py-3">
+        <div className="max-w-5xl mx-auto flex justify-between items-center">
+          <div>
+            <h1 className="text-sm md:text-lg font-bold text-[#FFD700] truncate max-w-[180px] md:max-w-none">
+              {QUIZ_METADATA.title}
+            </h1>
+            <p className="text-[10px] uppercase tracking-widest text-gray-400">Jan 2025 Paper</p>
+          </div>
+          
+          <div className="flex items-center gap-4">
+            <Timer durationMinutes={QUIZ_METADATA.durationInMinutes} onTimeUp={() => setIsFinished(true)} />
+            <button 
+              onClick={() => setShowProgress(!showProgress)}
+              className="p-2 hover:bg-white/5 rounded-lg transition-colors md:hidden"
+            >
+              <LayoutGrid size={20} className="text-[#FFD700]" />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main className="max-w-5xl mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-4 gap-8">
+        {/* Progress Sidebar (Desktop) */}
+        <aside className={`lg:block ${showProgress ? 'fixed inset-0 z-30 bg-[#0B1D39] p-6' : 'hidden'} lg:relative lg:bg-transparent lg:p-0`}>
+          <div className="flex justify-between items-center mb-4 lg:hidden">
+            <h3 className="font-bold text-[#FFD700]">Question Paper</h3>
+            <button onClick={() => setShowProgress(false)} className="text-white">Close</button>
+          </div>
+          <div className="bg-[#152a4a] rounded-2xl p-4 border border-white/5 max-h-[70vh] overflow-y-auto custom-scrollbar">
+            <div className="grid grid-cols-5 gap-2">
+              {questions.map((q, idx) => (
+                <button
+                  key={q.id}
+                  onClick={() => { setCurrentIndex(idx); setShowProgress(false); }}
+                  className={`h-10 w-full rounded-lg text-xs font-bold transition-all ${
+                    currentIndex === idx ? 'bg-[#FFD700] text-[#0B1D39]' : 
+                    userAnswers[q.id] ? 'bg-green-500/20 text-green-400 border border-green-500/30' : 
+                    'bg-[#0B1D39] text-gray-400 border border-white/10'
+                  }`}
+                >
+                  {idx + 1}
+                </button>
+              ))}
+            </div>
+          </div>
+        </aside>
+
+        {/* Quiz Area */}
+        <div className="lg:col-span-3 space-y-6">
+          <QuestionCard 
+            question={questions[currentIndex]} 
+            selectedOption={userAnswers[questions[currentIndex].id]}
+            onSelect={handleSelectOption}
+            totalQuestions={questions.length}
+            currentIndex={currentIndex}
+          />
+
+          {/* Navigation Controls */}
+          <div className="flex items-center justify-between pt-4">
+            <button
+              onClick={handlePrevious}
+              disabled={currentIndex === 0}
+              className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all border border-white/10 disabled:opacity-30 enabled:hover:bg-white/5"
+            >
+              <ChevronLeft size={20} /> Previous
+            </button>
+
+            {currentIndex === questions.length - 1 ? (
+              <button
+                onClick={handleSubmit}
+                className="flex items-center gap-2 px-8 py-3 rounded-xl font-bold bg-green-600 hover:bg-green-500 transition-all shadow-lg shadow-green-900/20"
+              >
+                Submit <Send size={18} />
+              </button>
+            ) : (
+              <button
+                onClick={handleNext}
+                className="flex items-center gap-2 px-8 py-3 rounded-xl font-bold bg-[#FFD700] text-[#0B1D39] hover:bg-[#e6c200] transition-all shadow-lg shadow-yellow-500/20"
+              >
+                Next <ChevronRight size={20} />
+              </button>
+            )}
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+};
+
+export default QuizPage;
