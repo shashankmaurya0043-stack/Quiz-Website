@@ -257,3 +257,254 @@ const questions: Question[] = [
     options: ["lower()", "lowercase()", "down()", "small()"],
     answer: "lower()",
   },
+  {
+    question: "What will be the output of the following statements?\nx = [2, 4, 6]\nprint(sum(x))",
+    options: ["10", "12", "14", "6"],
+    answer: "12",
+  },
+  {
+    question: "Which operator is used for membership checking in Python?",
+    options: ["in", "is", "==", "!="],
+    answer: "in",
+  },
+  {
+    question: "Which keyword is used to define an empty block in Python?",
+    options: ["break", "continue", "pass", "skip"],
+    answer: "pass",
+  },
+  {
+    question: "Which operator is used for identity checking in Python?",
+    options: ["==", "is", "in", "="],
+    answer: "is",
+  },
+  {
+    question: "Which of the following is an immutable data type in Python?",
+    options: ["List", "Dictionary", "Set", "Tuple"],
+    answer: "Tuple",
+  },
+  {
+    question: "What will be the output of the following statements?\nimport math\nprint(math.floor(2.9))",
+    options: ["2", "3", "2.0", "4.0"],
+    answer: "2",
+  },
+  {
+    question: "What will be the output of the following statements?\nimport math\nprint(math.ceil(21.4))",
+    options: ["22", "22.0", "21", "21.0"],
+    answer: "22",
+  },
+  {
+    question: "What does the following statements do?\nfrom datetime import *\nprint(datetime.today().strftime(\"%B\"))",
+    options: ["Displays full weekday name", "Displays full month name", "Displays abbreviated day name", "Displays abbreviated month name"],
+    answer: "Displays full month name",
+  },
+  {
+    question: "What does the following statements do?\nimport datetime\nprint(datetime.datetime.today())",
+    options: ["Displays hours remaining", "Displays random time", "Displays current date and time", "Displays today's weekday"],
+    answer: "Displays current date and time",
+  },
+  {
+    question: "What does the following statements do?\nfrom datetime import *\nprint(datetime.today().strftime(\"%d\"))",
+    options: ["Displays day of month (01-31)", "Displays hour number", "Displays date/time locale", "Displays microsecond"],
+    answer: "Displays day of the month number (from 01 to 31)",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 27\nif x < 25:\n print(x)\nelse:\n pass",
+    options: ["No output", "25", "27", "None"],
+    answer: "No output",
+  },
+  {
+    question: "What does the following statements do?\nfrom datetime import *\nprint(getattr(datetime.today(),'year'))",
+    options: ["Displays current date and year", "Displays days in a year", "Displays months in a year", "Displays current year"],
+    answer: "Displays current year",
+  },
+  {
+    question: "What will be the output of the following statements?\nimport math\nprint(math.floor(67.3))",
+    options: ["67", "67.0", "68.0", "68"],
+    answer: "67",
+  },
+  {
+    question: "What will be the output of the following statements?\nimport math\nprint(math.pow(3,2))",
+    options: ["6.0", "9", "6", "9.0"],
+    answer: "9.0",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python'\nprint(x[4])",
+    options: ["h", "O", "t", "Python repeated"],
+    answer: "h",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python'\nprint('y' in x)",
+    options: ["y", "Python", "True", "False"],
+    answer: "True",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = '%s MCQ %s' %('Python', 'Test')\nprint(x)",
+    options: ["Python MCQ", "Test MCQ Python", "Python MCQ Test", "MCQ Test"],
+    answer: "Python MCQ Test",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python'\nprint(x[:])",
+    options: ["yth", "Python", "PythonPython", "Pn"],
+    answer: "Python",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = '{} 3 {}'.format('Python', 'Test')\nprint(x)",
+    options: ["Test 3 Python", "Python 3 Test", "Python Test", "Test Python"],
+    answer: "Python 3 Test",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python'\nprint('p' not in x)",
+    options: ["P", "True", "p", "False"],
+    answer: "True",
+  },
+  {
+    question: "What will be the output of the following statements?\n'{1} for {0}'.format('Python', 'Questions')",
+    options: ["Python for Questions", "Questions for Python", "1 for 0", "Python 1 for 0 Questions"],
+    answer: "Questions for Python",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python'\nprint(x[2:4])",
+    options: ["thon", "Pyth", "tho", "th"],
+    answer: "th",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python'\nprint(x*3)",
+    options: ["PythonPythonPython", "t", "Pyt Pyt Pyt", "Python Python Python"],
+    answer: "PythonPythonPython",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python %d Version' %(3)\nprint(x)",
+    options: ["Python Version 3", "Python 3 Version", "Python 3", "3 Version"],
+    answer: "Python 3 Version",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python %c or Python %c' %('2', '3')\nprint(x)",
+    options: ["Python 3 or Python 2", "Python 2 or Python 3", "Python 2 or Python 2", "Python 23"],
+    answer: "Python 2 or Python 3",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python %.1f or Python %.2f' %(2.7, 3.51)\nprint(x)",
+    options: ["Python 3.51 or Python 2.7", "Python 2.7 or Python 3.51", "Python 2 or Python 3", "Python 2.7 or Python 3.5"],
+    answer: "Python 2.7 or Python 3.51",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python'\nprint(x.capitalize())",
+    options: ["Python.capitalize", "Python", "python", "PYTHON"],
+    answer: "Python",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'python job interview'\nprint(x.title())",
+    options: ["python job interview", "Python Job Interview", "Python job interview", "Python job Interview"],
+    answer: "Python Job Interview",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'python jobs'\nprint(x.upper())",
+    options: ["Python Jobs", "python jobs", "PYTHON JOBS", "Python jobs"],
+    answer: "PYTHON JOBS",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'python jobs'\nprint(x.lower())",
+    options: ["Python Jobs", "python jobs", "PYTHON JOBS", "Python jobs"],
+    answer: "python jobs",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python Jobs'\nprint(x.swapcase())",
+    options: ["Python Jobs", "python jobs", "PYTHON JOBS", "pYTHON jOBS"],
+    answer: "pYTHON jOBS",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python'\nprint(x.join('33'))",
+    options: ["3Python3", "Python33", "Python 33", "Python3"],
+    answer: "3Python3",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python Test'\nprint(x.join('33'))",
+    options: ["3Python Test3", "3Python3Test3", "Python3Test3", "Python Test33"],
+    answer: "3Python Test3",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python'\ny = '3'\nprint(x.rstrip()+y.rstrip())",
+    options: ["Python3", "Python+3", "Python 3", "3Python3"],
+    answer: "Python3",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = open('python.csv', 'w')\nprint(x.mode)",
+    options: ["r", "w", "python.txt", "python write"],
+    answer: "w",
+  },
+  {
+    question: "What will be the output of the following statements?\nimport math\nprint(math.floor(67.3)) (Q.86)",
+    options: ["67", "67.0", "68.0", "68"],
+    answer: "67",
+  },
+  {
+    question: "What will be the output of the following statements?\nimport math\nprint(math.pow(3,2)) (Q.87)",
+    options: ["6.0", "9", "6", "9.0"],
+    answer: "9.0",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python'\nprint(x[4]) (Q.88)",
+    options: ["h", "O", "t", "Python Python Python Python"],
+    answer: "h",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python'\nprint('y' in x) (Q.89)",
+    options: ["y", "Python", "True", "False"],
+    answer: "True",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = '%s MCQ %s' %('Python', 'Test')\nprint(x) (Q.90)",
+    options: ["Python MCQ", "Test MCQ Python", "Python MCQ Test", "MCQ Test"],
+    answer: "Python MCQ Test",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python'\nprint(x[:]) (Q.91)",
+    options: ["yth", "Python", "PythonPythonPython", "Pn"],
+    answer: "Python",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = '{} 3 {}'.format('Python', 'Test')\nprint(x) (Q.92)",
+    options: ["Test 3 Python", "Python 3 Test", "Python Test", "Test Python"],
+    answer: "Python 3 Test",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python'\nprint('p' not in x) (Q.93)",
+    options: ["P", "True", "p", "False"],
+    answer: "True",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python'\nprint(x[2:4]) (Q.94)",
+    options: ["thon", "Pyth", "tho", "th"],
+    answer: "th",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python'\nprint(x*3) (Q.95)",
+    options: ["PythonPythonPython", "t", "Pyt Pyt Pyt", "Python Python Python"],
+    answer: "PythonPythonPython",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python %d Version' %(3)\nprint(x) (Q.96)",
+    options: ["Python Version 3", "Python 3 Version", "Python 3", "3 Version"],
+    answer: "Python 3 Version",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python %c or Python %c' %('2', '3')\nprint(x) (Q.97)",
+    options: ["Python 3 or Python 2", "Python 2 or Python 3", "Python 2 or Python 2", "Python 23"],
+    answer: "Python 2 or Python 3",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python %.1f or Python %.2f' %(2.7, 3.51)\nprint(x) (Q.98)",
+    options: ["Python 3.51 or Python 2.7", "Python 2.7 or Python 3.51", "Python 2 or Python 3", "Python 2.7 or Python 3.5"],
+    answer: "Python 2.7 or Python 3.51",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'Python'\nprint(x.capitalize()) (Q.99)",
+    options: ["Python", "python", "PYTHON", "Python.capitalize"],
+    answer: "Python",
+  },
+  {
+    question: "What will be the output of the following statements?\nx = 'python jobs'\nprint(x.upper()) (Q.100)",
+    options: ["Python Jobs", "python jobs", "PYTHON JOBS", "Python jobs"],
+    answer: "PYTHON JOBS",
+  }
+];
