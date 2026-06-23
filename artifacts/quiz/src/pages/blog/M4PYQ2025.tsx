@@ -108,3 +108,103 @@ const questions: Question[] = [
   { question: "Which of the following statements are true about serial communication?", options: ["Can be either setup() and loop ()", "Only setup ()", "Only loop()", "setup() loop()"], answer: "Can be either setup() and loop ()" },
   { question: "What are the advantages of Arduino?", options: ["Easy to learn", "Many third-party libraries", "Huge community", "All of the above"], answer: "All of the above" },
 ];
+const useTimer = (initialTime: number, onEnd: () => void) => {
+  const [time, setTime] = useState(initialTime);
+  const [isRunning, setIsRunning] = useState(false);
+  useEffect(() => {
+    let interval: ReturnType<typeof setInterval>;
+    if (isRunning && time > 0) interval = setInterval(() => setTime((t) => t - 1), 1000);
+    else if (time === 0 && isRunning) { setIsRunning(false); onEnd(); }
+    return () => clearInterval(interval);
+  }, [isRunning, time, onEnd]);
+  const start = () => setIsRunning(true);
+  const pause = () => setIsRunning(false);
+  const reset = (t: number) => { setTime(t); setIsRunning(false); };
+  const formatTime = (s: number) => {
+    const m = Math.floor(s / 60); const sec = s % 60;
+    return `${m.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`;
+  };
+  return { time, formatTime: formatTime(time), start, pause, reset, isRunning };
+};
+
+const M4PYQ2025: React.FC = () => {
+  const TOTAL = questions.length; const DURATION = TOTAL * 60;
+  const [screen, setScreen] = useState<"home" | "quiz" | "result">("home");
+  const [current, setCurrent] = useState(0);
+  const [selected, setSelected] = useState<(string | null)[]>(Array(TOTAL).fill(null));
+  const [showNav, setShowNav] = useState(false);
+  const handleEnd = useCallback(() => setScreen("result"), []);
+  const timer = useTimer(DURATION, handleEnd);
+  const score = selected.reduce((acc, ans, i) => acc + (ans === questions[i].answer ? 1 : 0), 0);
+  const attempted = selected.filter((a) => a !== null).length;
+  const percentage = Math.round((score / TOTAL) * 100);
+
+  const startQuiz = () => { setSelected(Array(TOTAL).fill(null)); setCurrent(0); timer.reset(DURATION); timer.start(); setScreen("quiz"); };
+  const next = () => setCurrent((c) => Math.min(c + 1, TOTAL - 1));
+  const prev = () => setCurrent((c) => Math.max(c - 1, 0));
+  const goTo = (i: number) => { setCurrent(i); setShowNav(false); };
+  const submitQuiz = () => { timer.pause(); setScreen("result"); };
+
+  if (screen === "home") return (
+    <div className="min-h-screen flex items-center justify-center px-4 py-8" style={{ backgroundColor: "#0f172a" }}>
+      <div className="max-w-lg w-full rounded-3xl shadow-2xl p-6 sm:p-8 text-center space-y-5" style={{ backgroundColor: "#1e293b", border: "2px solid #facc15" }}>
+        <div className="inline-block text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest" style={{ backgroundColor: "#facc15", color: "#0f172a" }}>O Level M4-R5</div>
+        <h1 className="text-3xl sm:text-4xl font-extrabold leading-tight" style={{ color: "#facc15" }}>M4-R5 PYQ<br /><span style={{ color: "#ffffff" }}>Jan 2025</span></h1>
+        <p style={{ color: "#d1d5db", fontSize: "14px" }}>{TOTAL} MCQ Questions • {TOTAL} Minutes • Instant Result</p>
+        <div className="grid grid-cols-2 gap-3 text-sm">
+          {[{ val: String(TOTAL), label: "Questions" }, { val: `${TOTAL} min`, label: "Duration" }, { val: "+1", label: "Per Correct" }, { val: "0", label: "Negative Mark" }].map((item, idx) => (
+            <div key={idx} className="rounded-xl p-4" style={{ backgroundColor: "#0f172a", border: "1px solid #334155" }}><p className="font-bold text-xl" style={{ color: "#facc15" }}>{item.val}</p><p style={{ color: "#9ca3af" }}>{item.label}</p></div>
+          ))}
+        </div>
+        <button onClick={startQuiz} className="w-full font-bold py-4 rounded-2xl text-lg transition-all active:scale-95" style={{ backgroundColor: "#facc15", color: "#0f172a", boxShadow: "0 8px 30px rgba(250,204,21,0.3)" }}>🚀 Attempt Mock Test</button>
+        <button onClick={() => window.open("/pdfs/m4-100-question.pdf", "_blank")} className="block w-full font-bold py-3 rounded-2xl text-base" style={{ border: "2px solid #facc15", color: "#facc15", backgroundColor: "transparent" }}>📄 View PDF</button>
+      </div>
+    </div>
+  );
+
+  if (screen === "result") {
+    const getGrade = () => {
+      if (percentage >= 90) return { label: "Excellent! 🏆", color: "#22c55e" };
+      if (percentage >= 70) return { label: "Great Job! 🎯", color: "#facc15" };
+      if (percentage >= 50) return { label: "Good Effort! 💪", color: "#f97316" };
+      return { label: "Keep Practicing! 📚", color: "#ef4444" };
+    };
+    const grade = getGrade();
+    return (
+      <div className="min-h-screen px-4 py-6" style={{ backgroundColor: "#0f172a" }}>
+        <div className="max-w-2xl mx-auto space-y-5">
+          <div className="rounded-2xl p-6 sm:p-8 text-center space-y-4" style={{ backgroundColor: "#1e293b", border: "2px solid #facc15" }}>
+            <h2 className="text-2xl font-bold text-white">Quiz Completed!</h2>
+            <p className="text-3xl font-extrabold" style={{ color: grade.color }}>{grade.label}</p>
+            <div className="relative w-36 h-36 mx-auto">
+              <svg className="w-full h-full" viewBox="0 0 120 120" style={{ transform: "rotate(-90deg)" }}>
+                <circle cx="60" cy="60" r="52" fill="none" stroke="#334155" strokeWidth="10" />
+                <circle cx="60" cy="60" r="52" fill="none" stroke="#facc15" strokeWidth="10" strokeLinecap="round" strokeDasharray={`${(percentage / 100) * 327} 327`} />
+              </svg>
+              <div className="absolute inset-0 flex flex-col items-center justify-center"><span className="text-3xl font-extrabold text-yellow-400">{percentage}%</span><span className="text-xs text-gray-400">Score</span></div>
+            </div>
+            <div className="grid grid-cols-3 gap-3 text-sm">
+              <div className="rounded-xl p-3" style={{ backgroundColor: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.4)" }}><p className="font-bold text-xl text-green-500">{score}</p><p className="text-gray-300">Correct</p></div>
+              <div className="rounded-xl p-3" style={{ backgroundColor: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.4)" }}><p className="font-bold text-xl text-red-500">{attempted - score}</p><p className="text-gray-300">Wrong</p></div>
+              <div className="rounded-xl p-3" style={{ backgroundColor: "rgba(148,163,184,0.1)", border: "1px solid rgba(148,163,184,0.3)" }}><p className="font-bold text-xl text-white">{TOTAL - attempted}</p><p className="text-gray-300">Skipped</p></div>
+            </div>
+          </div>
+          <div className="rounded-2xl p-5 space-y-4" style={{ backgroundColor: "#1e293b", border: "1px solid #334155" }}>
+            <h3 className="text-lg font-bold text-yellow-400">📋 Answer Review</h3>
+            <div className="space-y-3 overflow-y-auto" style={{ maxHeight: "55vh" }}>
+              {questions.map((q, i) => (
+                <div key={i} className="p-4 rounded-xl border" style={{ backgroundColor: "rgba(71,85,105,0.08)", borderColor: selected[i] === q.answer ? "rgba(34,197,94,0.5)" : selected[i] === null ? "#475569" : "rgba(239,68,68,0.5)" }}>
+                  <p className="text-sm font-medium text-gray-200"><span className="text-yellow-400 font-bold">Q{i + 1}.</span> {q.question}</p>
+                  <div className="flex flex-wrap gap-2 text-xs mt-2">
+                    <span className="px-2 py-1 rounded-full" style={{ backgroundColor: selected[i] === q.answer ? "rgba(34,197,94,0.2)" : "rgba(239,68,68,0.2)", color: selected[i] === q.answer ? "#22c55e" : "#ef4444" }}>Your: {selected[i] || "Skipped"}</span>
+                    {selected[i] !== q.answer && <span className="px-2 py-1 rounded-full bg-green-900/40 text-green-500">✓ {q.answer}</span>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex gap-3"><button onClick={startQuiz} className="flex-1 font-bold py-4 rounded-2xl bg-yellow-400 text-slate-900">🔄 Retry</button><button onClick={() => setScreen("home")} className="flex-1 font-bold py-4 rounded-2xl border-2 border-yellow-400 text-yellow-400 bg-transparent">🏠 Home</button></div>
+        </div>
+      </div>
+    );
+  }
