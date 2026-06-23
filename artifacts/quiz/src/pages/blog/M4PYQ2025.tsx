@@ -161,6 +161,7 @@ const M4PYQ2025: React.FC = () => {
       </div>
     </div>
   );
+}
 
   if (screen === "result") {
     const getGrade = () => {
