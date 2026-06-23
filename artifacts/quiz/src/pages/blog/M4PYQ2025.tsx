@@ -208,3 +208,60 @@ const M4PYQ2025: React.FC = () => {
       </div>
     );
   }
+  const q = questions[current];
+  return (
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: "#0f172a" }}>
+      <div className="sticky top-0 z-30 px-4 py-3 border-b border-slate-700 bg-slate-800/95 backdrop-blur-md">
+        <div className="max-w-3xl mx-auto flex items-center justify-between">
+          <button onClick={() => setShowNav(!showNav)} className="flex items-center gap-2 font-bold text-sm px-3 py-2 rounded-xl bg-yellow-400/15 text-yellow-400 border border-yellow-400/30">
+            Q{current + 1}/{TOTAL}
+          </button>
+          <div className="flex items-center gap-2 font-mono font-bold text-lg px-4 py-2 rounded-xl bg-yellow-400/10 text-yellow-400 border border-yellow-400/20">{timer.formatTime}</div>
+          <button onClick={submitQuiz} className="font-bold text-sm px-4 py-2 rounded-xl bg-red-500 text-white border border-red-400">Submit</button>
+        </div>
+      </div>
+      <div className="w-full h-1 bg-slate-800"><div className="h-full bg-yellow-400 transition-all duration-500" style={{ width: `${((current + 1) / TOTAL) * 100}%` }} /></div>
+      
+      {showNav && (
+        <>
+          <div className="fixed inset-0 z-40 bg-black/70" onClick={() => setShowNav(false)} />
+          <div className="fixed left-0 top-0 bottom-0 z-50 overflow-y-auto p-5 space-y-4 bg-slate-800 border-r-2 border-yellow-400 w-[320px]">
+            <div className="flex items-center justify-between"><h3 className="font-bold text-lg text-yellow-400">Navigator</h3><button onClick={() => setShowNav(false)} className="text-gray-400 text-2xl">✕</button></div>
+            <div className="grid grid-cols-6 gap-2">
+              {questions.map((_, i) => (
+                <button key={i} onClick={() => goTo(i)} className="w-10 h-10 rounded-lg text-sm font-bold border transition-all" style={{ backgroundColor: i === current ? "#facc15" : selected[i] !== null ? "rgba(34,197,94,0.2)" : "#0f172a", color: i === current ? "#0f172a" : selected[i] ? "#22c55e" : "#94a3b8", borderColor: i === current ? "#facc15" : "#475569" }}>{i + 1}</button>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
+
+      <div className="flex-1 flex items-start justify-center px-4 py-5">
+        <div className="max-w-3xl w-full space-y-5">
+          <div className="rounded-2xl p-6 bg-slate-800 border border-slate-700">
+            <span className="inline-block text-xs font-bold px-3 py-1.5 rounded-full mb-4 bg-yellow-400/15 text-yellow-400">Question {current + 1} of {TOTAL}</span>
+            <h2 className="text-lg sm:text-xl font-semibold text-white leading-relaxed">{q.question}</h2>
+          </div>
+          <div className="space-y-3">
+            {q.options.map((opt, idx) => (
+              <button key={idx} onClick={() => { const copy = [...selected]; copy[current] = opt; setSelected(copy); }} className="w-full text-left p-4 rounded-2xl transition-all flex items-center gap-4" style={{ backgroundColor: selected[current] === opt ? "rgba(250,204,21,0.12)" : "#111827", border: selected[current] === opt ? "2px solid #facc15" : "2px solid #334155", boxShadow: selected[current] === opt ? "0 4px 20px rgba(250,204,21,0.15)" : "none" }}>
+                <span className="w-10 h-10 rounded-xl flex items-center justify-center font-bold" style={{ backgroundColor: selected[current] === opt ? "#facc15" : "#1e293b", color: selected[current] === opt ? "#0f172a" : "#d1d5db", border: selected[current] === opt ? "none" : "1px solid #475569" }}>{String.fromCharCode(65 + idx)}</span>
+                <span className="text-sm sm:text-base" style={{ color: selected[current] === opt ? "#facc15" : "#e2e8f0", fontWeight: selected[current] === opt ? 600 : 400 }}>{opt}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="sticky bottom-0 z-20 px-4 py-3 bg-slate-800/95 border-t border-slate-700">
+        <div className="max-w-3xl mx-auto flex items-center justify-between gap-3">
+          <button onClick={prev} disabled={current === 0} className="py-3 px-5 rounded-2xl font-bold bg-slate-700 text-white disabled:opacity-30">Prev</button>
+          {selected[current] && <button onClick={() => { const copy = [...selected]; copy[current] = null; setSelected(copy); }} className="text-xs text-red-500 underline">Clear</button>}
+          {current === TOTAL - 1 ? <button onClick={submitQuiz} className="py-3 px-5 rounded-2xl font-bold bg-green-500 text-white">Submit</button> : <button onClick={next} className="py-3 px-5 rounded-2xl font-bold bg-yellow-400 text-slate-900">Next</button>}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default M4PYQ2025;
