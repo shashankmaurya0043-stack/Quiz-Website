@@ -160,8 +160,7 @@ const M4PYQ2025: React.FC = () => {
         <button onClick={() => window.open("/pdfs/m4-100-question.pdf", "_blank")} className="block w-full font-bold py-3 rounded-2xl text-base" style={{ border: "2px solid #facc15", color: "#facc15", backgroundColor: "transparent" }}>📄 View PDF</button>
       </div>
     </div>
-  );
-}
+  );}
 
   if (screen === "result") {
     const getGrade = () => {
