@@ -23,6 +23,9 @@ import M2RepeatedQuestions from "@/pages/blog/M2RepeatedQuestions";
 import M3PYQ2025 from "@/pages/blog/M3PYQ2025";
 import M3PYQ2024 from "@/pages/blog/M3PYQ2024";
 import M3RepeatedQuestions from "@/pages/blog/M3RepeatedQuestions";
+import M4PYQ2025 from "@/pages/blog/M4PYQ2025";
+import M4PYQ2024 from "@/pages/blog/M4PYQ2024";
+import M4RepeatedQuestions from "@/pages/blog/M4RepeatedQuestions";
 
 function NotFound() {
   return (
@@ -87,6 +90,12 @@ function App() {
 <Route
   path="/blog/m3-repeated-questions"
   component={M3RepeatedQuestions}
+/>
+        <Route path="/blog/m4-2025-pyq" component={M4PYQ2025} />
+<Route path="/blog/m4-2024-pyq" component={M4PYQ2024} />
+<Route
+  path="/blog/m4-repeated-questions"
+  component={M4RepeatedQuestions}
 />
       
         <Route component={NotFound} />
