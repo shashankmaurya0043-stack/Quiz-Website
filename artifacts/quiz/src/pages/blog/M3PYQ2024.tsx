@@ -257,3 +257,254 @@ const questions: Question[] = [
     options: ["Stack", "Array", "Linked List", "Queue"],
     answer: "Stack",
   },
+  {
+    question: "Which data structure represents an incomplete list?",
+    options: ["Linked List", "Array", "Queue", "Stack"],
+    answer: "Linked List",
+  },
+  {
+    question: "Which of the following is not a loop type?",
+    options: ["loop", "do-while", "for", "while"],
+    answer: "loop",
+  },
+  {
+    question: "Data structure in Python is also known as?",
+    options: ["List", "Stack", "Queue", "All of the above"],
+    answer: "All of the above",
+  },
+  {
+    question: "What is the full form of PVM?",
+    options: ["Python Virtual Machine", "Python Virtual Mode", "Python Visual Mode", "Python Visual Machine"],
+    answer: "Python Virtual Machine",
+  },
+  {
+    question: "Which symbol is used for input/output in flowchart?",
+    options: ["Rectangle", "Parallelogram", "Oval", "Diamond"],
+    answer: "Parallelogram",
+  },
+  {
+    question: "Is abs() equal to math.fabs() in all cases?",
+    options: ["Yes", "No", "Can't say", "None"],
+    answer: "Yes",
+  },
+  {
+    question: "What is the output of print(range(4))?",
+    options: ["range(0, 5)", "range(0, 4)", "range(1, 4)", "range(1, 5)"],
+    answer: "range(0, 4)",
+  },
+  {
+    question: "Which is not an attribute of a file?",
+    options: ["rename", "softspace", "closed", "None"],
+    answer: "rename",
+  },
+  {
+    question: "How many arguments can Python accept from command line?",
+    options: ["Any", "Two", "one", "Three"],
+    answer: "Any",
+  },
+  {
+    question: "Output of: a=set('dcma'); b=set('mlpc'); print(a^b)",
+    options: ["{'d', 'c', 'm', 'a'}", "None", "{'d', 'a', 'p', 'l'}", "{'d', 'a', 'p', 'l', 'c'}"],
+    answer: "{'d', 'c', 'a', 'p', 'l'}",
+  },
+  {
+    question: "Algorithms cannot be represented by?",
+    options: ["syntax", "programs", "pseudo codes", "flowcharts"],
+    answer: "syntax",
+  },
+  {
+    question: "What is the output of \"2\"+\"3\"?",
+    options: ["\"23\"", "None", "\"2+3\"", "23"],
+    answer: "\"23\"",
+  },
+  {
+    question: "Full form of CSV?",
+    options: ["Comma Separated Value", "Compact Structure View", "Comma Space Value", "Common Spaced Value"],
+    answer: "Comma Separated Value",
+  },
+  {
+    question: "os.getlogin() returns?",
+    options: ["Name of logged in user", "Login time", "Email", "None"],
+    answer: "Return the name of the user logged in to the terminal",
+  },
+  {
+    question: "Which data type does not allow duplicate items?",
+    options: ["set", "list", "dictionary", "None"],
+    answer: "set",
+  },
+  {
+    question: "A detailed flowchart is known as?",
+    options: ["Union", "Macro", "Stack", "Micro"],
+    answer: "Macro",
+  },
+  {
+    question: "Finding errors in code is called?",
+    options: ["Debugging", "Running", "Testing", "Compiling"],
+    answer: "Debugging",
+  },
+  {
+    question: "Full form of LEGB?",
+    options: ["Local Enclosing Global Built-in", "Low Enclosing Global Built-in", "Light Emitting Global Built-in", "Local Ending Global Built-in"],
+    answer: "Local, Enclosing, Global and Built-in",
+  },
+  {
+    question: "Output of: from math import *; floor(3.7)",
+    options: ["3", "4", "3.0", "None"],
+    answer: "3",
+  },
+  {
+    question: "Output of: import numpy as np; a=np.array([(1,2,3)]); print(a.shape)",
+    options: ["(1, 3)", "(3, 1)", "(2, 3)", "None"],
+    answer: "(1, 3)",
+  },
+  {
+    question: "Output of: q=(3,4,5,20,5,25,1,3); q.pop(1); print(q)",
+    options: ["(3, 5, 20, 5, 25, 1, 3)", "(1, 3, 4, 5)", "(3, 4, 5...)", "Error"],
+    answer: "(3, 5, 20, 5, 25, 1, 3)",
+  },
+  {
+    question: "Output of: x=10; y=3; print(divmod(x,y))",
+    options: ["(3, 1)", "(4, 2)", "(5, 7)", "(1, 3)"],
+    answer: "(3, 1)",
+  },
+  {
+    question: "Output: a=np.array((1,2,3)); b=np.array((0,1,5)); c=a+b; c=c*a; print(c[2])",
+    options: ["24", "6", "0", "None"],
+    answer: "24",
+  },
+  {
+    question: "Output: ms=('A','D','H','U','N','I','C'); print(ms[1:4])",
+    options: ["('D', 'H', 'U')", "('A', 'D')", "('H', 'U')", "None"],
+    answer: "('D', 'H', 'U')",
+  },
+  {
+    question: "What is the result of len(mylist) after listParam += (1)?",
+    options: ["5", "2", "8", "1"],
+    answer: "5",
+  },
+  {
+    question: "How many times will loop run: for a in \"56247839\"?",
+    options: ["8", "11", "1", "0"],
+    answer: "8",
+  },
+  {
+    question: "Which is a valid constant in Python?",
+    options: ["949227", "Hello", "True", "\"2'"],
+    answer: "949227",
+  },
+  {
+    question: "What is output of print(int())?",
+    options: ["1", "Error", "Random", "0"],
+    answer: "0",
+  },
+  {
+    question: "What does math.trunc() return?",
+    options: ["Truncated decimal part", "Rounded value", "Truncated integer", "Floor value"],
+    answer: "The truncated integer value of a number",
+  },
+  {
+    question: "Function used to remove last item from list?",
+    options: ["pop()", "delete()", "remove_last()", "delete_last()"],
+    answer: "pop()",
+  },
+  {
+    question: "Which denotes file binary mode?",
+    options: ["r", "r+", "w", "rb"],
+    answer: "rb",
+  },
+  {
+    question: "Output of: sys.stdout.write('Welcome\\n'); sys.stdout.write('All\\n')",
+    options: ["Compilation Error", "Welcome All", "WelcomeAll", "Runtime Error"],
+    answer: "WelcomeAll",
+  },
+  {
+    question: "How is a function declared in Python?",
+    options: ["declare func()", "def func func():", "declare func func():", "def func():"],
+    answer: "def function_name():",
+  },
+  {
+    question: "What does \"hello,world\"[-6] print?",
+    options: ["Space", ",", "e", "S"],
+    answer: ",",
+  },
+  {
+    question: "Which is not a correct mode to open a file?",
+    options: ["rw", "r+", "a+", "ab"],
+    answer: "rw",
+  },
+  {
+    question: "Which keyword is used for functions?",
+    options: ["fun", "function", "def", "define"],
+    answer: "def",
+  },
+  {
+    question: "Output of (2, 4) + (1, 5)?",
+    options: ["(2,4,1,5)", "Invalid", "(3,9)", "(2,1,4,5)"],
+    answer: "(2, 4, 1, 5)",
+  },
+  {
+    question: "Output of print((-3)**2)?",
+    options: ["9", "-9", "-6", "6"],
+    answer: "9",
+  },
+  {
+    question: "How many numbers printed for fun(100,120) with x%3==0?",
+    options: ["6", "7", "9", "8"],
+    answer: "7",
+  },
+  {
+    question: "Syntax to rename a file?",
+    options: ["os.rename(old, new)", "os.rename(fp, new)", "os.set_name(old, new)", "fp.name=new"],
+    answer: "os.rename ( existing_name, new_name)",
+  },
+  {
+    question: "Function to open a file?",
+    options: ["open()", "file_open()", "obj=open()", "obj=file_open()"],
+    answer: "file_object=open(file_name, mode)",
+  },
+  {
+    question: "What is true about break statement?",
+    options: ["Halts for time", "Forces control out of loop", "Stops program", "Next iteration"],
+    answer: "Break halts the execution and forces the control out of the loop",
+  },
+  {
+    question: "What happens if file not exist in 'w' mode?",
+    options: ["Error", "NotFound", "FoundError", "None of these"],
+    answer: "None of these",
+  },
+  {
+    question: "Output of max(\"what are you\")?",
+    options: ["Error", "y", "what", "a"],
+    answer: "y",
+  },
+  {
+    question: "Which is a mathematical function?",
+    options: ["rhombus()", "home()", "sqrt()", "add()"],
+    answer: "sqrt()",
+  },
+  {
+    question: "Output of arr=np.array([1,2,3]); print(arr.shape)?",
+    options: ["3", "(4,)", "(3,)", "1"],
+    answer: "(3,)",
+  },
+  {
+    question: "Oval shape in flowchart is used for?",
+    options: ["Input/Output", "Arithmetic", "Decision", "Start/Stop"],
+    answer: "Start/Stop",
+  },
+  {
+    question: "Which is not a valid mode to open a file?",
+    options: ["ab", "r+", "w+", "rw"],
+    answer: "rw",
+  },
+  {
+    question: "Python file is considered in which format?",
+    options: ["giga", "bits", "mega", "byte"],
+    answer: "byte / बाइट",
+  },
+  {
+    question: "Symbol for bitwise XOR operator?",
+    options: ["^", "!", "|", "&"],
+    answer: "^",
+  },
+];
