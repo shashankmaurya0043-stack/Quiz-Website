@@ -579,4 +579,130 @@ const M3PYQ2024: React.FC = () => {
       </div>
     );
   }
+  if (screen === "result") {
+    const getGrade = () => {
+      if (percentage >= 90) return { label: "Excellent! 🏆", color: "#22c55e" };
+      if (percentage >= 70) return { label: "Great Job! 🎯", color: "#facc15" };
+      if (percentage >= 50) return { label: "Good Effort! 💪", color: "#f97316" };
+      return { label: "Keep Practicing! 📚", color: "#ef4444" };
+    };
+    const grade = getGrade();
+
+    return (
+      <div className="min-h-screen px-4 py-6" style={{ backgroundColor: "#0f172a" }}>
+        <div className="max-w-2xl mx-auto space-y-5">
+          <div className="rounded-2xl p-6 sm:p-8 text-center space-y-4" style={{ backgroundColor: "#1e293b", border: "2px solid #facc15" }}>
+            <h2 className="text-2xl font-bold" style={{ color: "#ffffff" }}>Quiz Completed!</h2>
+            <p className="text-3xl font-extrabold" style={{ color: grade.color }}>{grade.label}</p>
+            <div className="relative w-36 h-36 mx-auto">
+              <svg className="w-full h-full" viewBox="0 0 120 120" style={{ transform: "rotate(-90deg)" }}>
+                <circle cx="60" cy="60" r="52" fill="none" stroke="#334155" strokeWidth="10" />
+                <circle cx="60" cy="60" r="52" fill="none" stroke="#facc15" strokeWidth="10" strokeLinecap="round" strokeDasharray={`${(percentage / 100) * 327} 327`} />
+              </svg>
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <span className="text-3xl font-extrabold" style={{ color: "#facc15" }}>{percentage}%</span>
+                <span className="text-xs" style={{ color: "#d1d5db" }}>Score</span>
+              </div>
+            </div>
+            <div className="grid grid-cols-3 gap-3 text-sm">
+              <div className="rounded-xl p-3" style={{ border: "1px solid rgba(34,197,94,0.4)" }}><p className="font-bold text-xl" style={{ color: "#22c55e" }}>{score}</p><p style={{ color: "#d1d5db" }}>Correct</p></div>
+              <div className="rounded-xl p-3" style={{ border: "1px solid rgba(239,68,68,0.4)" }}><p className="font-bold text-xl" style={{ color: "#ef4444" }}>{attempted - score}</p><p style={{ color: "#d1d5db" }}>Wrong</p></div>
+              <div className="rounded-xl p-3" style={{ border: "1px solid rgba(148,163,184,0.3)" }}><p className="font-bold text-xl" style={{ color: "#e2e8f0" }}>{TOTAL - attempted}</p><p style={{ color: "#d1d5db" }}>Skipped</p></div>
+            </div>
+          </div>
+          <div className="rounded-2xl p-5 space-y-4" style={{ backgroundColor: "#1e293b", border: "1px solid #334155" }}>
+            <h3 className="text-lg font-bold" style={{ color: "#facc15" }}>📋 Answer Review</h3>
+            <div className="space-y-3 overflow-y-auto pr-1" style={{ maxHeight: "55vh" }}>
+              {questions.map((q, i) => {
+                const isCorrect = selected[i] === q.answer;
+                const isSkipped = selected[i] === null;
+                const borderCol = !isSkipped ? (isCorrect ? "rgba(34,197,94,0.5)" : "rgba(239,68,68,0.5)") : "#475569";
+                return (
+                  <div key={i} className="p-4 rounded-xl" style={{ border: `1px solid ${borderCol}`, backgroundColor: "rgba(71,85,105,0.15)" }}>
+                    <p className="text-sm font-medium mb-2" style={{ color: "#e2e8f0" }}><span className="font-bold" style={{ color: "#facc15" }}>Q{i+1}.</span> {q.question}</p>
+                    <div className="flex flex-wrap gap-2 text-xs">
+                      {!isSkipped && <span className="px-2 py-1 rounded-full" style={{ backgroundColor: isCorrect ? "rgba(34,197,94,0.2)" : "rgba(239,68,68,0.2)", color: isCorrect ? "#22c55e" : "#ef4444" }}>Your: {selected[i]}</span>}
+                      {isSkipped && <span className="px-2 py-1 rounded-full" style={{ backgroundColor: "rgba(148,163,184,0.2)", color: "#94a3b8" }}>Skipped</span>}
+                      {!isCorrect && <span className="px-2 py-1 rounded-full" style={{ backgroundColor: "rgba(34,197,94,0.2)", color: "#22c55e" }}>✓ {q.answer}</span>}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className="flex gap-3">
+            <button onClick={startQuiz} className="flex-1 font-bold py-4 rounded-2xl transition-all active:scale-95" style={{ backgroundColor: "#facc15", color: "#0f172a" }}>🔄 Retry Quiz</button>
+            <button onClick={() => setScreen("home")} className="flex-1 font-bold py-4 rounded-2xl transition-all active:scale-95" style={{ border: "2px solid #facc15", color: "#facc15", backgroundColor: "transparent" }}>🏠 Home</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const q = questions[current];
+
+  return (
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: "#0f172a" }}>
+      <div className="sticky top-0 z-30 px-4 py-3" style={{ backgroundColor: "rgba(30,41,59,0.97)", backdropFilter: "blur(12px)", borderBottom: "1px solid #334155" }}>
+        <div className="max-w-3xl mx-auto flex items-center justify-between">
+          <button onClick={() => setShowNav(!showNav)} className="flex items-center gap-2 font-bold text-sm px-3 py-2 rounded-xl" style={{ backgroundColor: "rgba(250,204,21,0.15)", color: "#facc15", border: "1px solid rgba(250,204,21,0.3)" }}>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+            Q{current + 1}/{TOTAL}
+          </button>
+          <div className="flex items-center gap-2 font-mono font-bold text-lg px-4 py-2 rounded-xl" style={{ backgroundColor: timer.time <= 60 ? "rgba(239,68,68,0.2)" : "rgba(250,204,21,0.12)", color: timer.time <= 60 ? "#ef4444" : "#facc15", border: `1px solid ${timer.time <= 60 ? "rgba(239,68,68,0.4)" : "rgba(250,204,21,0.3)"}` }}>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            {timer.formatTime}
+          </div>
+          <button onClick={submitQuiz} className="font-bold text-sm px-4 py-2 rounded-xl" style={{ backgroundColor: "#ef4444", color: "#ffffff", border: "1px solid #f87171" }}>Submit</button>
+        </div>
+      </div>
+
+      <div className="w-full" style={{ height: "4px", backgroundColor: "#1e293b" }}>
+        <div style={{ height: "100%", width: `${((current + 1) / TOTAL) * 100}%`, background: "linear-gradient(90deg, #facc15, #eab308)", transition: "width 0.5s ease-out" }} />
+      </div>
+
+      {showNav && (
+        <>
+          <div className="fixed inset-0 z-40" style={{ backgroundColor: "rgba(0,0,0,0.7)" }} onClick={() => setShowNav(false)} />
+          <div className="fixed left-0 top-0 bottom-0 z-50 overflow-y-auto p-5 space-y-4" style={{ width: "320px", maxWidth: "85vw", backgroundColor: "#1e293b", borderRight: "2px solid #facc15" }}>
+            <h3 className="font-bold text-lg" style={{ color: "#facc15" }}>Navigator</h3>
+            <div className="grid grid-cols-6 gap-2">
+              {questions.map((_, i) => (
+                <button key={i} onClick={() => goTo(i)} className="w-10 h-10 rounded-lg text-sm font-bold transition-all" style={{ backgroundColor: i === current ? "#facc15" : selected[i] !== null ? "rgba(34,197,94,0.15)" : "#0f172a", color: i === current ? "#0f172a" : selected[i] !== null ? "#22c55e" : "#94a3b8", border: `1.5px solid ${i === current ? "#facc15" : "#475569"}` }}>{i + 1}</button>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
+
+      <div className="flex-1 flex items-start justify-center px-4 py-5">
+        <div className="max-w-3xl w-full space-y-5">
+          <div className="rounded-2xl p-5 sm:p-6" style={{ backgroundColor: "#1e293b", border: "1px solid #334155" }}>
+            <span className="inline-block text-xs font-bold px-3 py-1.5 rounded-full mb-4" style={{ backgroundColor: "rgba(250,204,21,0.15)", color: "#facc15" }}>Question {current + 1} of {TOTAL}</span>
+            <h2 className="text-lg sm:text-xl font-semibold leading-relaxed whitespace-pre-line" style={{ color: "#ffffff" }}>{q.question}</h2>
+          </div>
+
+          <div className="space-y-3">
+            {q.options.map((opt, idx) => (
+              <button key={idx} onClick={() => selectOption(opt)} className="w-full text-left p-4 rounded-2xl transition-all flex items-center gap-4" style={{ backgroundColor: selected[current] === opt ? "rgba(250,204,21,0.12)" : "#111827", border: selected[current] === opt ? "2px solid #facc15" : "2px solid #334155" }}>
+                <span className="w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold" style={{ backgroundColor: selected[current] === opt ? "#facc15" : "#1e293b", color: selected[current] === opt ? "#0f172a" : "#d1d5db" }}>{["A", "B", "C", "D"][idx]}</span>
+                <span className="text-sm sm:text-base" style={{ color: selected[current] === opt ? "#facc15" : "#e2e8f0" }}>{opt}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="sticky bottom-0 z-20 px-4 py-3" style={{ backgroundColor: "rgba(30,41,59,0.97)", borderTop: "1px solid #334155" }}>
+        <div className="max-w-3xl mx-auto flex items-center justify-between gap-3">
+          <button onClick={prev} disabled={current === 0} className="font-bold py-3 px-5 rounded-2xl transition-all text-sm active:scale-95" style={{ backgroundColor: current === 0 ? "#1e293b" : "#334155", color: current === 0 ? "#475569" : "#ffffff", border: "1px solid #475569" }}>Prev</button>
+          {selected[current] !== null && <button onClick={() => { const copy = [...selected]; copy[current] = null; setSelected(copy); }} className="text-xs font-medium underline" style={{ color: "#ef4444" }}>Clear</button>}
+          <button onClick={current === TOTAL - 1 ? submitQuiz : next} className="font-bold py-3 px-5 rounded-2xl transition-all text-sm active:scale-95" style={{ backgroundColor: current === TOTAL - 1 ? "#22c55e" : "#facc15", color: current === TOTAL - 1 ? "#ffffff" : "#0f172a", border: `1px solid ${current === TOTAL - 1 ? "#4ade80" : "#eab308"}` }}>{current === TOTAL - 1 ? "Submit" : "Next"}</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default M3PYQ2024;
           
