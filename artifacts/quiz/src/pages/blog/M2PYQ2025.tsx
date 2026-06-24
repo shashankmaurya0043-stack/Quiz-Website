@@ -610,7 +610,7 @@ const M2PYQ2025: React.FC = () => {
           
           {/* PDF VIEW BUTTON ADDED HERE */}
           <button
-            onClick={() => window.open("/pdfs/m2-100-question.pdf", "_blank")}
+            onClick={() => window.open("/pdfs/m2.pdf", "_blank")}
             className="block w-full font-bold py-3 rounded-2xl text-base transition-all duration-200"
             style={{ border: "2px solid #facc15", color: "#facc15", backgroundColor: "transparent" }}
           >
