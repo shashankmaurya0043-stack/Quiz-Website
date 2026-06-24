@@ -1,1 +1,13 @@
-
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/artifacts/quiz/index.html"
+    }
+  ]
+}
