@@ -133,3 +133,62 @@ const useTimer = (initialTime: number, onEnd: () => void) => {
   };
   return { time, formatTime: formatTime(time), start, pause, reset, isRunning };
 };
+const M2Repeated: React.FC = () => {
+  const TOTAL = allQuestions.length; const DURATION = TOTAL * 60;
+  const [screen, setScreen] = useState<"home" | "quiz" | "result">("home");
+  const [current, setCurrent] = useState(0);
+  const [selected, setSelected] = useState<(string | null)[]>(Array(TOTAL).fill(null));
+  const [showNav, setShowNav] = useState(false);
+  const handleEnd = useCallback(() => setScreen("result"), []);
+  const timer = useTimer(DURATION, handleEnd);
+  const score = selected.reduce((acc, ans, i) => acc + (ans === allQuestions[i].answer ? 1 : 0), 0);
+  const percentage = Math.round((score / TOTAL) * 100);
+
+  const startQuiz = () => { setSelected(Array(TOTAL).fill(null)); setCurrent(0); timer.reset(DURATION); timer.start(); setScreen("quiz"); };
+  const submitQuiz = () => { timer.pause(); setScreen("result"); };
+
+  if (screen === "home") return (
+    <div className="min-h-screen flex items-center justify-center px-4 py-8" style={{ backgroundColor: "#0f172a" }}>
+      <div className="max-w-lg w-full rounded-3xl shadow-2xl p-8 text-center space-y-6" style={{ backgroundColor: "#1e293b", border: "2px solid #facc15" }}>
+        <div className="inline-block text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest bg-yellow-400 text-slate-900">O Level M2-R5</div>
+        <h1 className="text-4xl font-extrabold text-yellow-400">Web Designing<br /><span className="text-white">Most Repeated MCQs</span></h1>
+        <div className="grid grid-cols-2 gap-3 text-sm">
+          {[{v: TOTAL, l: "Questions"}, {v: `${TOTAL}m`, l: "Time"}, {v: "+1", l: "Marks"}, {v: "0", l: "Negative"}].map((it, i) => (
+            <div key={i} className="p-4 rounded-xl bg-slate-900 border border-slate-700">
+              <p className="text-xl font-bold text-yellow-400">{it.v}</p><p className="text-gray-400">{it.l}</p>
+            </div>
+          ))}
+        </div>
+        <button onClick={startQuiz} className="w-full font-bold py-4 rounded-2xl text-lg bg-yellow-400 text-slate-900 shadow-lg active:scale-95 transition-all">🚀 Start Practice Test</button>
+      </div>
+    </div>
+  );
+
+  if (screen === "result") return (
+    <div className="min-h-screen p-4 overflow-y-auto bg-slate-950">
+      <div className="max-w-2xl mx-auto space-y-6">
+        <div className="rounded-2xl p-8 text-center bg-slate-900 border-2 border-yellow-400">
+          <h2 className="text-2xl font-bold text-white mb-4">Practice Completed!</h2>
+          <div className="text-5xl font-extrabold text-yellow-400 mb-6">{percentage}%</div>
+          <div className="grid grid-cols-3 gap-3 text-sm">
+            <div className="p-3 rounded-xl bg-green-500/10 border border-green-500/30 text-green-500"><p className="text-xl font-bold">{score}</p><p className="text-xs">Correct</p></div>
+            <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-500"><p className="text-xl font-bold">{TOTAL-score}</p><p className="text-xs">Wrong</p></div>
+            <div className="p-3 rounded-xl bg-slate-800 text-gray-400"><p className="text-xl font-bold">{selected.filter(x => !x).length}</p><p className="text-xs">Skipped</p></div>
+          </div>
+        </div>
+        <div className="rounded-2xl p-5 bg-slate-900 border border-slate-700 space-y-4">
+          <h3 className="text-lg font-bold text-yellow-400">📋 Answer Review</h3>
+          <div className="max-h-[50vh] overflow-y-auto space-y-3 pr-2">
+            {allQuestions.map((q, i) => (
+              <div key={i} className={`p-4 rounded-xl border ${selected[i] === q.answer ? "border-green-500/40 bg-green-500/5" : "border-red-500/40 bg-red-500/5"}`}>
+                <p className="text-sm text-white font-medium">Q{i+1}. {q.question}</p>
+                <p className={`text-xs mt-2 ${selected[i] === q.answer ? "text-green-500" : "text-red-500"}`}>Your: {selected[i] || "Skipped"}</p>
+                {selected[i] !== q.answer && <p className="text-xs text-green-500">Correct: {q.answer}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="flex gap-3"><button onClick={startQuiz} className="flex-1 py-4 rounded-2xl bg-yellow-400 text-slate-900 font-bold">Retry</button><button onClick={()=>setScreen("home")} className="flex-1 py-4 rounded-2xl border-2 border-yellow-400 text-yellow-400 bg-transparent font-bold">Home</button></div>
+      </div>
+    </div>
+  );
