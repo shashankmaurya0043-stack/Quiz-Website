@@ -150,13 +150,22 @@ export default function AdminQuestions() {
       setFormError("Both English and Hindi question text are required.");
       return;
     }
-    if (form.options_en.some((o) => !o.trim()) || form.options_hi.some((o) => !o.trim())) {
-      setFormError("All four English and Hindi options are required.");
-      return;
-    }
-    if (form.a < 0 || form.a > 3) {
-      setFormError("Correct answer index must be 0–3.");
-      return;
+    // Loading state aur Admin check protection
+  if (authLoading || loading) {
+    return (
+      <div className="min-h-screen bg-[#FDFBF7] flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="w-8 h-8 animate-spin mx-auto" strokeWidth={2.5} />
+          <div className="mt-3 font-heading font-bold">Verifying Admin Access...</div>
+        </div>
+      </div>
+    );
+  }
+
+  // Agar user admin nahi hai toh aage ka UI render mat karo
+  if (!isAdmin) {
+    return null;
+  }
     }
     setSaving(true);
     try {
