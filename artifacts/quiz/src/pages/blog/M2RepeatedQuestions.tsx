@@ -133,7 +133,7 @@ const useTimer = (initialTime: number, onEnd: () => void) => {
   };
   return { time, formatTime: formatTime(time), start, pause, reset, isRunning };
 };
-const M2Repeated: React.FC = () => {
+const M2RepeatedQuestions: React.FC = () => {
   const TOTAL = allQuestions.length; const DURATION = TOTAL * 60;
   const [screen, setScreen] = useState<"home" | "quiz" | "result">("home");
   const [current, setCurrent] = useState(0);
@@ -192,3 +192,53 @@ const M2Repeated: React.FC = () => {
       </div>
     </div>
   );
+  const q = allQuestions[current];
+  return (
+    <div className="min-h-screen flex flex-col bg-slate-950">
+      <div className="sticky top-0 z-30 px-4 py-3 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 flex justify-between items-center">
+        <button onClick={() => setShowNav(!showNav)} className="px-3 py-2 rounded-xl text-sm font-bold bg-yellow-400/10 text-yellow-400 border border-yellow-400/30">Q{current+1}/{TOTAL}</button>
+        <div className="font-mono font-bold text-lg text-yellow-400">{timer.formatTime}</div>
+        <button onClick={submitQuiz} className="px-4 py-2 rounded-xl bg-red-600 text-white text-sm font-bold">Finish</button>
+      </div>
+      <div className="w-full h-1 bg-slate-900"><div className="h-full bg-yellow-400 transition-all duration-500" style={{ width: `${((current+1)/TOTAL)*100}%` }} /></div>
+      
+      {showNav && (
+        <div className="fixed inset-0 z-40 flex">
+          <div className="w-80 h-full p-5 bg-slate-900 border-r-2 border-yellow-400 overflow-y-auto">
+            <h3 className="font-bold text-yellow-400 mb-5 text-lg">Question Navigator</h3>
+            <div className="grid grid-cols-5 gap-2">
+              {allQuestions.map((_, i) => (
+                <button key={i} onClick={()=>{setCurrent(i); setShowNav(false);}} className={`w-10 h-10 rounded-lg text-xs font-bold border transition-all ${i===current ? "bg-yellow-400 text-slate-900 border-yellow-400" : selected[i] ? "bg-green-500/20 text-green-500 border-green-500/40" : "bg-slate-950 text-gray-500 border-slate-700"}`}>{i+1}</button>
+              ))}
+            </div>
+          </div>
+          <div className="flex-1 bg-black/60" onClick={() => setShowNav(false)} />
+        </div>
+      )}
+
+      <div className="flex-1 flex flex-col items-center p-4 py-8">
+        <div className="max-w-3xl w-full space-y-6">
+          <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl">
+            <h2 className="text-xl text-white font-semibold leading-relaxed">{q.question}</h2>
+          </div>
+          <div className="space-y-3">
+            {q.options.map((opt, idx) => (
+              <button key={idx} onClick={() => { const s = [...selected]; s[current] = opt; setSelected(s); }} className={`w-full text-left p-4 rounded-2xl border-2 flex items-center gap-4 transition-all ${selected[current] === opt ? "bg-yellow-400/10 border-yellow-400 text-yellow-400 shadow-lg" : "bg-slate-900 border-slate-800 text-gray-300"}`}>
+                <span className={`w-10 h-10 flex items-center justify-center rounded-xl font-bold ${selected[current] === opt ? "bg-yellow-400 text-slate-900" : "bg-slate-800 text-gray-500"}`}>{String.fromCharCode(65+idx)}</span>
+                <span className="font-medium">{opt}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="p-4 bg-slate-900/90 border-t border-slate-800 flex justify-between items-center backdrop-blur-md">
+        <button onClick={() => setCurrent(c => Math.max(0, c-1))} disabled={current===0} className="px-6 py-3 rounded-2xl bg-slate-800 text-gray-400 font-bold disabled:opacity-20 transition-all">Prev</button>
+        {selected[current] && <button onClick={() => { const s = [...selected]; s[current] = null; setSelected(s); }} className="text-xs text-red-500 underline uppercase font-bold tracking-widest">Clear</button>}
+        <button onClick={() => current === TOTAL-1 ? submitQuiz() : setCurrent(c => c+1)} className={`px-8 py-3 rounded-2xl font-bold text-slate-900 transition-all ${current === TOTAL-1 ? "bg-green-500" : "bg-yellow-400"}`}>{current === TOTAL-1 ? "Finish" : "Next"}</button>
+      </div>
+    </div>
+  );
+};
+
+export default M2RepeatedQuestions;
