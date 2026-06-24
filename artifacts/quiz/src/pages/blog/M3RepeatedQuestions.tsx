@@ -1,9 +1,249 @@
-export default function M3RepeatedQuestions() {
-  return (
-    <div className="min-h-screen flex items-center justify-center text-white bg-[#0f172a]">
-      <h1 className="text-2xl font-bold">
-        M3 most repeated questions Coming Soon...
-      </h1>
+import React, { useState, useEffect, useCallback } from "react";
+
+interface Question {
+  question: string;
+  options: string[];
+  answer: string;
+}
+
+const m3Questions: Question[] = [
+  { question: "Who developed the Python programming language?", options: ["Guido van Rossum", "Dennis Ritchie", "James Gosling", "Bjarne Stroustrup"], answer: "Guido van Rossum" },
+  { question: "Which of the following is the correct extension of the Python file?", options: [".python", ".pl", ".py", ".p"], answer: ".py" },
+  { question: "Is Python case sensitive when dealing with identifiers?", options: ["Yes", "No", "Depends on OS", "None of the mentioned"], answer: "Yes" },
+  { question: "Which of the following is not a keyword in Python?", options: ["eval", "assert", "nonlocal", "pass"], answer: "eval" },
+  { question: "Which function is used to get the length of a list in Python?", options: ["count()", "length()", "len()", "size()"], answer: "len()" },
+  { question: "What is the output of 'print(2**3)'?", options: ["6", "8", "9", "12"], answer: "8" },
+  { question: "Which of the following is an immutable data type in Python?", options: ["List", "Dictionary", "Tuple", "Set"], answer: "Tuple" },
+  { question: "How do you start a comment in Python?", options: ["//", "/*", "#", "--"], answer: "#" },
+  { question: "What is the result of 'print(type(5.0))'?", options: ["<class 'int'>", "<class 'float'>", "<class 'number'>", "<class 'double'>"], answer: "<class 'float'>" },
+  { question: "Which of the following is used to define a block of code in Python?", options: ["Brackets", "Indentation", "Parentheses", "Quotation marks"], answer: "Indentation" },
+  { question: "What is the output of 'print(\"Hello\"[1])'?", options: ["H", "e", "l", "o"], answer: "e" },
+  { question: "Which operator is used for floor division in Python?", options: ["/", "//", "%", "**"], answer: "//" },
+  { question: "Which keyword is used for function declaration?", options: ["fun", "define", "def", "func"], answer: "def" },
+  { question: "What is the value of 'print(10 % 3)'?", options: ["3", "1", "0", "10"], answer: "1" },
+  { question: "Which of the following represents a dictionary in Python?", options: ["[]", "()", "{}", "<>"], answer: "{}" },
+  { question: "What is the result of 'bool(0)' in Python?", options: ["True", "False", "None", "Error"], answer: "False" },
+  { question: "Which method is used to add an element to the end of a list?", options: ["add()", "insert()", "append()", "push()"], answer: "append()" },
+  { question: "What is the result of 'print(\"abc\".upper())'?", options: ["Abc", "abc", "ABC", "Error"], answer: "ABC" },
+  { question: "Which function is used to take input from the user?", options: ["get()", "scan()", "input()", "read()"], answer: "input()" },
+  { question: "What is the default return value of a function that does not return anything?", options: ["0", "False", "None", "Null"], answer: "None" },
+  { question: "Which of the following is a NumPy array attribute that returns the number of dimensions?", options: ["ndim", "shape", "size", "dtype"], answer: "ndim" },
+  { question: "What is the correct way to import NumPy?", options: ["import numpy", "import numpy as np", "from numpy import *", "All of the above"], answer: "import numpy as np" },
+  { question: "Which of the following is used to create a NumPy array?", options: ["np.list()", "np.array()", "np.table()", "np.object()"], answer: "np.array()" },
+  { question: "What is the output of 'print(range(5))' in Python 3?", options: ["[0, 1, 2, 3, 4]", "range(0, 5)", "0 1 2 3 4", "Error"], answer: "range(0, 5)" },
+  { question: "Which of the following is a sequence data type?", options: ["Integer", "List", "Dictionary", "Float"], answer: "List" },
+  { question: "What is the output of 'print(\"Python\" * 2)'?", options: ["PythonPython", "Python 2", "Python2", "Error"], answer: "PythonPython" },
+  { question: "Which loop is used to iterate over a sequence?", options: ["while", "for", "do-while", "if"], answer: "for" },
+  { question: "What is the use of 'break' statement?", options: ["To skip the current iteration", "To terminate the loop", "To restart the loop", "To handle exceptions"], answer: "To terminate the loop" },
+  { question: "Which method is used to remove a specific element from a list?", options: ["delete()", "pop()", "remove()", "discard()"], answer: "remove()" },
+  { question: "What is a 'lambda' function in Python?", options: ["A function with many names", "An anonymous single-line function", "A function used for plotting", "A function that never returns"], answer: "An anonymous single-line function" },
+  { question: "Which of the following is used to handle exceptions in Python?", options: ["try...except", "try...catch", "do...while", "if...else"], answer: "try...except" },
+  { question: "How do you open a file for reading in Python?", options: ["open(\"file.txt\", \"w\")", "open(\"file.txt\", \"r\")", "open(\"file.txt\", \"a\")", "open(\"file.txt\", \"x\")"], answer: "open(\"file.txt\", \"r\")" },
+  { question: "What does 'pip' stand for?", options: ["Python Install Program", "Preferred Installer Program", "Python Intranet Program", "None of these"], answer: "Preferred Installer Program" },
+  { question: "Which of the following is a built-in module in Python?", options: ["math", "random", "os", "All of the above"], answer: "All of the above" },
+  { question: "What is the output of 'print(abs(-5))'?", options: ["-5", "5", "0", "None"], answer: "5" },
+];
+const questionsPart2: Question[] = [
+  { question: "What is the result of '10 / 2' in Python 3?", options: ["5", "5.0", "2", "Error"], answer: "5.0" },
+  { question: "Which of the following is not a bitwise operator?", options: ["&", "|", "^", "&&"], answer: "&&" },
+  { question: "How do you check if a key exists in a dictionary?", options: ["key in dict", "dict.has(key)", "dict.exists(key)", "dict.contains(key)"], answer: "key in dict" },
+  { question: "What is the output of 'print(3 < 2 or 5 > 4)'?", options: ["True", "False", "None", "Error"], answer: "True" },
+  { question: "Which function converts a string to an integer?", options: ["str()", "float()", "int()", "chr()"], answer: "int()" },
+  { question: "What is slicing used for in Python?", options: ["To delete elements", "To extract a portion of a sequence", "To sort a list", "To combine lists"], answer: "To extract a portion of a sequence" },
+  { question: "What is the output of 'print(\"a\" > \"b\")'?", options: ["True", "False", "None", "Error"], answer: "False" },
+  { question: "Which keyword is used to return a value from a function?", options: ["give", "return", "back", "yield"], answer: "return" },
+  { question: "What is a global variable?", options: ["A variable declared inside a function", "A variable that can be accessed anywhere", "A variable that never changes", "None of these"], answer: "A variable that can be accessed anywhere" },
+  { question: "Which module is used to work with dates and times?", options: ["time", "datetime", "date", "calendar"], answer: "datetime" },
+  { question: "What is the output of 'print(list(range(3)))'?", options: ["[1, 2, 3]", "[0, 1, 2]", "[0, 1, 2, 3]", "range(3)"], answer: "[0, 1, 2]" },
+  { question: "Which data type is used to store multiple unique items?", options: ["List", "Set", "Tuple", "String"], answer: "Set" },
+  { question: "What is 'Recursion'?", options: ["A loop that never ends", "A function calling itself", "A method to sort arrays", "A way to define classes"], answer: "A function calling itself" },
+  { question: "Which of the following is the correct syntax for a list comprehension?", options: ["[x for x in list]", "{x for x in list}", "(x for x in list)", "None of these"], answer: "[x for x in list]" },
+  { question: "What is the result of '\"apple\" == \"Apple\"'?", options: ["True", "False", "None", "Error"], answer: "False" },
+  { question: "How do you add a comment that spans multiple lines?", options: ["Using # on every line", "Using triple quotes ''' '''", "Both A and B", "None of these"], answer: "Both A and B" },
+  { question: "Which function is used to create a random integer?", options: ["random.random()", "random.randint()", "random.choice()", "random.seed()"], answer: "random.randint()" },
+  { question: "What is the output of 'print(bool(\"\"))'?", options: ["True", "False", "None", "Error"], answer: "False" },
+  { question: "What does the 'with' statement help with in file handling?", options: ["Writing faster", "Automatically closing the file", "Encrypting files", "Deleting files"], answer: "Automatically closing the file" },
+  { question: "Which of the following is not a standard Python data type?", options: ["List", "Array", "Dictionary", "Tuple"], answer: "Array" },
+  { question: "What is the result of 'print(2 + 3 * 4)'?", options: ["20", "14", "24", "None"], answer: "14" },
+  { question: "Which method is used to join elements of a list into a string?", options: ["concat()", "join()", "merge()", "add()"], answer: "join()" },
+  { question: "What is a 'module' in Python?", options: ["A type of function", "A file containing Python code", "A hardware component", "A loop type"], answer: "A file containing Python code" },
+  { question: "What is the result of 'print(round(4.5))'?", options: ["4", "5", "4.0", "5.0"], answer: "4" },
+  { question: "Which of the following is a Python IDE?", options: ["PyCharm", "IDLE", "Spyder", "All of the above"], answer: "All of the above" },
+  { question: "What is the output of 'print(min([10, 20, 30]))'?", options: ["10", "30", "20", "None"], answer: "10" },
+  { question: "What is an 'operator' in Python?", options: ["A type of loop", "Symbols used for operations", "A variable name", "A library name"], answer: "Symbols used for operations" },
+  { question: "Which of the following represents a boolean value?", options: ["\"True\"", "true", "True", "1"], answer: "True" },
+  { question: "What is the purpose of 'sys.argv'?", options: ["To get system time", "To get command-line arguments", "To sort lists", "To define functions"], answer: "To get command-line arguments" },
+  { question: "Which function is used to find the maximum value in a list?", options: ["max()", "top()", "high()", "len()"], answer: "max()" },
+  { question: "What is the result of 'print(\"hello\".capitalize())'?", options: ["Hello", "HELLO", "hello", "H"], answer: "Hello" },
+  { question: "Which of the following is not a valid variable name?", options: ["_myvar", "my_var1", "1myvar", "myVar"], answer: "1myvar" },
+  { question: "What is the output of 'print(sorted([3, 1, 2]))'?", options: ["[1, 2, 3]", "[3, 2, 1]", "[1, 3, 2]", "[3, 1, 2]"], answer: "[1, 2, 3]" },
+  { question: "Which keyword is used to create a loop inside another loop?", options: ["double", "nest", "for", "None"], answer: "for" },
+  { question: "What is the output of 'print(\"abc\".islower())'?", options: ["True", "False", "None", "Error"], answer: "True" },
+];
+const questionsPart3: Question[] = [
+  { question: "What is NumPy mainly used for?", options: ["Web development", "Numerical and mathematical operations", "Database management", "Graphics design"], answer: "Numerical and mathematical operations" },
+  { question: "What is the output of 'np.zeros(3)'?", options: ["[0, 0, 0]", "[0. 0. 0.]", "[1, 1, 1]", "Error"], answer: "[0. 0. 0.]" },
+  { question: "Which NumPy function creates an array with a range of values?", options: ["np.range()", "np.arange()", "np.linspace()", "np.array()"], answer: "np.arange()" },
+  { question: "What is the result of 'print(5 // 2)'?", options: ["2.5", "2", "3", "0"], answer: "2" },
+  { question: "Which function calculates the mean of a NumPy array?", options: ["np.avg()", "np.mean()", "np.median()", "np.sum()"], answer: "np.mean()" },
+  { question: "What is the default mode of the open() function?", options: ["'w'", "'a'", "'r'", "'x'"], answer: "'r'" },
+  { question: "Which method is used to read all lines from a file as a list?", options: ["read()", "readline()", "readlines()", "getlines()"], answer: "readlines()" },
+  { question: "What is a 'f-string' in Python?", options: ["A string for files", "A formatted string literal", "A fixed-size string", "None of these"], answer: "A formatted string literal" },
+  { question: "Which keyword is used to bypass the rest of a loop for the current iteration?", options: ["break", "continue", "skip", "pass"], answer: "continue" },
+  { question: "What is the output of 'print(bool(None))'?", options: ["True", "False", "None", "Error"], answer: "False" },
+  { question: "How do you find the shape of a NumPy array?", options: ["arr.size()", "arr.shape", "arr.dims()", "arr.length"], answer: "arr.shape" },
+  { question: "Which function is used to get the absolute value of a number?", options: ["abs()", "absolute()", "neg()", "pos()"], answer: "abs()" },
+  { question: "Which of the following is used to remove whitespaces from both ends of a string?", options: ["clean()", "strip()", "trim()", "cut()"], answer: "strip()" },
+  { question: "What is the output of 'print(2+2 == 4)'?", options: ["4", "True", "False", "Error"], answer: "True" },
+  { question: "Which function is used to create a NumPy array with all ones?", options: ["np.one()", "np.ones()", "np.all()", "np.identity()"], answer: "np.ones()" },
+  { question: "What is the result of 'print(\"a\" in \"apple\")'?", options: ["True", "False", "None", "Error"], answer: "True" },
+  { question: "Which function helps you see all the built-in properties and methods of an object?", options: ["help()", "dir()", "list()", "show()"], answer: "dir()" },
+  { question: "What is the output of 'print(10 > 9 > 8)'?", options: ["True", "False", "Error", "None"], answer: "True" },
+  { question: "Which keyword is used to define a class in Python?", options: ["object", "define", "class", "structure"], answer: "class" },
+  { question: "What is the result of 'print(type([]))'?", options: ["list", "<class 'list'>", "array", "set"], answer: "<class 'list'>" },
+  { question: "Which function is used to find the sum of all elements in a NumPy array?", options: ["np.total()", "np.sum()", "np.add()", "np.count()"], answer: "np.sum()" },
+  { question: "How do you start a block of code for an if-statement?", options: ["Using ( )", "Using { }", "Using :", "Using ;"], answer: "Using :" },
+  { question: "What is the purpose of 'else' in a for-loop?", options: ["To handle errors", "To execute code after the loop finishes normally", "To skip the loop", "None of these"], answer: "To execute code after the loop finishes normally" },
+  { question: "Which operator is used to concatenate strings?", options: ["&", "*", "+", "."], answer: "+" },
+  { question: "What is the output of 'print(\"hello\".find(\"l\"))'?", options: ["2", "3", "1", "Error"], answer: "2" },
+  { question: "Which function returns a list of integers from 0 up to n-1?", options: ["range()", "list()", "int()", "seq()"], answer: "range()" },
+  { question: "How do you change an element in a list?", options: ["list[index] = value", "list.add(value)", "list.change(value)", "list.update(value)"], answer: "list[index] = value" },
+  { question: "What is the output of 'print(set([1, 2, 2, 3]))'?", options: ["{1, 2, 2, 3}", "{1, 2, 3}", "[1, 2, 3]", "(1, 2, 3)"], answer: "{1, 2, 3}" },
+  { question: "Which of the following is used to stop a function and return a value?", options: ["stop", "break", "return", "exit"], answer: "return" },
+  { question: "What is the result of '3 * (1 + 2)'?", options: ["9", "5", "7", "3"], answer: "9" },
+];
+
+const allQuestions = [...m3Questions, ...questionsPart2, ...questionsPart3];
+const useTimer = (initialTime: number, onEnd: () => void) => {
+  const [time, setTime] = useState(initialTime);
+  const [isRunning, setIsRunning] = useState(false);
+
+  useEffect(() => {
+    let interval: any;
+    if (isRunning && time > 0) interval = setInterval(() => setTime((t) => t - 1), 1000);
+    else if (time === 0 && isRunning) { setIsRunning(false); onEnd(); }
+    return () => clearInterval(interval);
+  }, [isRunning, time, onEnd]);
+
+  const start = () => setIsRunning(true);
+  const pause = () => setIsRunning(false);
+  const reset = (t: number) => { setTime(t); setIsRunning(false); };
+  const formatTime = (s: number) => {
+    const m = Math.floor(s / 60); const sec = s % 60;
+    return `${m.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`;
+  };
+  return { time, formatTime: formatTime(time), start, pause, reset, isRunning };
+};
+
+const M3RepeatedQuestions: React.FC = () => {
+  const TOTAL = allQuestions.length; const DURATION = TOTAL * 60;
+  const [screen, setScreen] = useState<"home" | "quiz" | "result">("home");
+  const [current, setCurrent] = useState(0);
+  const [selected, setSelected] = useState<(string | null)[]>(Array(TOTAL).fill(null));
+  const [showNav, setShowNav] = useState(false);
+  const handleEnd = useCallback(() => setScreen("result"), []);
+  const timer = useTimer(DURATION, handleEnd);
+
+  const score = selected.reduce((acc, ans, i) => acc + (ans === allQuestions[i].answer ? 1 : 0), 0);
+  const percentage = Math.round((score / TOTAL) * 100);
+
+  const startQuiz = () => { setSelected(Array(TOTAL).fill(null)); setCurrent(0); timer.reset(DURATION); timer.start(); setScreen("quiz"); };
+  const submitQuiz = () => { timer.pause(); setScreen("result"); };
+
+  if (screen === "home") return (
+    <div className="min-h-screen flex items-center justify-center px-4 py-8" style={{ backgroundColor: "#0f172a" }}>
+      <div className="max-w-lg w-full rounded-3xl shadow-2xl p-8 text-center space-y-6" style={{ backgroundColor: "#1e293b", border: "2px solid #facc15" }}>
+        <div className="inline-block text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest bg-yellow-400 text-slate-900">O Level M3-R5</div>
+        <h1 className="text-4xl font-extrabold text-yellow-400">Python Programming<br /><span className="text-white">Most Repeated MCQs</span></h1>
+        <div className="grid grid-cols-2 gap-3 text-sm">
+          {[{v: TOTAL, l: "Questions"}, {v: `${TOTAL}m`, l: "Time"}, {v: "+1", l: "Marks"}, {v: "0", l: "Negative"}].map((it, i) => (
+            <div key={i} className="p-4 rounded-xl bg-slate-900 border border-slate-700">
+              <p className="text-xl font-bold text-yellow-400">{it.v}</p><p className="text-gray-400">{it.l}</p>
+            </div>
+          ))}
+        </div>
+        <button onClick={startQuiz} className="w-full font-bold py-4 rounded-2xl text-lg bg-yellow-400 text-slate-900 shadow-lg active:scale-95 transition-all">🚀 Start Practice Test</button>
+        <button onClick={() => window.open("/pdfs/m3-python-repeated.pdf", "_blank")} className="w-full font-bold py-3 rounded-2xl border-2 border-yellow-400 text-yellow-400 bg-transparent">📄 View PDF</button>
+      </div>
     </div>
   );
-}
+
+  if (screen === "result") return (
+    <div className="min-h-screen p-4 overflow-y-auto bg-slate-950">
+      <div className="max-w-2xl mx-auto space-y-6">
+        <div className="rounded-2xl p-8 text-center bg-slate-900 border-2 border-yellow-400">
+          <h2 className="text-2xl font-bold text-white mb-4">Practice Completed!</h2>
+          <div className="text-5xl font-extrabold text-yellow-400 mb-6">{percentage}%</div>
+          <div className="grid grid-cols-3 gap-3 text-sm">
+            <div className="p-3 rounded-xl bg-green-500/10 border border-green-500/30 text-green-500"><p className="text-xl font-bold">{score}</p><p className="text-xs">Correct</p></div>
+            <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-500"><p className="text-xl font-bold">{TOTAL-score}</p><p className="text-xs">Wrong</p></div>
+            <div className="p-3 rounded-xl bg-slate-800 text-gray-400"><p className="text-xl font-bold">{selected.filter(x => !x).length}</p><p className="text-xs">Skipped</p></div>
+          </div>
+        </div>
+        <div className="rounded-2xl p-5 bg-slate-900 border border-slate-700 space-y-4">
+          <h3 className="text-lg font-bold text-yellow-400">📋 Answer Review</h3>
+          <div className="max-h-[50vh] overflow-y-auto space-y-3 pr-2">
+            {allQuestions.map((q, i) => (
+              <div key={i} className={`p-4 rounded-xl border ${selected[i] === q.answer ? "border-green-500/40 bg-green-500/5" : "border-red-500/40 bg-red-500/5"}`}>
+                <p className="text-sm text-white font-medium">Q{i+1}. {q.question}</p>
+                <p className={`text-xs mt-2 ${selected[i] === q.answer ? "text-green-500" : "text-red-500"}`}>Your: {selected[i] || "Skipped"}</p>
+                {selected[i] !== q.answer && <p className="text-xs text-green-500">Correct: {q.answer}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="flex gap-3"><button onClick={startQuiz} className="flex-1 py-4 rounded-2xl bg-yellow-400 text-slate-900 font-bold">Retry</button><button onClick={()=>setScreen("home")} className="flex-1 py-4 rounded-2xl border-2 border-yellow-400 text-yellow-400 bg-transparent font-bold">Home</button></div>
+      </div>
+    </div>
+  );
+
+  const q = allQuestions[current];
+  return (
+    <div className="min-h-screen flex flex-col bg-slate-950">
+      <div className="sticky top-0 z-30 px-4 py-3 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 flex justify-between items-center">
+        <button onClick={() => setShowNav(!showNav)} className="px-3 py-2 rounded-xl text-sm font-bold bg-yellow-400/10 text-yellow-400 border border-yellow-400/30">Q{current+1}/{TOTAL}</button>
+        <div className="font-mono font-bold text-lg text-yellow-400">{timer.formatTime}</div>
+        <button onClick={submitQuiz} className="px-4 py-2 rounded-xl bg-red-600 text-white text-sm font-bold">Finish</button>
+      </div>
+      <div className="w-full h-1 bg-slate-900"><div className="h-full bg-yellow-400 transition-all duration-500" style={{ width: `${((current+1)/TOTAL)*100}%` }} /></div>
+      
+      {showNav && (
+        <div className="fixed inset-0 z-40 flex">
+          <div className="w-80 h-full p-5 bg-slate-900 border-r-2 border-yellow-400 overflow-y-auto">
+            <h3 className="font-bold text-yellow-400 mb-5 text-lg">Question Navigator</h3>
+            <div className="grid grid-cols-5 gap-2">
+              {allQuestions.map((_, i) => (
+                <button key={i} onClick={()=>{setCurrent(i); setShowNav(false);}} className={`w-10 h-10 rounded-lg text-xs font-bold border transition-all ${i===current ? "bg-yellow-400 text-slate-900 border-yellow-400" : selected[i] ? "bg-green-500/20 text-green-500 border-green-500/40" : "bg-slate-950 text-gray-500 border-slate-700"}`}>{i+1}</button>
+              ))}
+            </div>
+          </div>
+          <div className="flex-1 bg-black/60" onClick={() => setShowNav(false)} />
+        </div>
+      )}
+
+      <div className="flex-1 flex flex-col items-center p-4 py-8">
+        <div className="max-w-3xl w-full space-y-6">
+          <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl">
+            <h2 className="text-xl text-white font-semibold leading-relaxed">{q.question}</h2>
+          </div>
+          <div className="space-y-3">
+            {q.options.map((opt, idx) => (
+              <button key={idx} onClick={() => { const s = [...selected]; s[current] = opt; setSelected(s); }} className={`w-full text-left p-4 rounded-2xl border-2 flex items-center gap-4 transition-all ${selected[current] === opt ? "bg-yellow-400/10 border-yellow-400 text-yellow-400 shadow-lg" : "bg-slate-900 border-slate-800 text-gray-300"}`}>
+                <span className={`w-10 h-10 flex items-center justify-center rounded-xl font-bold ${selected[current] === opt ? "bg-yellow-400 text-slate-900" : "bg-slate-800 text-gray-500"}`}>{String.fromCharCode(65+idx)}</span>
+                <span className="font-medium">{opt}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="p-4 bg-slate-900/90 border-t border-slate-800 flex justify-between items-center backdrop-blur-md">
+        <button onClick={() => setCurrent(c => Math.max(0, c-1))} disabled={current===0} className="px-6 py-3 rounded-2xl bg-slate-800 text-gray-400 font-bold disabled:opacity-20 transition-all">Prev</button>
+        {selected[current] && <button onClick={() => { const s = [...selected]; s[current] = null; setSelected(s); }} className="text-xs text-red-500 underline uppercase font-bold tracking-widest">Clear</button>}
+        <button onClick={() => current === TOTAL-1 ? submitQuiz() : setCurrent(c => c+1)} className={`px-8 py-3 rounded-2xl font-bold text-slate-900 transition-all ${current === TOTAL-1 ? "bg-green-500" : "bg-yellow-400"}`}>{current === TOTAL-1 ? "Finish" : "Next"}</button>
+      </div>
+    </div>
+  );
+};
+
+export default M3RepeatedQuestions;
