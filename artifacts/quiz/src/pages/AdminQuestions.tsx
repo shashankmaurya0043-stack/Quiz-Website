@@ -67,9 +67,14 @@ export default function AdminQuestions() {
   const [toast, setToast] = useState<string | null>(null);
 
   useEffect(() => {
-  if (authLoading) return;
-  // auth bypass
-}, [authLoading, isAuthenticated, isAdmin, navigate]);
+    // Jab tak authentication check ho raha hai, tab tak wait karein
+    if (authLoading) return;
+
+    // Agar user logged in nahi hai YA Admin nahi hai, toh login page par bhej dein
+    if (!isAuthenticated || !isAdmin) {
+      navigate("/admin/login");
+    }
+  }, [authLoading, isAuthenticated, isAdmin, navigate]);
 
   async function refresh() {
     setLoading(true);
