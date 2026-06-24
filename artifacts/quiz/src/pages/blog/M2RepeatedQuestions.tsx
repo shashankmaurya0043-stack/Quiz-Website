@@ -90,3 +90,46 @@ const part2: Question[] = [
   { question: "Which symbol is used for comments in CSS?", options: ["//", "/* */", "#", "<!-- -->"], answer: "/* */" },
   { question: "How do you find the number of elements in a JS array?", options: ["array.count()", "array.size", "array.length", "array.items"], answer: "array.length" },
 ];
+const part3: Question[] = [
+  { question: "Which HTML element is used for the main title of the page?", options: ["<title>", "<h1>", "<head>", "<header>"], answer: "<h1>" },
+  { question: "What is the correct way to add an external CSS file?", options: ["<link rel='stylesheet' href='style.css'>", "<style src='style.css'>", "<css file='style.css'>", "<link file='style.css'>"], answer: "<link rel='stylesheet' href='style.css'>" },
+  { question: "Which W3.CSS class is used for a standard card?", options: ["w3-box", "w3-panel", "w3-card", "w3-container"], answer: "w3-card" },
+  { question: "Which JavaScript method is used to remove the last element of an array?", options: ["pop()", "push()", "shift()", "remove()"], answer: "pop()" },
+  { question: "Which tag is used to create a submit button?", options: ["<button type='submit'>", "<input type='submit'>", "Both A and B", "None"], answer: "Both A and B" },
+  { question: "Which CSS property is used to change the color of text?", options: ["fgcolor", "text-color", "color", "font-color"], answer: "color" },
+  { question: "Which HTML tag is used for the smallest heading?", options: ["<h1>", "<h6>", "<heading-min>", "<h5>"], answer: "<h6>" },
+  { question: "Which W3.CSS class creates a dark-grey background?", options: ["w3-dark-grey", "w3-grey-dark", "w3-black", "w3-grey"], answer: "w3-dark-grey" },
+  { question: "What is the output of 'typeof NaN' in JavaScript?", options: ["number", "NaN", "undefined", "object"], answer: "number" },
+  { question: "Which tag is used to create a horizontal line?", options: ["<line>", "<br>", "<hr>", "<hl>"], answer: "<hr>" },
+  { question: "Which CSS property controls the spacing between lines of text?", options: ["line-height", "spacing", "line-spacing", "text-height"], answer: "line-height" },
+  { question: "Which W3.CSS class is used to hide an element on small screens?", options: ["w3-hide-small", "w3-small-hide", "w3-no-small", "w3-invisible-small"], answer: "w3-hide-small" },
+  { question: "How can you check if a variable 'x' is an array in JS?", options: ["x.isArray()", "Array.isArray(x)", "typeof x == 'array'", "x instanceof List"], answer: "Array.isArray(x)" },
+  { question: "Which HTML attribute specifies where to open the linked document?", options: ["href", "location", "target", "path"], answer: "target" },
+  { question: "Which CSS property specifies the type of cursor to be displayed?", options: ["mouse", "pointer", "cursor", "hover"], answer: "cursor" },
+  { question: "Which W3.CSS class is used for a yellow text color?", options: ["w3-text-yellow", "w3-yellow-text", "w3-yellow", "yellow-text"], answer: "w3-text-yellow" },
+  { question: "Which method is used to join two arrays in JavaScript?", options: ["concat()", "join()", "merge()", "add()"], answer: "concat()" },
+  { question: "Which tag is used to define a multi-line input field?", options: ["<input type='textarea'>", "<textarea>", "<textbox>", "<area>"], answer: "<textarea>" },
+  { question: "Which property is used to change the list style to square?", options: ["list-type:square", "list-style-type:square", "marker:square", "type:square"], answer: "list-style-type:square" },
+  { question: "Which W3.CSS class is used to create a side navigation bar?", options: ["w3-sidenav", "w3-sidebar", "w3-bar-block", "w3-menu-side"], answer: "w3-sidebar" },
+];
+
+const allQuestions = [...m2Questions, ...part2, ...part3];
+
+const useTimer = (initialTime: number, onEnd: () => void) => {
+  const [time, setTime] = useState(initialTime);
+  const [isRunning, setIsRunning] = useState(false);
+  useEffect(() => {
+    let interval: any;
+    if (isRunning && time > 0) interval = setInterval(() => setTime((t) => t - 1), 1000);
+    else if (time === 0 && isRunning) { setIsRunning(false); onEnd(); }
+    return () => clearInterval(interval);
+  }, [isRunning, time, onEnd]);
+  const start = () => setIsRunning(true);
+  const pause = () => setIsRunning(false);
+  const reset = (t: number) => { setTime(t); setIsRunning(false); };
+  const formatTime = (s: number) => {
+    const m = Math.floor(s / 60); const sec = s % 60;
+    return `${m.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`;
+  };
+  return { time, formatTime: formatTime(time), start, pause, reset, isRunning };
+};
