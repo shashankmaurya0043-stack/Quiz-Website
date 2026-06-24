@@ -161,7 +161,7 @@ const M4PYQ2024: React.FC = () => {
           ))}
         </div>
         <button onClick={startQuiz} className="w-full font-bold py-4 rounded-2xl text-lg bg-yellow-400 text-slate-900">🚀 Attempt Mock Test</button>
-        <button onClick={() => window.open("/pdfs/m4-jan-2024.pdf", "_blank")} className="w-full font-bold py-3 rounded-2xl border-2 border-yellow-400 text-yellow-400 bg-transparent">📄 View PDF</button>
+        <button onClick={() => window.open("/pdfs/m4 2024.pdf", "_blank")} className="w-full font-bold py-3 rounded-2xl border-2 border-yellow-400 text-yellow-400 bg-transparent">📄 View PDF</button>
       </div>
     </div>
   );
