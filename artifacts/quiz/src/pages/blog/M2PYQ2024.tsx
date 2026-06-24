@@ -396,7 +396,7 @@ const M2PYQ2024: React.FC = () => {
             ))}
           </div>
           <button onClick={startQuiz} className="w-full font-bold py-4 rounded-2xl text-lg bg-[#facc15] text-[#0f172a]">🚀 Attempt Mock Test</button>
-          <button onClick={() => window.open("/pdfs/m2-jan-2025.pdf", "_blank")} className="block w-full font-bold py-3 rounded-2xl border-2 border-[#facc15] text-[#facc15] bg-transparent">📄 View PDF</button>
+          <button onClick={() => window.open("/pdfs/m2 2024.pdf", "_blank")} className="block w-full font-bold py-3 rounded-2xl border-2 border-[#facc15] text-[#facc15] bg-transparent">📄 View PDF</button>
         </div>
       </div>
     );
