@@ -138,6 +138,29 @@ export default function AdminQuestions() {
     setFormError(null);
     setShowForm(true);
   }
+  // --- Yahan se copy karein ---
+  function openNew() {
+    setEditing(null);
+    setForm(EMPTY_FORM);
+    setFormError(null);
+    setShowForm(true);
+  }
+
+  function openEdit(q: QuestionDoc) {
+    setEditing(q);
+    setForm({
+      subject_code: q.subject_code,
+      q_en: q.q_en,
+      q_hi: q.q_hi,
+      options_en: [...q.options_en],
+      options_hi: [...q.options_hi],
+      a: q.a,
+      exp_en: q.exp_en,
+      exp_hi: q.exp_hi,
+    });
+    setFormError(null);
+    setShowForm(true);
+  }
 
   function showToast(msg: string) {
     setToast(msg);
@@ -150,22 +173,13 @@ export default function AdminQuestions() {
       setFormError("Both English and Hindi question text are required.");
       return;
     }
-    // Loading state aur Admin check protection
-  if (authLoading || loading) {
-    return (
-      <div className="min-h-screen bg-[#FDFBF7] flex items-center justify-center">
-        <div className="text-center">
-          <Loader2 className="w-8 h-8 animate-spin mx-auto" strokeWidth={2.5} />
-          <div className="mt-3 font-heading font-bold">Verifying Admin Access...</div>
-        </div>
-      </div>
-    );
-  }
-
-  // Agar user admin nahi hai toh aage ka UI render mat karo
-  if (!isAdmin) {
-    return null;
-  }
+    if (form.options_en.some((o) => !o.trim()) || form.options_hi.some((o) => !o.trim())) {
+      setFormError("All four English and Hindi options are required.");
+      return;
+    }
+    if (form.a < 0 || form.a > 3) {
+      setFormError("Correct answer index must be 0–3.");
+      return;
     }
     setSaving(true);
     try {
@@ -185,7 +199,7 @@ export default function AdminQuestions() {
       setSaving(false);
     }
   }
-
+  // --- Yahan tak replace karein ---
   async function handleDelete(q: QuestionDoc) {
     try {
       await deleteQuestion(q.id);
