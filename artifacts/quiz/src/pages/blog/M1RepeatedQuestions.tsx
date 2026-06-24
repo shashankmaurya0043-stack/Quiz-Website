@@ -1,3 +1,241 @@
-export default function M1RepeatedQuestions() {
-  return <div>M1 Repeated Questions Page</div>;
+import React, { useState, useEffect, useCallback } from "react";
+
+interface Question {
+  question: string;
+  options: string[];
+  answer: string;
 }
+
+const repeatedM1: Question[] = [
+  { question: "What is the shortcut key for 'Save As' in LibreOffice?", options: ["Ctrl + S", "Ctrl + Shift + S", "Ctrl + Alt + S", "F12"], answer: "Ctrl + Shift + S" },
+  { question: "LibreOffice Calc file is saved with which extension?", options: [".odt", ".ods", ".odp", ".odg"], answer: ".ods" },
+  { question: "Who is known as the father of the Internet?", options: ["Charles Babbage", "Vint Cerf", "Tim Berners-Lee", "Ray Tomlinson"], answer: "Vint Cerf" },
+  { question: "Which protocol is used to send emails?", options: ["HTTP", "FTP", "SMTP", "POP3"], answer: "SMTP" },
+  { question: "The brain of any computer system is:", options: ["ALU", "Memory", "CPU", "Control Unit"], answer: "CPU" },
+  { question: "What is the full form of UPI?", options: ["Unified Payment Interface", "Unique Payment Interface", "Union Provider Interface", "Unified Pay Interface"], answer: "Unified Payment Interface" },
+  { question: "How many layers are there in the OSI Model?", options: ["4", "5", "6", "7"], answer: "7" },
+  { question: "What is the shortcut to print a document in LibreOffice?", options: ["Ctrl + P", "Ctrl + Alt + P", "Alt + P", "Ctrl + Shift + P"], answer: "Ctrl + P" },
+  { question: "Which among the following is a search engine?", options: ["Chrome", "Firefox", "Google", "Internet Explorer"], answer: "Google" },
+  { question: "What does BHIM stand for?", options: ["Bharat Interface for Money", "Bharat Internet for Money", "Bharat Interface for Machine", "Bharat Instant Money"], answer: "Bharat Interface for Money" },
+  { question: "The maximum zoom percentage in LibreOffice Calc is:", options: ["400%", "500%", "600%", "3000%"], answer: "400%" },
+  { question: "What is the shortcut key for 'Undo'?", options: ["Ctrl + Y", "Ctrl + U", "Ctrl + Z", "Ctrl + R"], answer: "Ctrl + Z" },
+  { question: "Which type of memory is volatile?", options: ["ROM", "RAM", "Hard Disk", "Flash Drive"], answer: "RAM" },
+  { question: "What is the default font size in LibreOffice Writer?", options: ["10", "11", "12", "14"], answer: "12" },
+  { question: "1 Petabyte (PB) is equal to how many Gigabytes?", options: ["1024 GB", "1048576 GB", "524288 GB", "1000 GB"], answer: "1048576 GB" },
+  { question: "Which command is used to remove a file in Linux?", options: ["delete", "remove", "rm", "erase"], answer: "rm" },
+  { question: "Full form of QR Code is:", options: ["Quick Response Code", "Quality Ratio Code", "Quick Read Code", "Quick Register Code"], answer: "Quick Response Code" },
+  { question: "OTP stands for:", options: ["One Time Password", "Only Time Password", "On Time Process", "One Tech Pass"], answer: "One Time Password" },
+  { question: "Which bar shows the name of the document in LibreOffice?", options: ["Status Bar", "Menu Bar", "Title Bar", "Standard Toolbar"], answer: "Title Bar" },
+  { question: "What is the full form of PDF?", options: ["Portable Data File", "Portable Document Format", "Personal Data File", "Portable Document File"], answer: "Portable Document Format" },
+  { question: "Which generation of computers used Vacuum Tubes?", options: ["1st Generation", "2nd Generation", "3rd Generation", "4th Generation"], answer: "1st Generation" },
+  { question: "Short cut key for page break in LibreOffice Writer?", options: ["Ctrl + Enter", "Alt + Enter", "Shift + Enter", "Ctrl + Shift + Enter"], answer: "Ctrl + Enter" },
+  { question: "What is the full form of AEPS?", options: ["Aadhar Enabled Payment System", "Aadhar Enabled Pay System", "Aadhar Easy Payment System", "All Enabled Payment System"], answer: "Aadhar Enabled Payment System" },
+  { question: "A compiler is used to translate:", options: ["Low level to High level", "High level to Machine level", "Assembly to Machine", "None of these"], answer: "High level to Machine level" },
+  { question: "Which sign always starts a formula in Calc?", options: ["+", "-", "=", "*"], answer: "=" },
+  { question: "What is the default name of a new presentation in LibreOffice?", options: ["Untitled 1", "Presentation 1", "New Document", "Document 1"], answer: "Untitled 1" },
+  { question: "Full form of URL is:", options: ["Uniform Resource Locator", "Unique Resource Locator", "Universal Resource Locator", "Uniform Radio Locator"], answer: "Uniform Resource Locator" },
+  { question: "Which shortcut key is used for full screen in LibreOffice?", options: ["Ctrl + J", "Ctrl + Shift + J", "Ctrl + F", "Ctrl + Shift + F"], answer: "Ctrl + Shift + J" },
+  { question: "IoT stands for:", options: ["Internet of Things", "Internal of Things", "Internet of Tools", "Inter Office Tools"], answer: "Internet of Things" },
+  { question: "The smallest unit of digital data is:", options: ["Byte", "Nibble", "Bit", "Kilobyte"], answer: "Bit" },
+  { question: "What is the full form of EEPROM?", options: ["Electrically Erasable Programmable Read Only Memory", "Easy Erasable Programmable Read Only Memory", "Electric Erase Part Read Only Memory", "None"], answer: "Electrically Erasable Programmable Read Only Memory" },
+  { question: "Which function key is used for spell check?", options: ["F5", "F7", "F9", "F11"], answer: "F7" },
+  { question: "Twitter is an example of:", options: ["E-commerce", "Micro-blogging", "Search engine", "Operating system"], answer: "Micro-blogging" },
+  { question: "What is the max number of rows in LibreOffice Calc?", options: ["1048576", "65536", "32768", "Unlimited"], answer: "1048576" },
+  { question: "Full form of WAN is:", options: ["Wide Area Network", "World Area Network", "Wide Access Network", "Web Area Network"], answer: "Wide Area Network" },
+  { question: "Which layer of OSI model is the physical connection layer?", options: ["Layer 1", "Layer 2", "Layer 3", "Layer 7"], answer: "Layer 1" },
+  { question: "Cortana is a personal assistant for:", options: ["Windows 10", "Android", "iOS", "Linux"], answer: "Windows 10" },
+  { question: "Extension of LibreOffice Writer template is:", options: [".ott", ".odt", ".ots", ".otp"], answer: ".ott" },
+  { question: "In Calc, cell address A$1 is an example of:", options: ["Relative", "Absolute", "Mixed", "None"], answer: "Mixed" },
+  { question: "Digital locker was launched in:", options: ["2014", "2015", "2016", "2017"], answer: "2015" },
+];
+const part2: Question[] = [
+  { question: "Which shortcut key is used for subscript?", options: ["Ctrl + Shift + B", "Ctrl + Shift + P", "Ctrl + B", "Ctrl + ="], answer: "Ctrl + Shift + B" },
+  { question: "What is the full form of NEFT?", options: ["National Electronic Fund Transfer", "National Easy Fund Transfer", "Net Electronic Fund Transfer", "National Electronic Fast Transfer"], answer: "National Electronic Fund Transfer" },
+  { question: "LibreOffice Impress is a ______ software.", options: ["Word Processor", "Spreadsheet", "Presentation", "Database"], answer: "Presentation" },
+  { question: "A NIC is a _______ device.", options: ["Input", "Output", "Storage", "Networking"], answer: "Networking" },
+  { question: "What is the base of the Hexadecimal number system?", options: ["2", "8", "10", "16"], answer: "16" },
+  { question: "Short cut to insert a table in Writer?", options: ["Ctrl + F12", "F12", "Alt + F12", "Shift + F12"], answer: "Ctrl + F12" },
+  { question: "What does AI stand for?", options: ["Automatic Intelligence", "Artificial Intelligence", "Actual Intelligence", "Applied Intelligence"], answer: "Artificial Intelligence" },
+  { question: "Default extension of LibreOffice Impress is:", options: [".ods", ".odt", ".odp", ".odb"], answer: ".odp" },
+  { question: "Which is the first browser in the world?", options: ["Mosaic", "WorldWideWeb", "Netscape", "Internet Explorer"], answer: "WorldWideWeb" },
+  { question: "Short cut key for Double Underline in Writer?", options: ["Ctrl + Shift + D", "Ctrl + D", "Alt + D", "Ctrl + Alt + D"], answer: "Ctrl + D" },
+  { question: "What is the max zoom in Writer?", options: ["200%", "400%", "600%", "3000%"], answer: "600%" },
+  { question: "Total number of columns in Calc is:", options: ["1024", "16384", "256", "512"], answer: "1024" },
+  { question: "Which is not an example of Cloud Computing?", options: ["Google Drive", "iCloud", "Dropbox", "Hard Disk"], answer: "Hard Disk" },
+  { question: "Full form of IMPS is:", options: ["Immediate Payment Service", "Instant Money Payment Service", "Internal Money Pay Service", "None"], answer: "Immediate Payment Service" },
+  { question: "Who founded Linux?", options: ["Bill Gates", "Steve Jobs", "Linus Torvalds", "Ken Thompson"], answer: "Linus Torvalds" },
+  { question: "What is the maximum zoom in Impress?", options: ["400%", "600%", "3000%", "500%"], answer: "3000%" },
+  { question: "Which is a cyber security threat?", options: ["Virus", "Trojan Horse", "Phishing", "All of above"], answer: "All of the above" },
+  { question: "What is the full form of QR?", options: ["Quick Response", "Quick Result", "Quiet Response", "None"], answer: "Quick Response" },
+  { question: "Shortcut key to exit LibreOffice?", options: ["Ctrl + Q", "Ctrl + W", "Alt + F4", "Ctrl + X"], answer: "Ctrl + Q" },
+  { question: "What is the full form of POS?", options: ["Point of Sale", "Point of Service", "Payment on Service", "None"], answer: "Point of Sale" },
+  { question: "Which is an open source software?", options: ["MS Office", "LibreOffice", "Photoshop", "Windows"], answer: "LibreOffice" },
+  { question: "1 Byte contains how many bits?", options: ["4 bits", "8 bits", "16 bits", "10 bits"], answer: "8 bits" },
+  { question: "AEPS requires which of the following for payment?", options: ["OTP", "PIN", "Biometric/Aadhar", "Password"], answer: "Biometric/Aadhar" },
+  { question: "Short cut key to repeat the last action?", options: ["Ctrl + Y", "Ctrl + Shift + Y", "Ctrl + R", "Ctrl + Shift + Z"], answer: "Ctrl + Shift + Y" },
+  { question: "Which protocol is used for file transfer?", options: ["HTTP", "SMTP", "FTP", "SNMP"], answer: "FTP" },
+  { question: "What is the max zoom in LibreOffice Calc?", options: ["100%", "200%", "400%", "500%"], answer: "400%" },
+  { question: "Full form of LED is:", options: ["Light Emitting Diode", "Light End Diode", "Long Emitting Diode", "None"], answer: "Light Emitting Diode" },
+  { question: "Which social media is also known as a professional network?", options: ["Facebook", "LinkedIn", "Instagram", "WhatsApp"], answer: "LinkedIn" },
+  { question: "Short cut to insert a function in Calc?", options: ["Ctrl + F2", "F2", "Alt + F2", "Shift + F2"], answer: "Ctrl + F2" },
+  { question: "What is the extension of Calc Template?", options: [".ots", ".ods", ".odp", ".odt"], answer: ".ots" },
+  { question: "UMANG app supports how many languages?", options: ["10", "12", "13", "15"], answer: "13" },
+  { question: "Which device is used to connect different networks?", options: ["Hub", "Switch", "Router", "Repeater"], answer: "Router" },
+  { question: "What is the default font name in LibreOffice Writer?", options: ["Arial", "Calibri", "Liberation Serif", "Times New Roman"], answer: "Liberation Serif" },
+  { question: "Full form of BIOS is:", options: ["Basic Input Output System", "Binary Input Output System", "Base Input Only System", "None"], answer: "Basic Input Output System" },
+  { question: "Which is an example of System Software?", options: ["LibreOffice", "OS", "Paint", "Browser"], answer: "OS" },
+  { question: "Shortcut key to hide/show sidebar in Writer?", options: ["Ctrl + F5", "F5", "Alt + F5", "Shift + F5"], answer: "Ctrl + F5" },
+  { question: "Which shortcut key is used for Superscript?", options: ["Ctrl + Shift + P", "Ctrl + Shift + B", "Ctrl + P", "Ctrl + +"], answer: "Ctrl + Shift + P" },
+  { question: "What is the full form of ISP?", options: ["Internet Service Provider", "Internal Service Provider", "Internet System Provider", "None"], answer: "Internet Service Provider" },
+  { question: "In Calc, Ctrl + Space is used to select:", options: ["Row", "Column", "Entire Sheet", "None"], answer: "Column" },
+  { question: "Full form of RTGS is:", options: ["Real Time Gross Settlement", "Real Time Gross Service", "Real Total Gross System", "None"], answer: "Real Time Gross Settlement" },
+  { question: "Extension of LibreOffice Calc is:", options: [".ods", ".odt", ".odp", ".odg"], answer: ".ods" },
+  { question: "What is the shortcut to open 'Manage Templates'?", options: ["Ctrl + Shift + N", "Ctrl + N", "Ctrl + Alt + N", "Alt + N"], answer: "Ctrl + Shift + N" },
+  { question: "Digital financial tools include:", options: ["UPI", "Net Banking", "AEPS", "All of above"], answer: "All of the above" },
+  { question: "The process of starting a computer is called:", options: ["Loading", "Booting", "Processing", "Formatting"], answer: "Booting" },
+  { question: "Which is a valid IPv4 address?", options: ["192.168.1.1", "256.0.0.1", "12.34.56", "1.1.1.1.1"], answer: "192.168.1.1" },
+  { question: "Short cut key for help in LibreOffice?", options: ["F1", "F2", "F3", "F4"], answer: "F1" },
+  { question: "Full form of PAN in networking is:", options: ["Personal Area Network", "Private Area Network", "Permanent Area Network", "None"], answer: "Personal Area Network" },
+  { question: "Which is not a valid alignment in Writer?", options: ["Left", "Right", "Center", "Middle"], answer: "Middle" },
+  { question: "The shortcut key for Page Preview is:", options: ["Ctrl + Shift + O", "Ctrl + Shift + P", "Ctrl + Alt + O", "Alt + P"], answer: "Ctrl + Shift + O" },
+  { question: "What is the max zoom percentage in LibreOffice Impress?", options: ["400%", "600%", "3000%", "1000%"], answer: "3000%" },
+  { question: "The default name of a sheet in Calc is:", options: ["Sheet1", "Untitled1", "Calc1", "Table1"], answer: "Sheet1" },
+  { question: "Which shortcut key is used to clear direct formatting?", options: ["Ctrl + M", "Ctrl + X", "Ctrl + Shift + M", "Ctrl + D"], answer: "Ctrl + M" },
+  { question: "Maximum columns in LibreOffice Calc is:", options: ["1024", "256", "16384", "65536"], answer: "1024" },
+  { question: "Which is an example of Big Data?", options: ["Excel file", "Facebook user data", "Student record", "None"], answer: "Facebook user data" },
+  { question: "Short cut key to insert a new slide?", options: ["Ctrl + M", "Ctrl + N", "Ctrl + S", "Alt + M"], answer: "Ctrl + M" },
+  { question: "What is the full form of QR?", options: ["Quick Response", "Quiet Read", "Quality Rate", "None"], answer: "Quick Response" },
+  { question: "What is the maximum Zoom in LibreOffice Writer?", options: ["200%", "400%", "600%", "500%"], answer: "600%" },
+  { question: "Which protocol provides security for websites?", options: ["HTTP", "HTTPS", "FTP", "SMTP"], answer: "HTTPS" },
+  { question: "Full form of AI is:", options: ["Artificial Intelligence", "Actual Intelligence", "Applied Internal", "None"], answer: "Artificial Intelligence" },
+  { question: "Which shortcut key is used for bullet list?", options: ["Shift + F12", "F12", "Ctrl + F12", "Alt + F12"], answer: "Shift + F12" },
+];
+
+const allQuestions = [...repeatedM1, ...part2];
+const useTimer = (initialTime: number, onEnd: () => void) => {
+  const [time, setTime] = useState(initialTime);
+  const [isRunning, setIsRunning] = useState(false);
+  useEffect(() => {
+    let interval: any;
+    if (isRunning && time > 0) interval = setInterval(() => setTime((t) => t - 1), 1000);
+    else if (time === 0 && isRunning) { setIsRunning(false); onEnd(); }
+    return () => clearInterval(interval);
+  }, [isRunning, time, onEnd]);
+  const start = () => setIsRunning(true);
+  const pause = () => setIsRunning(false);
+  const reset = (t: number) => { setTime(t); setIsRunning(false); };
+  const formatTime = (s: number) => {
+    const m = Math.floor(s / 60); const sec = s % 60;
+    return `${m.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`;
+  };
+  return { time, formatTime: formatTime(time), start, pause, reset, isRunning };
+};
+
+const M1RepeatedQuestions: React.FC = () => {
+  const TOTAL = allQuestions.length; const DURATION = TOTAL * 60;
+  const [screen, setScreen] = useState<"home" | "quiz" | "result">("home");
+  const [current, setCurrent] = useState(0);
+  const [selected, setSelected] = useState<(string | null)[]>(Array(TOTAL).fill(null));
+  const [showNav, setShowNav] = useState(false);
+  const handleEnd = useCallback(() => setScreen("result"), []);
+  const timer = useTimer(DURATION, handleEnd);
+  const score = selected.reduce((acc, ans, i) => acc + (ans === allQuestions[i].answer ? 1 : 0), 0);
+  const percentage = Math.round((score / TOTAL) * 100);
+
+  const startQuiz = () => { setSelected(Array(TOTAL).fill(null)); setCurrent(0); timer.reset(DURATION); timer.start(); setScreen("quiz"); };
+  const submitQuiz = () => { timer.pause(); setScreen("result"); };
+
+  if (screen === "home") return (
+    <div className="min-h-screen flex items-center justify-center px-4 py-8" style={{ backgroundColor: "#0f172a" }}>
+      <div className="max-w-lg w-full rounded-3xl shadow-2xl p-8 text-center space-y-6" style={{ backgroundColor: "#1e293b", border: "2px solid #facc15" }}>
+        <div className="inline-block text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest bg-yellow-400 text-slate-900">M1-R5 Most Repeated</div>
+        <h1 className="text-4xl font-extrabold text-yellow-400">IT Tools & Basics<br /><span className="text-white">Exam Questions</span></h1>
+        <div className="grid grid-cols-2 gap-3 text-sm">
+          {[{v: TOTAL, l: "Questions"}, {v: `${TOTAL}m`, l: "Time"}, {v: "+1", l: "Marks"}, {v: "0", l: "Negative"}].map((it, i) => (
+            <div key={i} className="p-4 rounded-xl bg-slate-900 border border-slate-700">
+              <p className="text-xl font-bold text-yellow-400">{it.v}</p><p className="text-gray-400">{it.l}</p>
+            </div>
+          ))}
+        </div>
+        <button onClick={startQuiz} className="w-full font-bold py-4 rounded-2xl text-lg bg-yellow-400 text-slate-900 shadow-lg active:scale-95 transition-all">🚀 Start Mock Test</button>
+      </div>
+    </div>
+  );
+
+  if (screen === "result") return (
+    <div className="min-h-screen p-4 overflow-y-auto bg-slate-950">
+      <div className="max-w-2xl mx-auto space-y-6">
+        <div className="rounded-2xl p-8 text-center bg-slate-900 border-2 border-yellow-400">
+          <h2 className="text-2xl font-bold text-white mb-4">Practice Completed!</h2>
+          <div className="text-5xl font-extrabold text-yellow-400 mb-6">{percentage}%</div>
+          <div className="grid grid-cols-3 gap-3">
+            <div className="p-3 rounded-xl bg-green-500/10 border border-green-500/30 text-green-500"><p className="text-xl font-bold">{score}</p><p className="text-xs">Correct</p></div>
+            <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-500"><p className="text-xl font-bold">{TOTAL-score}</p><p className="text-xs">Wrong</p></div>
+            <div className="p-3 rounded-xl bg-slate-800 text-gray-400"><p className="text-xl font-bold">{selected.filter(x => !x).length}</p><p className="text-xs">Skipped</p></div>
+          </div>
+        </div>
+        <div className="rounded-2xl p-5 bg-slate-900 border border-slate-700 space-y-4">
+          <h3 className="text-lg font-bold text-yellow-400">📋 Answer Review</h3>
+          <div className="max-h-[50vh] overflow-y-auto space-y-3 pr-2">
+            {allQuestions.map((q, i) => (
+              <div key={i} className={`p-4 rounded-xl border ${selected[i] === q.answer ? "border-green-500/40 bg-green-500/5" : "border-red-500/40 bg-red-500/5"}`}>
+                <p className="text-sm text-white font-medium">Q{i+1}. {q.question}</p>
+                <p className={`text-xs mt-2 ${selected[i] === q.answer ? "text-green-500" : "text-red-500"}`}>Your: {selected[i] || "Skipped"}</p>
+                {selected[i] !== q.answer && <p className="text-xs text-green-500">Correct: {q.answer}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="flex gap-3"><button onClick={startQuiz} className="flex-1 py-4 rounded-2xl bg-yellow-400 text-slate-900 font-bold">Retry</button><button onClick={()=>setScreen("home")} className="flex-1 py-4 rounded-2xl border-2 border-yellow-400 text-yellow-400 bg-transparent font-bold">Home</button></div>
+      </div>
+    </div>
+  );
+
+  const q = allQuestions[current];
+  return (
+    <div className="min-h-screen flex flex-col bg-slate-950">
+      <div className="sticky top-0 z-30 px-4 py-3 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 flex justify-between items-center">
+        <button onClick={() => setShowNav(!showNav)} className="px-3 py-2 rounded-xl text-sm font-bold bg-yellow-400/10 text-yellow-400 border border-yellow-400/30">Q{current+1}/{TOTAL}</button>
+        <div className="font-mono font-bold text-lg text-yellow-400">{timer.formatTime}</div>
+        <button onClick={submitQuiz} className="px-4 py-2 rounded-xl bg-red-600 text-white text-sm font-bold">Submit</button>
+      </div>
+      <div className="w-full h-1 bg-slate-900"><div className="h-full bg-yellow-400 transition-all duration-500" style={{ width: `${((current+1)/TOTAL)*100}%` }} /></div>
+      
+      {showNav && (
+        <div className="fixed inset-0 z-40 flex">
+          <div className="w-80 h-full p-5 bg-slate-900 border-r-2 border-yellow-400 overflow-y-auto">
+            <h3 className="font-bold text-yellow-400 mb-5 text-lg">Navigator</h3>
+            <div className="grid grid-cols-5 gap-2">
+              {allQuestions.map((_, i) => (
+                <button key={i} onClick={()=>{setCurrent(i); setShowNav(false);}} className={`w-10 h-10 rounded-lg text-xs font-bold border transition-all ${i===current ? "bg-yellow-400 text-slate-900 border-yellow-400" : selected[i] ? "bg-green-500/20 text-green-500 border-green-500/40" : "bg-slate-950 text-gray-500 border-slate-700"}`}>{i+1}</button>
+              ))}
+            </div>
+          </div>
+          <div className="flex-1 bg-black/60" onClick={() => setShowNav(false)} />
+        </div>
+      )}
+
+      <div className="flex-1 flex flex-col items-center p-4 py-8">
+        <div className="max-w-3xl w-full space-y-6">
+          <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl"><h2 className="text-xl text-white font-semibold leading-relaxed">{q.question}</h2></div>
+          <div className="space-y-3">
+            {q.options.map((opt, idx) => (
+              <button key={idx} onClick={() => { const s = [...selected]; s[current] = opt; setSelected(s); }} className={`w-full text-left p-4 rounded-2xl border-2 flex items-center gap-4 transition-all ${selected[current] === opt ? "bg-yellow-400/10 border-yellow-400 text-yellow-400" : "bg-slate-900 border-slate-800 text-gray-300"}`}>
+                <span className={`w-10 h-10 flex items-center justify-center rounded-xl font-bold ${selected[current] === opt ? "bg-yellow-400 text-slate-900" : "bg-slate-800 text-gray-500"}`}>{String.fromCharCode(65+idx)}</span>
+                <span className="font-medium">{opt}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="p-4 bg-slate-900/90 border-t border-slate-800 flex justify-between items-center backdrop-blur-md">
+        <button onClick={() => setCurrent(c => Math.max(0, c-1))} disabled={current===0} className="px-6 py-3 rounded-2xl bg-slate-800 text-gray-400 font-bold disabled:opacity-20 transition-all">Prev</button>
+        {selected[current] && <button onClick={() => { const s = [...selected]; s[current] = null; setSelected(s); }} className="text-xs text-red-500 underline">Clear</button>}
+        <button onClick={() => current === TOTAL-1 ? submitQuiz() : setCurrent(c => c+1)} className={`px-8 py-3 rounded-2xl font-bold text-slate-900 transition-all ${current === TOTAL-1 ? "bg-green-500" : "bg-yellow-400"}`}>{current === TOTAL-1 ? "Finish" : "Next"}</button>
+      </div>
+    </div>
+  );
+};
+
+export default M1RepeatedQuestions;
