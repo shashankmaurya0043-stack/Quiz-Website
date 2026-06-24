@@ -108,3 +108,147 @@ const questions: Question[] = [
   { question: "Which of the following statements are true about serial communication?", options: ["Can be either setup() and loop ()", "Only setup ()", "Only loop()", "setup() loop()"], answer: "Can be either setup() and loop ()" },
   { question: "What are the advantages of Arduino?", options: ["Easy to learn", "Many third-party libraries", "Huge community", "All of the above"], answer: "All of the above" },
 ];
+const useTimer = (initialTime: number, onEnd: () => void) => {
+  const [time, setTime] = useState(initialTime);
+  const [isRunning, setIsRunning] = useState(false);
+  useEffect(() => {
+    let interval: any;
+    if (isRunning && time > 0) {
+      interval = setInterval(() => setTime((t) => t - 1), 1000);
+    } else if (time === 0 && isRunning) {
+      setIsRunning(false);
+      onEnd();
+    }
+    return () => clearInterval(interval);
+  }, [isRunning, time, onEnd]);
+  const start = () => setIsRunning(true);
+  const pause = () => setIsRunning(false);
+  const reset = (t: number) => { setTime(t); setIsRunning(false); };
+  const formatTime = (s: number) => {
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return `${m.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`;
+  };
+  return { time, formatTime: formatTime(time), start, pause, reset, isRunning };
+};
+
+const M4PYQ2025: React.FC = () => {
+  const TOTAL = questions.length;
+  const DURATION = TOTAL * 60;
+  const [screen, setScreen] = useState<"home" | "quiz" | "result">("home");
+  const [current, setCurrent] = useState(0);
+  const [selected, setSelected] = useState<(string | null)[]>(Array(TOTAL).fill(null));
+  const [showNav, setShowNav] = useState(false);
+  const handleEnd = useCallback(() => setScreen("result"), []);
+  const timer = useTimer(DURATION, handleEnd);
+  const score = selected.reduce((acc, ans, i) => acc + (ans === questions[i].answer ? 1 : 0), 0);
+  const attempted = selected.filter((a) => a !== null).length;
+  const percentage = Math.round((score / TOTAL) * 100);
+
+  const startQuiz = () => {
+    setSelected(Array(TOTAL).fill(null));
+    setCurrent(0);
+    timer.reset(DURATION);
+    timer.start();
+    setScreen("quiz");
+  };
+
+  const submitQuiz = () => { timer.pause(); setScreen("result"); };
+
+  if (screen === "home") return (
+    <div className="min-h-screen flex items-center justify-center px-4 py-8" style={{ backgroundColor: "#0f172a" }}>
+      <div className="max-w-lg w-full rounded-3xl shadow-2xl p-6 sm:p-8 text-center space-y-5" style={{ backgroundColor: "#1e293b", border: "2px solid #facc15" }}>
+        <div className="inline-block text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest" style={{ backgroundColor: "#facc15", color: "#0f172a" }}>O Level M4-R5</div>
+        <h1 className="text-3xl sm:text-4xl font-extrabold leading-tight text-yellow-400">M4-R5 PYQ<br /><span className="text-white">Jan 2025</span></h1>
+        <div className="grid grid-cols-2 gap-3 text-sm">
+          {[{v: TOTAL, l: "MCQs"}, {v: `${TOTAL}m`, l: "Time"}, {v: "+1", l: "Marks"}, {v: "0", l: "Negative"}].map((it, i) => (
+            <div key={i} className="p-4 rounded-xl bg-slate-900 border border-slate-700">
+              <p className="text-xl font-bold text-yellow-400">{it.v}</p><p className="text-gray-400">{it.l}</p>
+            </div>
+          ))}
+        </div>
+        <button onClick={startQuiz} className="w-full font-bold py-4 rounded-2xl text-lg bg-yellow-400 text-slate-900 active:scale-95 transition-all">🚀 Attempt Mock Test</button>
+        <button onClick={() => window.open("/pdfs/m4-100-question.pdf", "_blank")} className="w-full font-bold py-3 rounded-2xl border-2 border-yellow-400 text-yellow-400 bg-transparent">📄 View PDF</button>
+      </div>
+    </div>
+  );
+
+  if (screen === "result") return (
+    <div className="min-h-screen p-4 overflow-y-auto bg-slate-950">
+      <div className="max-w-2xl mx-auto space-y-6">
+        <div className="rounded-2xl p-8 text-center bg-slate-900 border-2 border-yellow-400">
+          <h2 className="text-2xl font-bold text-white mb-4">Quiz Result</h2>
+          <div className="text-5xl font-extrabold text-yellow-400 mb-6">{percentage}%</div>
+          <div className="grid grid-cols-3 gap-3">
+            <div className="p-3 rounded-xl bg-green-500/10 border border-green-500/30 text-green-500"><p className="text-xl font-bold">{score}</p><p className="text-xs">Correct</p></div>
+            <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-500"><p className="text-xl font-bold">{attempted-score}</p><p className="text-xs">Wrong</p></div>
+            <div className="p-3 rounded-xl bg-slate-800 text-gray-400"><p className="text-xl font-bold">{TOTAL-attempted}</p><p className="text-xs">Skipped</p></div>
+          </div>
+        </div>
+        <div className="rounded-2xl p-5 bg-slate-900 border border-slate-700 space-y-4">
+          <h3 className="text-lg font-bold text-yellow-400">📋 Answer Review</h3>
+          <div className="max-h-[50vh] overflow-y-auto space-y-3 pr-2">
+            {questions.map((q, i) => (
+              <div key={i} className={`p-4 rounded-xl border ${selected[i] === q.answer ? "border-green-500/40 bg-green-500/5" : "border-red-500/40 bg-red-500/5"}`}>
+                <p className="text-sm text-white font-medium">Q{i+1}. {q.question}</p>
+                <p className={`text-xs mt-2 ${selected[i] === q.answer ? "text-green-500" : "text-red-500"}`}>Your: {selected[i] || "Skipped"}</p>
+                {selected[i] !== q.answer && <p className="text-xs text-green-500">Correct: {q.answer}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="flex gap-3"><button onClick={startQuiz} className="flex-1 py-4 rounded-2xl bg-yellow-400 text-slate-900 font-bold">Retry</button><button onClick={()=>setScreen("home")} className="flex-1 py-4 rounded-2xl border-2 border-yellow-400 text-yellow-400 bg-transparent font-bold">Home</button></div>
+      </div>
+    </div>
+  );
+
+  const q = questions[current];
+  return (
+    <div className="min-h-screen flex flex-col bg-slate-950">
+      <div className="sticky top-0 z-30 px-4 py-3 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 flex justify-between items-center">
+        <button onClick={() => setShowNav(!showNav)} className="px-3 py-2 rounded-xl text-sm font-bold bg-yellow-400/10 text-yellow-400 border border-yellow-400/30">Q{current+1}/{TOTAL}</button>
+        <div className="font-mono font-bold text-lg text-yellow-400">{timer.formatTime}</div>
+        <button onClick={submitQuiz} className="px-4 py-2 rounded-xl bg-red-600 text-white text-sm font-bold">Submit</button>
+      </div>
+      <div className="w-full h-1 bg-slate-900"><div className="h-full bg-yellow-400 transition-all duration-500" style={{ width: `${((current+1)/TOTAL)*100}%` }} /></div>
+      
+      {showNav && (
+        <div className="fixed inset-0 z-40 flex">
+          <div className="w-80 h-full p-5 bg-slate-900 border-r-2 border-yellow-400 overflow-y-auto">
+            <h3 className="font-bold text-yellow-400 mb-5">Navigator</h3>
+            <div className="grid grid-cols-5 gap-2">
+              {questions.map((_, i) => (
+                <button key={i} onClick={()=>{setCurrent(i); setShowNav(false);}} className={`w-10 h-10 rounded-lg text-xs font-bold border transition-all ${i===current ? "bg-yellow-400 text-slate-900 border-yellow-400" : selected[i] ? "bg-green-500/20 text-green-500 border-green-500/40" : "bg-slate-950 text-gray-500 border-slate-700"}`}>{i+1}</button>
+              ))}
+            </div>
+          </div>
+          <div className="flex-1 bg-black/60" onClick={() => setShowNav(false)} />
+        </div>
+      )}
+
+      <div className="flex-1 flex flex-col items-center p-4 py-8">
+        <div className="max-w-3xl w-full space-y-6">
+          <div className="p-6 rounded-2xl bg-slate-900 border border-slate-800">
+            <h2 className="text-xl text-white font-semibold leading-relaxed">{q.question}</h2>
+          </div>
+          <div className="space-y-3">
+            {q.options.map((opt, idx) => (
+              <button key={idx} onClick={() => { const s = [...selected]; s[current] = opt; setSelected(s); }} className={`w-full text-left p-4 rounded-2xl border-2 flex items-center gap-4 transition-all ${selected[current] === opt ? "bg-yellow-400/10 border-yellow-400 text-yellow-400" : "bg-slate-900 border-slate-800 text-gray-300"}`}>
+                <span className={`w-10 h-10 flex items-center justify-center rounded-xl font-bold ${selected[current] === opt ? "bg-yellow-400 text-slate-900" : "bg-slate-800 text-gray-500"}`}>{String.fromCharCode(65+idx)}</span>
+                <span className="font-medium">{opt}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="p-4 bg-slate-900 border-t border-slate-800 flex justify-between items-center">
+        <button onClick={() => setCurrent(c => Math.max(0, c-1))} disabled={current===0} className="px-6 py-3 rounded-2xl bg-slate-800 text-gray-400 font-bold disabled:opacity-20">Prev</button>
+        {selected[current] && <button onClick={() => { const s = [...selected]; s[current] = null; setSelected(s); }} className="text-xs text-red-500 underline">Clear Answer</button>}
+        <button onClick={() => current === TOTAL-1 ? submitQuiz() : setCurrent(c => c+1)} className={`px-8 py-3 rounded-2xl font-bold text-slate-900 transition-all ${current === TOTAL-1 ? "bg-green-500" : "bg-yellow-400"}`}>{current === TOTAL-1 ? "Finish" : "Next"}</button>
+      </div>
+    </div>
+  );
+};
+
+export default M4PYQ2025;
