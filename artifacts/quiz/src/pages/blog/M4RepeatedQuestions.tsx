@@ -163,7 +163,6 @@ const M4RepeatedQuestions: React.FC = () => {
           ))}
         </div>
         <button onClick={startQuiz} className="w-full font-bold py-4 rounded-2xl text-lg bg-yellow-400 text-slate-900 shadow-lg active:scale-95 transition-all">🚀 Start Practice Test</button>
-        <button onClick={() => window.open("/pdfs/m4-most-repeated.pdf", "_blank")} className="w-full font-bold py-3 rounded-2xl border-2 border-yellow-400 text-yellow-400 bg-transparent">📄 View Study Guide</button>
       </div>
     </div>
   );
