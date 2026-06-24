@@ -575,6 +575,8 @@ const M3PYQ2024: React.FC = () => {
             ))}
           </div>
           <button onClick={startQuiz} className="w-full font-bold py-4 rounded-2xl text-lg transition-all duration-200 active:scale-95" style={{ backgroundColor: "#facc15", color: "#0f172a", boxShadow: "0 8px 30px rgba(250,204,21,0.3)" }}>🚀 Attempt Mock Test</button>
+          <button onClick={() => window.open("/pdfs/m3 2024.pdf", "_blank")} className="block w-full font-bold py-3 rounded-2xl text-base transition-all duration-200" style={{ border: "2px solid #facc15", color: "#facc15", backgroundColor: "transparent" }}>📄 View PDF</button>
+          <p className="text-xs pt-2" style={{ color: "#6b7280" }}>Powered by <span className="font-semibold" style={{ color: "#facc15" }}>OLevelQuiz.in</span></p>
         </div>
       </div>
     );
