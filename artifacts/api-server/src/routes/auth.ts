@@ -22,7 +22,7 @@ import { isAdminUser } from "../lib/admin";
 
 const OIDC_COOKIE_TTL = 10 * 60 * 1000;
 
-const router: IRouter = Router();
+const router = Router();
 
 function getOrigin(req: Request): string {
   const proto = req.headers["x-forwarded-proto"] || "https";
