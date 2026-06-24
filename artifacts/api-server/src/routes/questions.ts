@@ -14,7 +14,7 @@ import {
 } from "@workspace/api-zod";
 import { requireAdmin } from "../lib/admin";
 
-const router: IRouter = Router();
+const router = Router();
 
 interface DbRow {
   id: string;
